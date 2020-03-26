@@ -14,6 +14,7 @@ type Fish = {
   months: boolean[];
   hours: boolean[];
   timeString: string;
+  leavingNextMonth: boolean;
 };
 
 function cleanAFish(input: { [key: string]: any }): Fish {
@@ -37,7 +38,8 @@ function cleanAFish(input: { [key: string]: any }): Fish {
     months,
     hasFin,
     hours,
-    timeString: time
+    timeString: time,
+    leavingNextMonth: false
   };
 }
 
@@ -66,19 +68,38 @@ const FISH = RAW_FISH.map(cleanAFish);
 
 export default function App() {
   const fish = useCurrentFish();
+  const fishMapper = (fish: Fish) => <Row fish={fish} key={fish.name} />;
   return (
     <>
-      <h1>What Can I Catch Now?</h1>
-      <div className={ROOT_STYLE}>
-        {fish.map(fish => (
-          <Row fish={fish} key={fish.name} />
-        ))}
+      <div className={styles.root}>
+        {fish.rightNow && (
+          <>
+            <h1 className={styles.header}>Available Now</h1>
+            {fish.rightNow.map(fishMapper)}
+          </>
+        )}
+        {fish.laterToday && (
+          <>
+            <h1 className={styles.header}>Available This Month</h1>
+            {fish.laterToday.map(fishMapper)}
+          </>
+        )}
+        {fish.later && (
+          <>
+            <h1 className={styles.header}>Not Available</h1>
+            {fish.later.map(fishMapper)}
+          </>
+        )}
       </div>
     </>
   );
 }
 
-function useCurrentFish(): (Fish & { leavingNextMonth: boolean })[] {
+function useCurrentFish(): {
+  rightNow?: Fish[];
+  laterToday?: Fish[];
+  later?: Fish[];
+} {
   const [currentTime, setCurrentTime] = React.useState(() => moment());
 
   React.useEffect(() => {
@@ -87,73 +108,85 @@ function useCurrentFish(): (Fish & { leavingNextMonth: boolean })[] {
     }, 60000);
     return () => clearInterval(interval);
   }, [setCurrentTime]);
-  const fish = FISH.filter(
-    fish => fish.hours[currentTime.hour()] && fish.months[currentTime.month()]
-  ).map(fish => {
-    let nextMonth = currentTime.month() + 1;
-    if (nextMonth >= 12) {
-      nextMonth = 0;
-    }
 
-    const leavingNextMonth = !fish.months[nextMonth];
+  return _.chain(FISH)
+    .map(fish => {
+      let nextMonth = (currentTime.month() + 1) % 12;
+      const leavingNextMonth =
+        !fish.months[nextMonth] && fish.months[currentTime.month()];
 
-    return { ...fish, leavingNextMonth };
-  });
+      return { ...fish, leavingNextMonth };
+    })
+    .orderBy(["leavingNextMonth", "name"], ["desc", "asc"])
+    .groupBy(fish => {
+      if (fish.hours[currentTime.hour()] && fish.months[currentTime.month()]) {
+        return "rightNow";
+      }
 
-  return _.orderBy(fish, ["leavingNextMonth", "name"], ["desc", "asc"]);
+      if (fish.months[currentTime.month()]) {
+        return "laterToday";
+      }
+
+      return "later";
+    })
+    .value() as any;
 }
 
-function Row({ fish }: { fish: Fish & { leavingNextMonth: boolean } }) {
+function Row({ fish }: { fish: Fish }) {
   return (
-    <div className={ROW_STYLE}>
+    <div className={styles.row}>
       <img src={fish.imageURL} alt={fish.name} />
       <div>{fish.name}</div>
       <div>{fish.location}</div>
       <div>{fish.timeString}</div>
-      <div>${fish.sellPrice}</div>
+      <div>${fish.sellPrice || "?"}</div>
+      <div>Size: {fish.size}</div>
       {fish.leavingNextMonth ? (
-        <div className={LEAVING_STYLE}>Gone Next Month</div>
+        <div className={styles.leaving}>Gone Next Month</div>
       ) : null}
     </div>
   );
 }
 
-const ROW_STYLE = css`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 12px 12px;
-  flex-grow: 1;
-  min-width: 160px;
-  background-color: #c39cef;
-  border-radius: 25px;
-  & > * {
-    margin-bottom: 8px;
-    :last-child {
-      margin-bottom: 0;
+const styles = {
+  row: css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 12px;
+    flex-grow: 1;
+    min-width: 160px;
+    background-color: #c39cef;
+    border-radius: 4px;
+    & > * {
+      margin-bottom: 8px;
+      :last-child {
+        margin-bottom: 0;
+      }
     }
-  }
-  & > img {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background-color: white;
-  }
-`;
-
-const LEAVING_STYLE = css`
-  color: #b5553e;
-`;
-
-const ROOT_STYLE = css`
-  font-family: sans-serif;
-  text-align: center;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 180px));
-  grid-gap: 8px;
-  justify-content: center;
-  padding: 12px;
-`;
+    & > img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background-color: white;
+    }
+  `,
+  root: css`
+    font-family: sans-serif;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 180px));
+    grid-gap: 8px;
+    justify-content: center;
+    padding: 12px;
+  `,
+  leaving: css`
+    color: #b5553e;
+  `,
+  header: css`
+    grid-column: 1/-1;
+  `
+};
 
 injectGlobal`
   body {
