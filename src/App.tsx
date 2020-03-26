@@ -1,5 +1,4 @@
 import * as React from "react";
-import "./styles.css";
 import RAW_FISH from "./fish.json";
 import moment from "moment";
 import { css, injectGlobal } from "emotion";
@@ -26,7 +25,6 @@ function cleanAFish(input: { [key: string]: any }): Fish {
     hours.fill(true);
   } else {
     const [start, end] = time.split(" - ").map(parseTimeString);
-    console.log(`time: ${time}, start: ${start} end:${end}`);
     forRangeWrap(start, end, 24, i => (hours[i] = true));
   }
 
@@ -62,7 +60,6 @@ function forRangeWrap(
     fn(i);
     i++;
   }
-  console.log(`${start}-${end}`);
 }
 
 const FISH = RAW_FISH.map(cleanAFish);
