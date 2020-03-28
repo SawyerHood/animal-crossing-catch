@@ -1,28 +1,37 @@
 import * as React from "react";
 import RAW_FISH from "./fish.json";
+import RAW_BUGS from "./bugs.json";
 import moment from "moment";
 import { css, injectGlobal } from "emotion";
 import _ from "lodash";
+import { ReactComponent as Question } from "./question.svg";
 
-type Fish = {
+interface ICatchable {
   name: string;
-  imageURL: string;
+  imageURL: string | null;
   sellPrice: number;
   location: string;
-  size: string;
-  hasFin: boolean;
   months: boolean[];
   hours: boolean[];
   timeString: string;
   leavingNextMonth: boolean;
-};
+}
 
-function cleanAFish(input: { [key: string]: any }): Fish {
-  const { name, imageURL, sellPrice, location, size, months, time } = input;
+interface Fish extends ICatchable {
+  type: "fish";
+  size: string;
+}
 
-  const hasFin = size.includes("Fin");
+interface Bug extends ICatchable {
+  type: "bug";
+}
+
+type Catchable = Fish | Bug;
+
+function cleanCatchable(input: { [key: string]: any }): ICatchable {
+  const { name, imageURL, sellPrice, location, months, time } = input;
   let hours = new Array(24).fill(false);
-  if (time === "All day") {
+  if (time.toLowerCase() === "all day") {
     hours.fill(true);
   } else {
     for (const timeStr of time.split(" & ")) {
@@ -36,12 +45,27 @@ function cleanAFish(input: { [key: string]: any }): Fish {
     imageURL,
     sellPrice,
     location,
-    size,
     months,
-    hasFin,
     hours,
     timeString: time,
     leavingNextMonth: false
+  };
+}
+
+function cleanAFish(input: { [key: string]: any }): Fish {
+  let catchable = cleanCatchable(input);
+  return {
+    ...catchable,
+    type: "fish",
+    size: input.size
+  };
+}
+
+function cleanABug(input: { [key: string]: any }): Bug {
+  let catchable = cleanCatchable(input);
+  return {
+    ...catchable,
+    type: "bug"
   };
 }
 
@@ -66,30 +90,34 @@ function forRangeWrap(
   }
 }
 
-const FISH = RAW_FISH.map(cleanAFish);
+const FISH: Catchable[] = RAW_FISH.map(cleanAFish);
+const BUGS: Catchable[] = RAW_BUGS.map(cleanABug);
+const CATCHABLES: Catchable[] = FISH.concat(BUGS);
 
 export default function App() {
-  const fish = useCurrentFish();
-  const fishMapper = (fish: Fish) => <Card fish={fish} key={fish.name} />;
+  const catchables = useCurrentCatchables();
+  const catchableMapper = (catchable: Catchable) => (
+    <Card catchable={catchable} key={catchable.name} />
+  );
   return (
     <>
       <div className={styles.root}>
-        {fish.rightNow && (
+        {catchables.rightNow && (
           <>
             <h1 className={styles.header}>Available Now</h1>
-            {fish.rightNow.map(fishMapper)}
+            {catchables.rightNow.map(catchableMapper)}
           </>
         )}
-        {fish.laterToday && (
+        {catchables.laterToday && (
           <>
             <h1 className={styles.header}>Available This Month</h1>
-            {fish.laterToday.map(fishMapper)}
+            {catchables.laterToday.map(catchableMapper)}
           </>
         )}
-        {fish.later && (
+        {catchables.later && (
           <>
             <h1 className={styles.header}>Not Available</h1>
-            {fish.later.map(fishMapper)}
+            {catchables.later.map(catchableMapper)}
           </>
         )}
       </div>
@@ -97,10 +125,10 @@ export default function App() {
   );
 }
 
-function useCurrentFish(): {
-  rightNow?: Fish[];
-  laterToday?: Fish[];
-  later?: Fish[];
+function useCurrentCatchables(): {
+  rightNow?: Catchable[];
+  laterToday?: Catchable[];
+  later?: Catchable[];
 } {
   const [currentTime, setCurrentTime] = React.useState(() => moment());
 
@@ -111,21 +139,24 @@ function useCurrentFish(): {
     return () => clearInterval(interval);
   }, [setCurrentTime]);
 
-  return _.chain(FISH)
-    .map(fish => {
+  return _.chain(CATCHABLES)
+    .map(catchable => {
       let nextMonth = (currentTime.month() + 1) % 12;
       const leavingNextMonth =
-        !fish.months[nextMonth] && fish.months[currentTime.month()];
+        !catchable.months[nextMonth] && catchable.months[currentTime.month()];
 
-      return { ...fish, leavingNextMonth };
+      return { ...catchable, leavingNextMonth };
     })
-    .orderBy(["leavingNextMonth", "name"], ["desc", "asc"])
-    .groupBy(fish => {
-      if (fish.hours[currentTime.hour()] && fish.months[currentTime.month()]) {
+    .orderBy(["leavingNextMonth", "type", "name"], ["desc", "desc", "asc"])
+    .groupBy(catchable => {
+      if (
+        catchable.hours[currentTime.hour()] &&
+        catchable.months[currentTime.month()]
+      ) {
         return "rightNow";
       }
 
-      if (fish.months[currentTime.month()]) {
+      if (catchable.months[currentTime.month()]) {
         return "laterToday";
       }
 
@@ -134,21 +165,41 @@ function useCurrentFish(): {
     .value() as any;
 }
 
-function Card({ fish }: { fish: Fish }) {
+function Card({ catchable }: { catchable: Catchable }) {
+  const cardStyle = css`
+    ${styles.card};
+    ${catchable.type === "bug" ? styles.bug : null};
+  `;
   return (
-    <div className={styles.card}>
-      <img src={fish.imageURL} alt={fish.name} />
-      <div>{fish.name}</div>
-      <div>{fish.location}</div>
-      <div>{fish.timeString}</div>
-      <div>${fish.sellPrice || "?"}</div>
-      <div>Size: {fish.size}</div>
-      {fish.leavingNextMonth ? (
+    <div className={cardStyle}>
+      {catchable.imageURL ? (
+        <img
+          src={catchable.imageURL}
+          className={styles.img}
+          alt={catchable.name}
+        />
+      ) : (
+        <Question className={styles.img} />
+      )}
+      <div>{catchable.name}</div>
+      <div>{catchable.location}</div>
+      <div>{catchable.timeString}</div>
+      <div>${catchable.sellPrice || "?"}</div>
+      {catchable.type === "fish" && <div>Size: {catchable.size}</div>}
+      {catchable.leavingNextMonth ? (
         <div className={styles.leaving}>Gone Next Month</div>
       ) : null}
     </div>
   );
 }
+
+const colors = {
+  fishBG: "#8ac6d1",
+  text: "#000839",
+  emText: "#fe346e",
+  lightBG: "#fae3d9",
+  bugBG: "#bbded6"
+};
 
 const styles = {
   card: css`
@@ -158,20 +209,14 @@ const styles = {
     padding: 12px 12px;
     flex-grow: 1;
     min-width: 160px;
-    background-color: #c39cef;
+    background-color: ${colors.fishBG};
     border-radius: 4px;
-    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
     & > * {
       margin-bottom: 8px;
       :last-child {
         margin-bottom: 0;
       }
-    }
-    & > img {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background-color: white;
     }
   `,
   root: css`
@@ -184,18 +229,27 @@ const styles = {
     padding: 12px;
   `,
   leaving: css`
-    color: #b5553e;
+    color: ${colors.emText};
   `,
   header: css`
     grid-column: 1/-1;
+  `,
+  img: css`
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: white;
+  `,
+  bug: css`
+    background-color: ${colors.bugBG};
   `
 };
 
 injectGlobal`
   body {
     margin: 0;
-    background-color: #f6f2ea;
-    color: #4b3c36;
+    background-color: ${colors.lightBG};
+    color: ${colors.text};
     text-align: center;
     font-family: sans-serif;
     width: 100%;

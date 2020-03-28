@@ -1486,7 +1486,7 @@
     "name": "Fly",
     "sellPrice": 60,
     "location": "On trash items",
-    "time": "All Day",
+    "time": "All day",
     "months": [
       true,
       true,
