@@ -523,7 +523,7 @@
   },
   {
     "name": "Brown Cicada",
-    "sellPrice": null,
+    "sellPrice": 250,
     "location": "On Trees",
     "time": "8 AM - 5 PM",
     "months": [
@@ -543,7 +543,7 @@
   },
   {
     "name": "Robust Cicada",
-    "sellPrice": null,
+    "sellPrice": 300,
     "location": "On Trees",
     "time": "8 AM - 5 PM",
     "months": [
@@ -563,7 +563,7 @@
   },
   {
     "name": "Giant Cicada",
-    "sellPrice": null,
+    "sellPrice": 500,
     "location": "On Trees",
     "time": "8 AM - 5 PM",
     "months": [
@@ -604,7 +604,7 @@
   },
   {
     "name": "Evening Cicada",
-    "sellPrice": null,
+    "sellPrice": 550,
     "location": "On Trees",
     "time": "4 AM - 8 AM & 4 PM - 7 PM",
     "months": [
@@ -625,7 +625,7 @@
   {
     "name": "Cicada shell",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/7/7e/Cicada_Shell_HHD_Icon.png/revision/latest?cb=20161105194347",
-    "sellPrice": null,
+    "sellPrice": 10,
     "location": "On Trees",
     "time": "All day",
     "months": [
@@ -1003,7 +1003,7 @@
     "name": "Blue weevil beetle",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/2/23/Blue_Weevil_Beetle_NH_Icon.PNG/revision/latest?cb=20200323171413",
     "sellPrice": null,
-    "location": "?",
+    "location": "On Tree (coconut?)",
     "time": "All day",
     "months": [
       false,
@@ -1086,7 +1086,7 @@
   {
     "name": "Drone beetle",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/c/c3/Drone_Beetle_NH_Icon.PNG/revision/latest?cb=20200323171433",
-    "sellPrice": null,
+    "sellPrice": 200,
     "location": "On Tree",
     "time": "All day",
     "months": [
@@ -1149,7 +1149,7 @@
   {
     "name": "Miyama stag",
     "imageURL": null,
-    "sellPrice": null,
+    "sellPrice": 1000,
     "location": "On Trees",
     "time": "All day",
     "months": [
@@ -1212,7 +1212,7 @@
   {
     "name": "Cyclommatus stag",
     "imageURL": null,
-    "sellPrice": null,
+    "sellPrice": 8000,
     "location": "On Trees",
     "time": "5 PM - 8 AM",
     "months": [
@@ -1275,7 +1275,7 @@
   {
     "name": "Horned dynastid",
     "imageURL": null,
-    "sellPrice": null,
+    "sellPrice": 1350,
     "location": "On Trees",
     "time": "5 PM - 8 AM",
     "months": [
@@ -1296,7 +1296,7 @@
   {
     "name": "Horned atlas",
     "imageURL": null,
-    "sellPrice": null,
+    "sellPrice": 8000,
     "location": "On Trees",
     "time": "5 PM - 8 AM",
     "months": [
@@ -1317,7 +1317,7 @@
   {
     "name": "Horned elephant",
     "imageURL": null,
-    "sellPrice": null,
+    "sellPrice": 8000,
     "location": "On Trees",
     "time": "5 PM - 8 AM",
     "months": [
@@ -1486,7 +1486,7 @@
     "name": "Fly",
     "sellPrice": 60,
     "location": "On trash items",
-    "time": "All day",
+    "time": "All Day",
     "months": [
       true,
       true,
