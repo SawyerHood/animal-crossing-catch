@@ -25,8 +25,10 @@ function cleanAFish(input: { [key: string]: any }): Fish {
   if (time === "All day") {
     hours.fill(true);
   } else {
-    const [start, end] = time.split(" - ").map(parseTimeString);
-    forRangeWrap(start, end, 24, i => (hours[i] = true));
+    for (const timeStr of time.split(" & ")) {
+      const [start, end] = timeStr.split(" - ").map(parseTimeString);
+      forRangeWrap(start, end, 24, i => (hours[i] = true));
+    }
   }
 
   return {
@@ -68,7 +70,7 @@ const FISH = RAW_FISH.map(cleanAFish);
 
 export default function App() {
   const fish = useCurrentFish();
-  const fishMapper = (fish: Fish) => <Row fish={fish} key={fish.name} />;
+  const fishMapper = (fish: Fish) => <Card fish={fish} key={fish.name} />;
   return (
     <>
       <div className={styles.root}>
@@ -132,9 +134,9 @@ function useCurrentFish(): {
     .value() as any;
 }
 
-function Row({ fish }: { fish: Fish }) {
+function Card({ fish }: { fish: Fish }) {
   return (
-    <div className={styles.row}>
+    <div className={styles.card}>
       <img src={fish.imageURL} alt={fish.name} />
       <div>{fish.name}</div>
       <div>{fish.location}</div>
@@ -149,7 +151,7 @@ function Row({ fish }: { fish: Fish }) {
 }
 
 const styles = {
-  row: css`
+  card: css`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -158,6 +160,7 @@ const styles = {
     min-width: 160px;
     background-color: #c39cef;
     border-radius: 4px;
+    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.75);
     & > * {
       margin-bottom: 8px;
       :last-child {
@@ -176,7 +179,7 @@ const styles = {
     text-align: center;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 180px));
-    grid-gap: 8px;
+    grid-gap: 16px;
     justify-content: center;
     padding: 12px;
   `,

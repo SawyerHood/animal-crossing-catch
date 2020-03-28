@@ -66,7 +66,7 @@
     "name": "Peacock butterfly",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/0/03/Peacock_Butterfly_HHD_Icon.png/revision/latest?cb=20161105203001",
     "sellPrice": 2500,
-    "location": "Flying",
+    "location": "Flying by rare flowers",
     "time": "4 AM - 7 PM",
     "months": [
       false,
@@ -128,7 +128,7 @@
   {
     "name": "Great purple emperor",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/c/c2/Great_Purple_Emperor_NH_Icon.PNG/revision/latest?cb=20200323171457",
-    "sellPrice": null,
+    "sellPrice": 3000,
     "location": "Flying",
     "time": "4 AM - 7 PM",
     "months": [
@@ -190,7 +190,7 @@
   },
   {
     "name": "Agrias butterfly",
-    "imageURL": null,
+    "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/b/b5/Agrias_Butterfly_HHD.png/revision/latest?cb=20200326025201",
     "sellPrice": 3000,
     "location": "Flying",
     "time": "8 AM - 5 PM",
@@ -211,7 +211,6 @@
   },
   {
     "name": "Rajah Brooke's birdwing",
-    "imageURL": null,
     "sellPrice": 2500,
     "location": "Flying",
     "time": "8 AM - 5 PM",
@@ -232,7 +231,6 @@
   },
   {
     "name": "Queen Alexandra's birdwing",
-    "imageURL": null,
     "sellPrice": 4000,
     "location": "Flying",
     "time": "8 AM - 4 PM",
@@ -274,7 +272,6 @@
   },
   {
     "name": "Atlas moth",
-    "imageURL": null,
     "sellPrice": 3000,
     "location": "On Trees",
     "time": "7 PM - 4 AM",
@@ -525,8 +522,7 @@
     ]
   },
   {
-    "name": "Brown cicada",
-    "imageURL": null,
+    "name": "Brown Cicada",
     "sellPrice": null,
     "location": "On Trees",
     "time": "8 AM - 5 PM",
@@ -546,8 +542,7 @@
     ]
   },
   {
-    "name": "Robust cicada",
-    "imageURL": null,
+    "name": "Robust Cicada",
     "sellPrice": null,
     "location": "On Trees",
     "time": "8 AM - 5 PM",
@@ -567,8 +562,7 @@
     ]
   },
   {
-    "name": "Giant cicada",
-    "imageURL": null,
+    "name": "Giant Cicada",
     "sellPrice": null,
     "location": "On Trees",
     "time": "8 AM - 5 PM",
@@ -609,8 +603,7 @@
     ]
   },
   {
-    "name": "Evening cicada",
-    "imageURL": null,
+    "name": "Evening Cicada",
     "sellPrice": null,
     "location": "On Trees",
     "time": "4 AM - 8 AM & 4 PM - 7 PM",
@@ -927,7 +920,7 @@
     "name": "Jewel beetle",
     "imageURL": null,
     "sellPrice": 2400,
-    "location": "On Trees",
+    "location": "On Tree Stumps",
     "time": "All day",
     "months": [
       false,
@@ -946,7 +939,6 @@
   },
   {
     "name": "Violin beetle",
-    "imageURL": null,
     "sellPrice": 450,
     "location": "On a tree stump",
     "time": "All day",
@@ -1032,8 +1024,8 @@
     "name": "Dung beetle",
     "imageURL": null,
     "sellPrice": null,
-    "location": "On ground",
-    "time": "?",
+    "location": "On ground (rolling snowballs)",
+    "time": "All day",
     "months": [
       true,
       true,
@@ -1115,8 +1107,8 @@
   {
     "name": "Goliath beetle",
     "imageURL": null,
-    "sellPrice": null,
-    "location": "On Trees",
+    "sellPrice": 8000,
+    "location": "On Tree (Palm)",
     "time": "5 PM - 8 AM",
     "months": [
       false,
@@ -1178,7 +1170,7 @@
   {
     "name": "Giant stag",
     "imageURL": null,
-    "sellPrice": null,
+    "sellPrice": 10000,
     "location": "On Trees",
     "time": "11 PM - 8 AM",
     "months": [
@@ -1199,7 +1191,7 @@
   {
     "name": "Rainbow stag",
     "imageURL": null,
-    "sellPrice": null,
+    "sellPrice": 6000,
     "location": "On Trees",
     "time": "7 PM - 8 AM",
     "months": [
@@ -1368,7 +1360,7 @@
     "name": "Walking stick",
     "imageURL": null,
     "sellPrice": null,
-    "location": "Shaking Tree",
+    "location": "On Trees",
     "time": "4 AM - 8 AM & 5 PM - 7 PM",
     "months": [
       false,
@@ -1512,7 +1504,6 @@
   },
   {
     "name": "Mosquito",
-    "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/6/63/Mosquito_HHD_Icon.png/revision/latest?cb=20161105202403",
     "sellPrice": 130,
     "location": "Flying",
     "time": "5 PM - 4 AM",
@@ -1533,7 +1524,6 @@
   },
   {
     "name": "Flea",
-    "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/1/1f/Flea_HHD_Icon.png/revision/latest?cb=20161105195347",
     "sellPrice": null,
     "location": "Villager's Heads",
     "time": "All day",
@@ -1554,7 +1544,6 @@
   },
   {
     "name": "Snail",
-    "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/2/27/Snail_HHD_Icon.png/revision/latest?cb=20161105204610",
     "sellPrice": 250,
     "location": "On rocks (Rain)",
     "time": "All day",
@@ -1575,7 +1564,6 @@
   },
   {
     "name": "Pill bug",
-    "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/8/89/Pill_Bug_HHD_Icon.png/revision/latest?cb=20161105203103",
     "sellPrice": 250,
     "location": "Hit a rock",
     "time": "11 PM - 4 PM",
@@ -1596,7 +1584,6 @@
   },
   {
     "name": "Centipede",
-    "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/9/9d/Centipede_HHD_Icon.png/revision/latest?cb=20161105194330",
     "sellPrice": 300,
     "location": "Hit a rock",
     "time": "4 PM - 11 PM",
@@ -1617,7 +1604,6 @@
   },
   {
     "name": "Spider",
-    "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/9/9e/Spider_HHD_Icon.png/revision/latest?cb=20161105204758",
     "sellPrice": 480,
     "location": "Shaking tree",
     "time": "7 PM - 8 AM",
@@ -1638,7 +1624,6 @@
   },
   {
     "name": "Tarantula",
-    "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/e/eb/Tarantula_HHD_Icon.png/revision/latest?cb=20161105205206",
     "sellPrice": 8000,
     "location": "On the ground",
     "time": "7 PM - 4 AM",
@@ -1659,7 +1644,6 @@
   },
   {
     "name": "Scorpion",
-    "imageURL": null,
     "sellPrice": 8000,
     "location": "On the ground",
     "time": "7 PM - 4 AM",

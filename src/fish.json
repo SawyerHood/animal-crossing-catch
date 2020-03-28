@@ -24,7 +24,7 @@
   {
     "name": "Pale chub",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/c/c0/Pale_Chub_HHD_Icon.png/revision/latest?cb=20161105202841",
-    "sellPrice": 160,
+    "sellPrice": 200,
     "location": "River",
     "size": "1",
     "time": "9 AM - 4 PM",
@@ -224,7 +224,7 @@
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/e/e2/Crawfish_HHD_Icon.png/revision/latest?cb=20161105194621",
     "sellPrice": 200,
     "location": "Pond",
-    "size": "3",
+    "size": "2",
     "time": "All day",
     "months": [
       false,
@@ -246,7 +246,7 @@
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/a/a1/Soft-Shelled_Turtle_HHD_Icon.png/revision/latest?cb=20161105204721",
     "sellPrice": 3750,
     "location": "River",
-    "size": "?",
+    "size": "4",
     "time": "4 PM - 9 AM",
     "months": [
       false,
@@ -268,7 +268,7 @@
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/b/b1/Snapping_Turtle_NH_Icon.png/revision/latest?cb=20200323203213",
     "sellPrice": 5000,
     "location": "River",
-    "size": "?",
+    "size": "5",
     "time": "9 PM - 4 AM",
     "months": [
       false,
@@ -310,7 +310,7 @@
   {
     "name": "Frog",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/8/8f/Frog_HHD_Icon.png/revision/latest?cb=20161105195429",
-    "sellPrice": null,
+    "sellPrice": 120,
     "location": "Pond",
     "size": "2",
     "time": "All day",
@@ -378,7 +378,7 @@
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/4/41/Catfish_HHD_Icon.png/revision/latest?cb=20161105194321",
     "sellPrice": 800,
     "location": "Pond",
-    "size": "?",
+    "size": "4",
     "time": "4 PM - 9 AM",
     "months": [
       false,
@@ -398,7 +398,7 @@
   {
     "name": "Giant snakehead",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/4/4f/Giant_Snakehead_HHD_Icon.png/revision/latest?cb=20161105195626",
-    "sellPrice": null,
+    "sellPrice": 5500,
     "location": "Pond",
     "size": "5",
     "time": "9 AM - 4 PM",
@@ -488,7 +488,7 @@
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/e/ef/Tilapia_NH_Icon.png/revision/latest?cb=20200323203246",
     "sellPrice": 800,
     "location": "River",
-    "size": "?",
+    "size": "3",
     "time": "All day",
     "months": [
       false,
@@ -530,7 +530,7 @@
   {
     "name": "Pond smelt",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/c/cf/Pond_Smelt_HHD_Icon.png/revision/latest?cb=20161105203259",
-    "sellPrice": null,
+    "sellPrice": 500,
     "location": "River",
     "size": "2",
     "time": "All day",
@@ -575,7 +575,7 @@
     "name": "Cherry salmon",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/0/05/Cherry_Salmon_HHD_Icon.png/revision/latest?cb=20161105194343",
     "sellPrice": 1000,
-    "location": "River (Clifftop)",
+    "location": "River (Clifftop)  Pond",
     "size": "3",
     "time": "4 PM - 9 AM",
     "months": [
@@ -840,7 +840,7 @@
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/e/e7/Rainbowfish_NH_Icon.png/revision/latest?cb=20200323203143",
     "sellPrice": 800,
     "location": "River",
-    "size": "2",
+    "size": "1",
     "time": "9 AM - 4 PM",
     "months": [
       false,
@@ -936,11 +936,11 @@
       false,
       false,
       false,
+      true,
+      true,
+      true,
+      true,
       false,
-      true,
-      true,
-      true,
-      true,
       false,
       false
     ]
@@ -950,7 +950,7 @@
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/7/79/Arapaima_HHD_Icon.png/revision/latest?cb=20161105192118",
     "sellPrice": 10000,
     "location": "River",
-    "size": "?",
+    "size": "6",
     "time": "4 PM - 9 AM",
     "months": [
       false,
@@ -1034,7 +1034,7 @@
     ]
   },
   {
-    "name": "Seahorse",
+    "name": "Sea horse",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/d/d2/Seahorse_%28New_Leaf_icon%29.PNG/revision/latest?cb=20140916225855",
     "sellPrice": 1100,
     "location": "Sea",
@@ -1056,7 +1056,7 @@
     ]
   },
   {
-    "name": "Clownfish",
+    "name": "Clown fish",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/9/98/Clownfish_HHD_Icon.png/revision/latest?cb=20161105194432",
     "sellPrice": 650,
     "location": "Sea",
@@ -1156,7 +1156,7 @@
       false,
       true,
       true,
-      false,
+      true,
       true,
       true,
       true,
@@ -1168,7 +1168,7 @@
   {
     "name": "Blowfish",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/6/63/Blowfish_HHD_Icon.png/revision/latest?cb=20161105193618",
-    "sellPrice": null,
+    "sellPrice": 5000,
     "location": "Sea",
     "size": "3",
     "time": "6 PM - 4 AM",
@@ -1390,7 +1390,7 @@
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/7/78/Moray_Eel_HHD_Icon.png/revision/latest?cb=20161105202356",
     "sellPrice": 2000,
     "location": "Sea",
-    "size": "5",
+    "size": "Narrow",
     "time": "All day",
     "months": [
       false,

@@ -1,6 +1,8 @@
 Fish generated from https://animalcrossing.fandom.com/wiki/Fish_(New_Horizons) using:
 
 ```js
+let tableBody = document.querySelector(".roundy.sortable tbody");
+let rows = Array.from(tableBody.children, r => Array.from(r.children));
 copy(
   JSON.stringify(
     rows.map(row => {
@@ -21,6 +23,8 @@ copy(
 Bugs generated from https://animalcrossing.fandom.com/wiki/Bugs_(New_Horizons) using:
 
 ```js
+let tableBody = document.querySelector(".sortable tbody");
+let rows = Array.from(tableBody.children, r => Array.from(r.children));
 copy(
   JSON.stringify(
     rows.map(row => {
