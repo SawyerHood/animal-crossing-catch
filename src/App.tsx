@@ -4,12 +4,14 @@ import RAW_BUGS from "./bugs.json";
 import moment from "moment";
 import { css, injectGlobal } from "emotion";
 import _ from "lodash";
-import { ReactComponent as Question } from "./question.svg";
 import { ReactComponent as Location } from "./location.svg";
 import { ReactComponent as Time } from "./time.svg";
 import { ReactComponent as Bells } from "./bells.svg";
 import { ReactComponent as Length } from "./length.svg";
 import { ReactComponent as Warning } from "./warning.svg";
+
+const env = process.env;
+env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 interface ICatchable {
   name: string;
@@ -270,15 +272,12 @@ function Card({ catchable }: { catchable: Catchable }) {
   `;
   return (
     <div className={cardStyle}>
-      {catchable.imageURL ? (
-        <img
-          src={catchable.imageURL}
-          className={styles.img}
-          alt={catchable.name}
-        />
-      ) : (
-        <Question className={styles.img} />
-      )}
+      <img
+        src={catchable.imageURL || imageFromName(catchable.name)}
+        className={styles.img}
+        alt={catchable.name}
+      />
+
       <div className={styles.name} title={catchable.name}>
         {catchable.name}
       </div>
@@ -295,6 +294,14 @@ function Card({ catchable }: { catchable: Catchable }) {
       ) : null}
     </div>
   );
+}
+
+function imageFromName(name: string): string {
+  const newName = name
+    .toLowerCase()
+    .replace(/ /g, "_")
+    .replace("'", "");
+  return `${env.PUBLIC_URL}/img/${newName}.png`;
 }
 
 function Row({
@@ -377,6 +384,7 @@ const styles = {
     width: 64px;
     height: 64px;
     align-self: center;
+    object-fit: scale-down;
   `,
   bug: css`
     background-color: ${colors.bugBG};
