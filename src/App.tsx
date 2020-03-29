@@ -277,6 +277,7 @@ const styles = {
     grid-column: 1/-1;
     text-align: left;
     color: ${colors.headerText};
+    margin: 16px 0;
   `,
   img: css`
     width: 64px;
