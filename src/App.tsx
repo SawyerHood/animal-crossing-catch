@@ -250,7 +250,8 @@ const styles = {
     flex-direction: column;
     padding: 24px;
     flex-grow: 1;
-    width: 184px;
+    max-width: 184px;
+    min-width: 160px;
     background-color: ${colors.fishBG};
     border-radius: 6px;
     box-shadow: 0px 2px 15px rgba(170, 191, 172, 0.3);
@@ -265,7 +266,7 @@ const styles = {
     font-family: sans-serif;
     text-align: center;
     display: grid;
-    grid-template-columns: repeat(auto-fit, 184px);
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     grid-gap: 4px 4px;
     justify-content: center;
     padding: 12px;
