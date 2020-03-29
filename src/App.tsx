@@ -343,7 +343,6 @@ const styles = {
     flex-direction: column;
     padding: 16px;
     flex-grow: 1;
-    max-width: 184px;
     min-width: 160px;
     background-color: ${colors.fishBG};
     border-radius: 6px;
