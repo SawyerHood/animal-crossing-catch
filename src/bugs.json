@@ -66,7 +66,7 @@
     "name": "Peacock butterfly",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/0/03/Peacock_Butterfly_HHD_Icon.png/revision/latest?cb=20161105203001",
     "sellPrice": 2500,
-    "location": "Flying by rare flowers",
+    "location": "Flying by Hybrid Flowers",
     "time": "4 AM - 7 PM",
     "months": [
       false,
@@ -253,7 +253,7 @@
     "name": "Moth",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/f/f9/Moth_HHD_Icon.png/revision/latest?cb=20161105202407",
     "sellPrice": 130,
-    "location": "Flying by light",
+    "location": "Flying by Light",
     "time": "7 PM - 4 AM",
     "months": [
       true,
@@ -315,7 +315,7 @@
     "name": "Long locust",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/0/05/Long_Locust_HHD_Icon.png/revision/latest?cb=20161105201533",
     "sellPrice": 200,
-    "location": "Hopping",
+    "location": "On the Ground",
     "time": "8 AM - 7 PM",
     "months": [
       false,
@@ -336,7 +336,7 @@
     "name": "Migratory locust",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/c/c0/Migratory_Locust_HHD_Icon.png/revision/latest?cb=20161105201959",
     "sellPrice": 600,
-    "location": "Hopping",
+    "location": "On the Ground",
     "time": "8 AM - 7 PM",
     "months": [
       false,
@@ -357,7 +357,7 @@
     "name": "Rice grasshopper",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/3/3c/Rice_Grasshopper_HHD_Icon.png/revision/latest?cb=20161105203817",
     "sellPrice": 160,
-    "location": "Hopping",
+    "location": "On the Ground",
     "time": "8 AM - 7 PM",
     "months": [
       false,
@@ -378,7 +378,7 @@
     "name": "Grasshopper",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/4/47/Grasshopper_HHD_Icon.png/revision/latest?cb=20161105195832",
     "sellPrice": 160,
-    "location": "Hopping",
+    "location": "On the Ground",
     "time": "8 AM - 5 PM",
     "months": [
       false,
@@ -399,7 +399,7 @@
     "name": "Cricket",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/0/0a/Cricket_HHD_Icon.png/revision/latest?cb=20161105194652",
     "sellPrice": 130,
-    "location": "Hopping",
+    "location": "On the Ground",
     "time": "5 PM - 8 AM",
     "months": [
       false,
@@ -420,7 +420,7 @@
     "name": "Bell cricket",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/b/b2/Bell_Cricket_HHD_Icon.png/revision/latest?cb=20161105193526",
     "sellPrice": 430,
-    "location": "Hopping",
+    "location": "On the Ground",
     "time": "5 PM - 8 AM",
     "months": [
       false,
@@ -462,7 +462,7 @@
     "name": "Orchid mantis",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/6/64/Orchid_Mantis_HHD_Icon.png/revision/latest?cb=20161105202812",
     "sellPrice": 2400,
-    "location": "On flowers (White)",
+    "location": "On Flowers (White)",
     "time": "8 AM - 5 PM",
     "months": [
       false,
@@ -504,7 +504,7 @@
     "name": "Wasp",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/a/ae/Bee_HHD_Icon.png/revision/latest?cb=20161105193523",
     "sellPrice": 2500,
-    "location": "Shake tree",
+    "location": "Shaking Trees",
     "time": "All day",
     "months": [
       true,
@@ -522,7 +522,7 @@
     ]
   },
   {
-    "name": "Brown Cicada",
+    "name": "Brown cicada",
     "sellPrice": 250,
     "location": "On Trees",
     "time": "8 AM - 5 PM",
@@ -542,7 +542,7 @@
     ]
   },
   {
-    "name": "Robust Cicada",
+    "name": "Robust cicada",
     "sellPrice": 300,
     "location": "On Trees",
     "time": "8 AM - 5 PM",
@@ -562,7 +562,7 @@
     ]
   },
   {
-    "name": "Giant Cicada",
+    "name": "Giant cicada",
     "sellPrice": 500,
     "location": "On Trees",
     "time": "8 AM - 5 PM",
@@ -603,7 +603,7 @@
     ]
   },
   {
-    "name": "Evening Cicada",
+    "name": "Evening cicada",
     "sellPrice": 550,
     "location": "On Trees",
     "time": "4 AM - 8 AM & 4 PM - 7 PM",
@@ -836,7 +836,7 @@
     "name": "Stinkbug",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/f/f3/Stinkbug_%28New_Leaf_icon%29.PNG/revision/latest?cb=20140917183505",
     "sellPrice": 120,
-    "location": "On flowers",
+    "location": "On Flowers",
     "time": "All day",
     "months": [
       false,
@@ -857,7 +857,7 @@
     "name": "Man-faced stink bug",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/c/c0/Man-faced_Stink_Bug_NH_Icon.PNG/revision/latest?cb=20200323171509",
     "sellPrice": 1000,
-    "location": "On flowers",
+    "location": "On Flowers",
     "time": "7 PM - 8 AM",
     "months": [
       false,
@@ -878,7 +878,7 @@
     "name": "Ladybug",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/7/72/Ladybug_HHD_Icon.png/revision/latest?cb=20161105201243",
     "sellPrice": 200,
-    "location": "On flowers",
+    "location": "On Flowers",
     "time": "8 AM - 5 PM",
     "months": [
       false,
@@ -899,7 +899,7 @@
     "name": "Tiger beetle",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/7/73/Tiger_Beetle_HHD_Icon.png/revision/latest?cb=20161105205246",
     "sellPrice": 1500,
-    "location": "On the ground",
+    "location": "On the Ground",
     "time": "All day",
     "months": [
       false,
@@ -940,7 +940,7 @@
   {
     "name": "Violin beetle",
     "sellPrice": 450,
-    "location": "On a tree stump",
+    "location": "On Tree Stumps",
     "time": "All day",
     "months": [
       false,
@@ -958,10 +958,10 @@
     ]
   },
   {
-    "name": "Citrus Long-horned Beetle",
+    "name": "Citrus long-horned beetle",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/0/03/Citrus_Long-horned_Beetle_NH.png/revision/latest?cb=20200329033411",
     "sellPrice": 350,
-    "location": "On a tree stump",
+    "location": "On Tree Stumps",
     "time": "All day",
     "months": [
       true,
@@ -982,7 +982,7 @@
     "name": "Rosalia batesi beetle",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/5/58/Rosalia_Batesi_Beetle_NH_Icon.PNG/revision/latest?cb=20200323171521",
     "sellPrice": 3000,
-    "location": "On a tree stump",
+    "location": "On Tree Stumps",
     "time": "All day",
     "months": [
       false,
@@ -1002,8 +1002,8 @@
   {
     "name": "Blue weevil beetle",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/2/23/Blue_Weevil_Beetle_NH_Icon.PNG/revision/latest?cb=20200323171413",
-    "sellPrice": null,
-    "location": "On Tree (coconut?)",
+    "sellPrice": 800,
+    "location": "On Trees (Coconut?)",
     "time": "All day",
     "months": [
       false,
@@ -1042,7 +1042,7 @@
     ]
   },
   {
-    "name": "Earth-boring Dung Beetle",
+    "name": "Earth-boring dung beetle",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/5/51/Earth-Boring_Dung_Beetle_NH_Icon.PNG/revision/latest?cb=20200323171439",
     "sellPrice": 300,
     "location": "On Ground",
@@ -1065,8 +1065,8 @@
   {
     "name": "Scarab beetle",
     "imageURL": null,
-    "sellPrice": null,
-    "location": "On Tree",
+    "sellPrice": 10000,
+    "location": "On Trees",
     "time": "11 PM - 8 AM",
     "months": [
       false,
@@ -1087,7 +1087,7 @@
     "name": "Drone beetle",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/c/c3/Drone_Beetle_NH_Icon.PNG/revision/latest?cb=20200323171433",
     "sellPrice": 200,
-    "location": "On Tree",
+    "location": "On Trees",
     "time": "All day",
     "months": [
       false,
@@ -1108,7 +1108,7 @@
     "name": "Goliath beetle",
     "imageURL": null,
     "sellPrice": 8000,
-    "location": "On Tree (Palm)",
+    "location": "On Trees (Coconut)",
     "time": "5 PM - 8 AM",
     "months": [
       false,
@@ -1128,7 +1128,7 @@
   {
     "name": "Saw stag",
     "imageURL": null,
-    "sellPrice": null,
+    "sellPrice": 2000,
     "location": "On Trees",
     "time": "All day",
     "months": [
@@ -1359,7 +1359,7 @@
   {
     "name": "Walking stick",
     "imageURL": null,
-    "sellPrice": null,
+    "sellPrice": 600,
     "location": "On Trees",
     "time": "4 AM - 8 AM & 5 PM - 7 PM",
     "months": [
@@ -1402,7 +1402,7 @@
     "name": "Bagworm",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/0/02/Bagworm_HHD_Icon.png/revision/latest?cb=20161105192557",
     "sellPrice": 600,
-    "location": "Shaking tree",
+    "location": "Shaking Trees",
     "time": "All day",
     "months": [
       true,
@@ -1422,7 +1422,7 @@
   {
     "name": "Ant",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/1/12/Ant_HHD_Icon.png/revision/latest?cb=20161105192047",
-    "sellPrice": null,
+    "sellPrice": 80,
     "location": "On rotten food",
     "time": "All day",
     "months": [
@@ -1444,7 +1444,7 @@
     "name": "Hermit crab",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/1/11/Hermit_Crab_HHD_Icon.png/revision/latest?cb=20161105200739",
     "sellPrice": 1000,
-    "location": "Beach disguised as shells",
+    "location": "Beach disguised as Shells",
     "time": "7 PM - 8 AM",
     "months": [
       true,
@@ -1465,7 +1465,7 @@
     "name": "Wharf roach",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/7/7d/Wharf_Roach_HHD_Icon.png/revision/latest?cb=20161105205618",
     "sellPrice": 200,
-    "location": "On beach rocks",
+    "location": "On Beach Rocks",
     "time": "All day",
     "months": [
       true,
@@ -1485,7 +1485,7 @@
   {
     "name": "Fly",
     "sellPrice": 60,
-    "location": "On trash items",
+    "location": "On Trash Items",
     "time": "All Day",
     "months": [
       true,
@@ -1524,7 +1524,7 @@
   },
   {
     "name": "Flea",
-    "sellPrice": null,
+    "sellPrice": 70,
     "location": "Villager's Heads",
     "time": "All day",
     "months": [
@@ -1545,7 +1545,7 @@
   {
     "name": "Snail",
     "sellPrice": 250,
-    "location": "On rocks (Rain)",
+    "location": "On Rocks (Rain)",
     "time": "All day",
     "months": [
       true,
@@ -1565,7 +1565,7 @@
   {
     "name": "Pill bug",
     "sellPrice": 250,
-    "location": "Hit a rock",
+    "location": "Hitting Rocks",
     "time": "11 PM - 4 PM",
     "months": [
       true,
@@ -1585,7 +1585,7 @@
   {
     "name": "Centipede",
     "sellPrice": 300,
-    "location": "Hit a rock",
+    "location": "Hitting Rocks",
     "time": "4 PM - 11 PM",
     "months": [
       true,
@@ -1605,7 +1605,7 @@
   {
     "name": "Spider",
     "sellPrice": 480,
-    "location": "Shaking tree",
+    "location": "Shaking Trees",
     "time": "7 PM - 8 AM",
     "months": [
       true,
@@ -1625,7 +1625,7 @@
   {
     "name": "Tarantula",
     "sellPrice": 8000,
-    "location": "On the ground",
+    "location": "On the Ground",
     "time": "7 PM - 4 AM",
     "months": [
       true,
@@ -1645,7 +1645,7 @@
   {
     "name": "Scorpion",
     "sellPrice": 8000,
-    "location": "On the ground",
+    "location": "On the Ground",
     "time": "7 PM - 4 AM",
     "months": [
       false,
