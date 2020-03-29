@@ -10,6 +10,7 @@ import { ReactComponent as Time } from "./time.svg";
 import { ReactComponent as Bells } from "./bells.svg";
 import { ReactComponent as Length } from "./length.svg";
 import { ReactComponent as Warning } from "./warning.svg";
+import { checkPropTypes } from "prop-types";
 
 interface ICatchable {
   name: string;
@@ -97,7 +98,6 @@ function forRangeWrap(
 
 const FISH: Catchable[] = RAW_FISH.map(cleanAFish);
 const BUGS: Catchable[] = RAW_BUGS.map(cleanABug);
-const CATCHABLES: Catchable[] = FISH.concat(BUGS);
 
 export default function App() {
   const catchables = useCurrentCatchables();
@@ -107,6 +107,10 @@ export default function App() {
   return (
     <>
       <div className={styles.root}>
+        <Toggle
+          dispatch={catchables.dispatch}
+          selectedCatchable={catchables.state.selectedCatchable}
+        />
         {catchables.rightNow && (
           <>
             <h1 className={styles.header}>Available Now</h1>
@@ -134,8 +138,11 @@ function useCurrentCatchables(): {
   rightNow?: Catchable[];
   laterToday?: Catchable[];
   later?: Catchable[];
-} {
+} & { state: State; dispatch: React.Dispatch<Action> } {
   const [currentTime, setCurrentTime] = React.useState(() => moment());
+  const [state, dispatch] = React.useReducer(reducer, {
+    selectedCatchable: "fish"
+  });
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -144,7 +151,7 @@ function useCurrentCatchables(): {
     return () => clearInterval(interval);
   }, [setCurrentTime]);
 
-  return _.chain(CATCHABLES)
+  const catchables = _.chain(state.selectedCatchable === "fish" ? FISH : BUGS)
     .map(catchable => {
       let nextMonth = (currentTime.month() + 1) % 12;
       const leavingNextMonth =
@@ -152,7 +159,7 @@ function useCurrentCatchables(): {
 
       return { ...catchable, leavingNextMonth };
     })
-    .orderBy(["leavingNextMonth", "type", "name"], ["desc", "desc", "asc"])
+    .orderBy(["leavingNextMonth", "name"], ["desc", "asc"])
     .groupBy(catchable => {
       if (
         catchable.hours[currentTime.hour()] &&
@@ -167,7 +174,76 @@ function useCurrentCatchables(): {
 
       return "later";
     })
-    .value() as any;
+    .value() as {
+    rightNow?: Catchable[];
+    laterToday?: Catchable[];
+    later?: Catchable[];
+  };
+
+  return { ...catchables, state, dispatch };
+}
+
+type State = { selectedCatchable: "fish" | "bug" };
+type Action = { type: "select catchable"; catchable: "fish" | "bug" };
+
+function reducer(state: State, action: Action): State {
+  switch (action.type) {
+    case "select catchable": {
+      return { ...state, selectedCatchable: action.catchable };
+    }
+  }
+  return state;
+}
+
+function Toggle(props: {
+  selectedCatchable: "fish" | "bug";
+  dispatch: React.Dispatch<Action>;
+}) {
+  const root = css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    grid-column: 1/-1;
+    margin-bottom: 16px;
+    justify-content: center;
+  `;
+  const defaultStyle = css`
+    font-size: 24px;
+    text-align: center;
+    width: 160px;
+    color: ${colors.headerText};
+    cursor: pointer;
+  `;
+
+  const selectedStyle = css`
+    ${defaultStyle};
+    ${styles.name};
+  `;
+
+  return (
+    <div className={root}>
+      <div
+        className={
+          props.selectedCatchable === "fish" ? selectedStyle : defaultStyle
+        }
+        onClick={() =>
+          props.dispatch({ type: "select catchable", catchable: "fish" })
+        }
+      >
+        Fish
+      </div>
+      <div
+        className={
+          props.selectedCatchable === "bug" ? selectedStyle : defaultStyle
+        }
+        onClick={() =>
+          props.dispatch({ type: "select catchable", catchable: "bug" })
+        }
+      >
+        Bugs
+      </div>
+    </div>
+  );
 }
 
 function Card({ catchable }: { catchable: Catchable }) {
