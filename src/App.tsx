@@ -10,7 +10,6 @@ import { ReactComponent as Time } from "./time.svg";
 import { ReactComponent as Bells } from "./bells.svg";
 import { ReactComponent as Length } from "./length.svg";
 import { ReactComponent as Warning } from "./warning.svg";
-import { checkPropTypes } from "prop-types";
 
 interface ICatchable {
   name: string;
@@ -140,9 +139,23 @@ function useCurrentCatchables(): {
   later?: Catchable[];
 } & { state: State; dispatch: React.Dispatch<Action> } {
   const [currentTime, setCurrentTime] = React.useState(() => moment());
-  const [state, dispatch] = React.useReducer(reducer, {
-    selectedCatchable: "fish"
-  });
+  const [state, dispatch] = React.useReducer(
+    reducer,
+    {
+      selectedCatchable: "fish"
+    },
+    (state: State): State => {
+      const storageValue = localStorage.getItem("selectedCatchable") as
+        | "fish"
+        | "bug"
+        | null;
+      return {
+        ...state,
+        selectedCatchable:
+          storageValue != null ? storageValue : state.selectedCatchable
+      };
+    }
+  );
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -150,6 +163,10 @@ function useCurrentCatchables(): {
     }, 60000);
     return () => clearInterval(interval);
   }, [setCurrentTime]);
+
+  React.useEffect(() => {
+    localStorage.setItem("selectedCatchable", state.selectedCatchable);
+  }, [state.selectedCatchable]);
 
   const catchables = _.chain(state.selectedCatchable === "fish" ? FISH : BUGS)
     .map(catchable => {
