@@ -362,6 +362,7 @@ const styles = {
     grid-gap: 4px 4px;
     justify-content: center;
     padding: 12px;
+    width: 100%;
   `,
   leaving: css`
     color: ${colors.emText};
