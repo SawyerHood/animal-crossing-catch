@@ -5,6 +5,11 @@ import moment from "moment";
 import { css, injectGlobal } from "emotion";
 import _ from "lodash";
 import { ReactComponent as Question } from "./question.svg";
+import { ReactComponent as Location } from "./location.svg";
+import { ReactComponent as Time } from "./time.svg";
+import { ReactComponent as Bells } from "./bells.svg";
+import { ReactComponent as Length } from "./length.svg";
+import { ReactComponent as Warning } from "./warning.svg";
 
 interface ICatchable {
   name: string;
@@ -181,39 +186,76 @@ function Card({ catchable }: { catchable: Catchable }) {
       ) : (
         <Question className={styles.img} />
       )}
-      <div>{catchable.name}</div>
-      <div>{catchable.location}</div>
-      <div>{catchable.timeString}</div>
-      <div>${catchable.sellPrice || "?"}</div>
-      {catchable.type === "fish" && <div>Size: {catchable.size}</div>}
+      <div className={styles.name} title={catchable.name}>
+        {catchable.name}
+      </div>
+      <Row icon={<Location />}>{catchable.location}</Row>
+      <Row icon={<Time />}>{catchable.timeString}</Row>
+      <Row icon={<Bells />}>{catchable.sellPrice || "?"}</Row>
+      {catchable.type === "fish" && (
+        <Row icon={<Length />}>{catchable.size}</Row>
+      )}
       {catchable.leavingNextMonth ? (
-        <div className={styles.leaving}>Gone Next Month</div>
+        <Row className={styles.leaving} icon={<Warning />}>
+          Gone next month
+        </Row>
       ) : null}
     </div>
   );
 }
 
+function Row({
+  icon,
+  children,
+  className
+}: {
+  icon?: React.ReactNode;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const containerStyle = css`
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    align-items: center;
+    ${className};
+  `;
+
+  const textStyle = css`
+    margin-left: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  `;
+  return (
+    <div className={containerStyle}>
+      {icon}
+      <div className={textStyle}>{children}</div>
+    </div>
+  );
+}
+
 const colors = {
-  fishBG: "#8ac6d1",
-  text: "#000839",
-  emText: "#fe346e",
-  lightBG: "#fae3d9",
-  bugBG: "#bbded6"
+  fishBG: "#FFFAE3",
+  text: "#805A2D",
+  emText: "#DD1919",
+  lightBG: "#CCE2CF",
+  bugBG: "#FFFAE3",
+  headerText: "#71997F"
 };
 
 const styles = {
   card: css`
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 12px 12px;
+    padding: 24px;
     flex-grow: 1;
-    min-width: 160px;
+    width: 184px;
     background-color: ${colors.fishBG};
-    border-radius: 4px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    box-shadow: 0px 2px 15px rgba(170, 191, 172, 0.3);
     & > * {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       :last-child {
         margin-bottom: 0;
       }
@@ -223,8 +265,8 @@ const styles = {
     font-family: sans-serif;
     text-align: center;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 180px));
-    grid-gap: 16px;
+    grid-template-columns: repeat(auto-fit, 184px);
+    grid-gap: 4px 4px;
     justify-content: center;
     padding: 12px;
   `,
@@ -233,15 +275,27 @@ const styles = {
   `,
   header: css`
     grid-column: 1/-1;
+    text-align: left;
+    color: ${colors.headerText};
   `,
   img: css`
     width: 64px;
     height: 64px;
-    border-radius: 50%;
-    background-color: white;
+    align-self: center;
   `,
   bug: css`
     background-color: ${colors.bugBG};
+  `,
+  name: css`
+    font-weight: bold;
+    align-self: stretch;
+    background-color: ${colors.headerText};
+    padding: 4px 16px;
+    border-radius: 100px;
+    color: ${colors.fishBG};
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   `
 };
 
@@ -250,8 +304,12 @@ injectGlobal`
     margin: 0;
     background-color: ${colors.lightBG};
     color: ${colors.text};
-    text-align: center;
+    text-align: left;
     font-family: sans-serif;
     width: 100%;
+  }
+
+  * {
+    box-sizing: border-box;
   }
 `;
