@@ -248,7 +248,7 @@ const styles = {
   card: css`
     display: flex;
     flex-direction: column;
-    padding: 24px;
+    padding: 16px;
     flex-grow: 1;
     max-width: 184px;
     min-width: 160px;
@@ -292,7 +292,7 @@ const styles = {
     font-weight: bold;
     align-self: stretch;
     background-color: ${colors.headerText};
-    padding: 4px 16px;
+    padding: 4px 8px;
     border-radius: 100px;
     color: ${colors.fishBG};
     white-space: nowrap;
