@@ -10,8 +10,7 @@ import { ReactComponent as Bells } from "./bells.svg";
 import { ReactComponent as Length } from "./length.svg";
 import { ReactComponent as Warning } from "./warning.svg";
 
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
+const PUBLIC_URL = process.env.PUBLIC_URL || "";
 
 interface ICatchable {
   name: string;
@@ -301,7 +300,7 @@ function imageFromName(name: string): string {
     .toLowerCase()
     .replace(/ /g, "_")
     .replace("'", "");
-  return `${env.PUBLIC_URL}/img/${newName}.png`;
+  return `${PUBLIC_URL}/img/${newName}.png`;
 }
 
 function Row({
