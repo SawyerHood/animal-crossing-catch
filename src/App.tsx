@@ -361,7 +361,6 @@ const styles = {
     }
   `,
   root: css`
-    font-family: sans-serif;
     text-align: center;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -407,7 +406,7 @@ injectGlobal`
     background-color: ${colors.lightBG};
     color: ${colors.text};
     text-align: left;
-    font-family: sans-serif;
+    font-family: 'Nunito', sans-serif;
     width: 100%;
   }
 
