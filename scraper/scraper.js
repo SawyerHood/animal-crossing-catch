@@ -19,7 +19,7 @@ async function loadFish() {
       const sellPrice = +row[2].textContent.trim().replace(",", "");
       const location = row[3].textContent.trim();
       const size = row[4].textContent.trim();
-      const nhTime = row[5].textContent.trim();
+      const time = row[5].textContent.trim();
       const nhMonths = row
         .slice(6)
         .map(cell => cell.textContent.trim() !== "-");
@@ -32,21 +32,19 @@ async function loadFish() {
         sellPrice,
         location,
         size,
-        nhTime,
+        time,
         nhMonths,
       };
     }
 
     for (row of bodies[1]) {
       const name = row[0].textContent.trim();
-      const shTime = row[5].textContent.trim();
       const shMonths = row
         .slice(6)
         .map(cell => cell.textContent.trim() !== "-");
       const key = name.toLowerCase();
       const res = resultMap[key];
       if (res) {
-        res.shTime = shTime;
         res.shMonths = shMonths;
       }
     }
@@ -75,7 +73,7 @@ async function loadBugs() {
       const sellPrice = +row[2].textContent.trim().replace(",", "");
       const location = row[3].textContent.trim();
       const time = row[4].textContent.trim();
-      const months = row.slice(5).map(cell => cell.textContent.trim() !== "-");
+      const nhMonths = row.slice(5).map(cell => cell.textContent.trim() !== "-");
 
       const key = name.toLowerCase();
       resultMap[key] = {
@@ -84,20 +82,18 @@ async function loadBugs() {
         sellPrice,
         location,
         time,
-        months,
+        nhMonths,
       };
     }
 
     for (row of bodies[1]) {
       const name = row[0].textContent.trim();
-      const shTime = row[4].textContent.trim();
       const shMonths = row
         .slice(5)
         .map(cell => cell.textContent.trim() !== "-");
       const key = name.toLowerCase();
       const res = resultMap[key];
       if (res) {
-        res.shTime = shTime;
         res.shMonths = shMonths;
       }
     }

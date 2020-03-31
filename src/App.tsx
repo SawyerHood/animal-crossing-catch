@@ -18,6 +18,8 @@ interface ICatchable {
   sellPrice: number;
   location: string;
   months: boolean[];
+  nhMonths: boolean[];
+  shMonths: boolean[];
   hours: boolean[];
   timeString: string;
   leavingNextMonth: boolean;
@@ -35,7 +37,24 @@ interface Bug extends ICatchable {
 type Catchable = Fish | Bug;
 
 function cleanCatchable(input: { [key: string]: any }): ICatchable {
-  const { name, imageURL, sellPrice, location, months, time } = input;
+  const { name, imageURL, sellPrice, location, nhMonths, shMonths, time } = input;
+  const hours = cleanTime(time);
+
+  return {
+    name,
+    imageURL,
+    sellPrice,
+    location,
+    months: nhMonths,
+    nhMonths: nhMonths,
+    shMonths: shMonths,
+    hours,
+    timeString: time,
+    leavingNextMonth: false
+  };
+}
+
+function cleanTime(time: string): boolean[] {
   let hours = new Array(24).fill(false);
   if (time.toLowerCase() === "all day") {
     hours.fill(true);
@@ -46,16 +65,7 @@ function cleanCatchable(input: { [key: string]: any }): ICatchable {
     }
   }
 
-  return {
-    name,
-    imageURL,
-    sellPrice,
-    location,
-    months,
-    hours,
-    timeString: time,
-    leavingNextMonth: false
-  };
+  return hours;
 }
 
 function cleanAFish(input: { [key: string]: any }): Fish {
