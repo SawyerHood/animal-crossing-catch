@@ -37,7 +37,15 @@ interface Bug extends ICatchable {
 type Catchable = Fish | Bug;
 
 function cleanCatchable(input: { [key: string]: any }): ICatchable {
-  const { name, imageURL, sellPrice, location, nhMonths, shMonths, time } = input;
+  const {
+    name,
+    imageURL,
+    sellPrice,
+    location,
+    nhMonths,
+    shMonths,
+    time,
+  } = input;
   const hours = cleanTime(time);
 
   return {
@@ -50,7 +58,7 @@ function cleanCatchable(input: { [key: string]: any }): ICatchable {
     shMonths: shMonths,
     hours,
     timeString: time,
-    leavingNextMonth: false
+    leavingNextMonth: false,
   };
 }
 
@@ -73,7 +81,7 @@ function cleanAFish(input: { [key: string]: any }): Fish {
   return {
     ...catchable,
     type: "fish",
-    size: input.size
+    size: input.size,
   };
 }
 
@@ -81,7 +89,7 @@ function cleanABug(input: { [key: string]: any }): Bug {
   let catchable = cleanCatchable(input);
   return {
     ...catchable,
-    type: "bug"
+    type: "bug",
   };
 }
 
@@ -153,7 +161,7 @@ function useCurrentCatchables(): {
   const [state, dispatch] = React.useReducer(
     reducer,
     {
-      selectedCatchable: "fish"
+      selectedCatchable: "fish",
     },
     (state: State): State => {
       const storageValue = localStorage.getItem("selectedCatchable") as
@@ -163,7 +171,7 @@ function useCurrentCatchables(): {
       return {
         ...state,
         selectedCatchable:
-          storageValue != null ? storageValue : state.selectedCatchable
+          storageValue != null ? storageValue : state.selectedCatchable,
       };
     }
   );
@@ -316,7 +324,7 @@ function imageFromName(name: string): string {
 function Row({
   icon,
   children,
-  className
+  className,
 }: {
   icon?: React.ReactNode;
   children: React.ReactNode;
@@ -350,7 +358,7 @@ const colors = {
   emText: "#DD1919",
   lightBG: "#CCE2CF",
   bugBG: "#FFFAE3",
-  headerText: "#71997F"
+  headerText: "#71997F",
 };
 
 const styles = {
@@ -407,7 +415,7 @@ const styles = {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  `
+  `,
 };
 
 injectGlobal`

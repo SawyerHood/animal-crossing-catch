@@ -73,7 +73,9 @@ async function loadBugs() {
       const sellPrice = +row[2].textContent.trim().replace(",", "");
       const location = row[3].textContent.trim();
       const time = row[4].textContent.trim();
-      const nhMonths = row.slice(5).map(cell => cell.textContent.trim() !== "-");
+      const nhMonths = row
+        .slice(5)
+        .map(cell => cell.textContent.trim() !== "-");
 
       const key = name.toLowerCase();
       resultMap[key] = {
@@ -108,4 +110,4 @@ async function loadBugs() {
 module.exports = {
   loadBugs,
   loadFish,
-}
+};
