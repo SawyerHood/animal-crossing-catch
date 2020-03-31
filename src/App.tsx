@@ -18,6 +18,8 @@ interface ICatchable {
   sellPrice: number;
   location: string;
   months: boolean[];
+  nhMonths: boolean[];
+  shMonths: boolean[];
   hours: boolean[];
   timeString: string;
   leavingNextMonth: boolean;
@@ -35,7 +37,32 @@ interface Bug extends ICatchable {
 type Catchable = Fish | Bug;
 
 function cleanCatchable(input: { [key: string]: any }): ICatchable {
-  const { name, imageURL, sellPrice, location, months, time } = input;
+  const {
+    name,
+    imageURL,
+    sellPrice,
+    location,
+    nhMonths,
+    shMonths,
+    time,
+  } = input;
+  const hours = cleanTime(time);
+
+  return {
+    name,
+    imageURL,
+    sellPrice,
+    location,
+    months: nhMonths,
+    nhMonths: nhMonths,
+    shMonths: shMonths,
+    hours,
+    timeString: time,
+    leavingNextMonth: false,
+  };
+}
+
+function cleanTime(time: string): boolean[] {
   let hours = new Array(24).fill(false);
   if (time.toLowerCase() === "all day") {
     hours.fill(true);
@@ -46,16 +73,7 @@ function cleanCatchable(input: { [key: string]: any }): ICatchable {
     }
   }
 
-  return {
-    name,
-    imageURL,
-    sellPrice,
-    location,
-    months,
-    hours,
-    timeString: time,
-    leavingNextMonth: false
-  };
+  return hours;
 }
 
 function cleanAFish(input: { [key: string]: any }): Fish {
@@ -63,7 +81,7 @@ function cleanAFish(input: { [key: string]: any }): Fish {
   return {
     ...catchable,
     type: "fish",
-    size: input.size
+    size: input.size,
   };
 }
 
@@ -71,7 +89,7 @@ function cleanABug(input: { [key: string]: any }): Bug {
   let catchable = cleanCatchable(input);
   return {
     ...catchable,
-    type: "bug"
+    type: "bug",
   };
 }
 
@@ -143,7 +161,7 @@ function useCurrentCatchables(): {
   const [state, dispatch] = React.useReducer(
     reducer,
     {
-      selectedCatchable: "fish"
+      selectedCatchable: "fish",
     },
     (state: State): State => {
       const storageValue = localStorage.getItem("selectedCatchable") as
@@ -153,7 +171,7 @@ function useCurrentCatchables(): {
       return {
         ...state,
         selectedCatchable:
-          storageValue != null ? storageValue : state.selectedCatchable
+          storageValue != null ? storageValue : state.selectedCatchable,
       };
     }
   );
@@ -306,7 +324,7 @@ function imageFromName(name: string): string {
 function Row({
   icon,
   children,
-  className
+  className,
 }: {
   icon?: React.ReactNode;
   children: React.ReactNode;
@@ -340,7 +358,7 @@ const colors = {
   emText: "#DD1919",
   lightBG: "#CCE2CF",
   bugBG: "#FFFAE3",
-  headerText: "#71997F"
+  headerText: "#71997F",
 };
 
 const styles = {
@@ -397,7 +415,7 @@ const styles = {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  `
+  `,
 };
 
 injectGlobal`
