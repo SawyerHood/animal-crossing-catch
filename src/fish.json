@@ -5,8 +5,8 @@
     "sellPrice": 900,
     "location": "River",
     "size": "1",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       true,
       true,
       true,
@@ -19,6 +19,21 @@
       false,
       true,
       true
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false
     ]
   },
   {
@@ -27,8 +42,23 @@
     "sellPrice": 200,
     "location": "River",
     "size": "1",
-    "time": "9 AM - 4 PM",
-    "months": [
+    "nhTime": "9 AM - 4 PM",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "9 AM - 4 PM",
+    "shMonths": [
       true,
       true,
       true,
@@ -49,8 +79,23 @@
     "sellPrice": 160,
     "location": "River",
     "size": "2",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "All day",
+    "shMonths": [
       true,
       true,
       true,
@@ -71,8 +116,23 @@
     "sellPrice": 240,
     "location": "River",
     "size": "3",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
       true,
       true,
       true,
@@ -93,8 +153,23 @@
     "sellPrice": 300,
     "location": "Pond",
     "size": "4",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "All day",
+    "shMonths": [
       true,
       true,
       true,
@@ -115,8 +190,23 @@
     "sellPrice": 4000,
     "location": "Pond",
     "size": "4",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
       true,
       true,
       true,
@@ -137,8 +227,23 @@
     "sellPrice": 1300,
     "location": "Pond",
     "size": "1",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "All day",
+    "shMonths": [
       true,
       true,
       true,
@@ -159,8 +264,23 @@
     "sellPrice": 1300,
     "location": "Pond",
     "size": "1",
-    "time": "9 AM - 4 PM",
-    "months": [
+    "nhTime": "9 AM - 4 PM",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "9 AM - 4 PM",
+    "shMonths": [
       true,
       true,
       true,
@@ -181,8 +301,23 @@
     "sellPrice": 4500,
     "location": "Pond",
     "size": "2",
-    "time": "9 AM - 4 PM",
-    "months": [
+    "nhTime": "9 AM - 4 PM",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "9 AM - 4 PM",
+    "shMonths": [
       true,
       true,
       true,
@@ -203,8 +338,8 @@
     "sellPrice": 300,
     "location": "Pond",
     "size": "1",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -217,6 +352,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "9 AM - 4 PM",
+    "shMonths": [
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true
     ]
   },
   {
@@ -225,8 +375,8 @@
     "sellPrice": 200,
     "location": "Pond",
     "size": "2",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -239,6 +389,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true
     ]
   },
   {
@@ -247,8 +412,8 @@
     "sellPrice": 3750,
     "location": "River",
     "size": "4",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -258,19 +423,34 @@
       false,
       true,
       true,
+      false,
+      false,
+      false
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
       false,
       false,
       false
     ]
   },
   {
-    "name": "Snapping turtle",
+    "name": "Snapping Turtle",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/b/b1/Snapping_Turtle_NH_Icon.png/revision/latest?cb=20200323203213",
     "sellPrice": 5000,
     "location": "River",
     "size": "5",
-    "time": "9 PM - 4 AM",
-    "months": [
+    "nhTime": "9 PM - 4 AM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -283,6 +463,21 @@
       true,
       false,
       false
+    ],
+    "shTime": "9 PM - 4 AM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true
     ]
   },
   {
@@ -291,8 +486,8 @@
     "sellPrice": 100,
     "location": "Pond",
     "size": "1",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       true,
@@ -305,6 +500,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true
     ]
   },
   {
@@ -313,8 +523,8 @@
     "sellPrice": 120,
     "location": "Pond",
     "size": "2",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -327,6 +537,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true
     ]
   },
   {
@@ -335,8 +560,23 @@
     "sellPrice": 400,
     "location": "River",
     "size": "2",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
       true,
       true,
       true,
@@ -357,8 +597,8 @@
     "sellPrice": 400,
     "location": "River",
     "size": "2",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       true,
@@ -370,6 +610,21 @@
       false,
       false,
       false,
+      false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
       false
     ]
   },
@@ -379,8 +634,8 @@
     "sellPrice": 800,
     "location": "Pond",
     "size": "4",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -393,6 +648,21 @@
       true,
       false,
       false
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true
     ]
   },
   {
@@ -401,8 +671,8 @@
     "sellPrice": 5500,
     "location": "Pond",
     "size": "5",
-    "time": "9 AM - 4 PM",
-    "months": [
+    "nhTime": "9 AM - 4 PM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -415,6 +685,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "9 AM - 4 PM",
+    "shMonths": [
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
     ]
   },
   {
@@ -423,8 +708,23 @@
     "sellPrice": 180,
     "location": "River",
     "size": "2",
-    "time": "9 AM - 4 PM",
-    "months": [
+    "nhTime": "9 AM - 4 PM",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "9 AM - 4 PM",
+    "shMonths": [
       true,
       true,
       true,
@@ -445,8 +745,8 @@
     "sellPrice": 300,
     "location": "River",
     "size": "3",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       true,
       true,
       true,
@@ -459,6 +759,21 @@
       true,
       true,
       true
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false
     ]
   },
   {
@@ -467,8 +782,23 @@
     "sellPrice": 400,
     "location": "River",
     "size": "4",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "All day",
+    "shMonths": [
       true,
       true,
       true,
@@ -489,8 +819,8 @@
     "sellPrice": 800,
     "location": "River",
     "size": "3",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -503,6 +833,21 @@
       true,
       false,
       false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
     ]
   },
   {
@@ -511,8 +856,8 @@
     "sellPrice": 1800,
     "location": "River",
     "size": "5",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -525,6 +870,21 @@
       true,
       true,
       true
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
     ]
   },
   {
@@ -533,8 +893,8 @@
     "sellPrice": 500,
     "location": "River",
     "size": "2",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       true,
       true,
       false,
@@ -547,6 +907,21 @@
       false,
       false,
       true
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false
     ]
   },
   {
@@ -555,8 +930,8 @@
     "sellPrice": 900,
     "location": "River",
     "size": "3",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -566,6 +941,21 @@
       true,
       true,
       true,
+      false,
+      false,
+      false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
       false,
       false,
       false
@@ -577,8 +967,8 @@
     "sellPrice": 1000,
     "location": "River (Clifftop)  Pond",
     "size": "3",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
       false,
       false,
       true,
@@ -591,6 +981,21 @@
       true,
       true,
       false
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
+      false,
+      false,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true
     ]
   },
   {
@@ -599,8 +1004,8 @@
     "sellPrice": 3800,
     "location": "River (Clifftop)  Pond",
     "size": "3",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
       false,
       false,
       true,
@@ -613,6 +1018,21 @@
       true,
       true,
       false
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
+      false,
+      false,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true
     ]
   },
   {
@@ -621,8 +1041,23 @@
     "sellPrice": 15000,
     "location": "River (Clifftop)",
     "size": "3",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
+      false,
+      false,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      false
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
       false,
       false,
       true,
@@ -643,8 +1078,8 @@
     "sellPrice": 15000,
     "location": "River (Clifftop)",
     "size": "5",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
       true,
       true,
       true,
@@ -657,6 +1092,21 @@
       false,
       false,
       true
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false
     ]
   },
   {
@@ -665,8 +1115,8 @@
     "sellPrice": 700,
     "location": "River (Mouth)",
     "size": "4",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -676,6 +1126,21 @@
       false,
       false,
       true,
+      false,
+      false,
+      false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
       false,
       false,
       false
@@ -687,8 +1152,8 @@
     "sellPrice": 1800,
     "location": "River (Mouth)",
     "size": "6",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -698,6 +1163,21 @@
       false,
       false,
       true,
+      false,
+      false,
+      false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
       false,
       false,
       false
@@ -709,8 +1189,8 @@
     "sellPrice": 2000,
     "location": "River",
     "size": "2",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -722,6 +1202,21 @@
       true,
       true,
       true,
+      false
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
+      false,
+      false,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
       false
     ]
   },
@@ -731,8 +1226,8 @@
     "sellPrice": 1300,
     "location": "River",
     "size": "1",
-    "time": "9 AM - 4 PM",
-    "months": [
+    "nhTime": "9 AM - 4 PM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -745,6 +1240,21 @@
       true,
       true,
       false
+    ],
+    "shTime": "9 AM - 4 PM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true
     ]
   },
   {
@@ -752,9 +1262,9 @@
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/e/e2/Nibble_Fish_HHD_Icon.png/revision/latest?cb=20161105202635",
     "sellPrice": 1500,
     "location": "River",
-    "size": "2",
-    "time": "9 AM - 4 PM",
-    "months": [
+    "size": "1",
+    "nhTime": "9 AM - 4 PM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -767,6 +1277,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "9 AM - 4 PM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true
     ]
   },
   {
@@ -775,8 +1300,8 @@
     "sellPrice": 3000,
     "location": "River",
     "size": "2",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -789,6 +1314,21 @@
       true,
       false,
       false
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true
     ]
   },
   {
@@ -797,8 +1337,8 @@
     "sellPrice": 2500,
     "location": "River",
     "size": "2",
-    "time": "9 AM - 4 PM",
-    "months": [
+    "nhTime": "9 AM - 4 PM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -811,6 +1351,21 @@
       true,
       false,
       false
+    ],
+    "shTime": "9 AM - 4 PM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true
     ]
   },
   {
@@ -819,8 +1374,8 @@
     "sellPrice": 500,
     "location": "River",
     "size": "1",
-    "time": "9 AM - 4 PM",
-    "months": [
+    "nhTime": "9 AM - 4 PM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -833,6 +1388,21 @@
       true,
       true,
       false
+    ],
+    "shTime": "9 AM - 4 PM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true
     ]
   },
   {
@@ -841,8 +1411,8 @@
     "sellPrice": 800,
     "location": "River",
     "size": "1",
-    "time": "9 AM - 4 PM",
-    "months": [
+    "nhTime": "9 AM - 4 PM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -855,6 +1425,21 @@
       true,
       false,
       false
+    ],
+    "shTime": "9 AM - 4 PM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true
     ]
   },
   {
@@ -863,8 +1448,8 @@
     "sellPrice": 2500,
     "location": "River",
     "size": "2",
-    "time": "9 AM - 4 PM & 9 PM - 4 AM",
-    "months": [
+    "nhTime": "9 AM - 4 PM & 9 PM - 4 AM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -877,6 +1462,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "9 AM - 4 PM & 9 PM - 4 AM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
     ]
   },
   {
@@ -885,8 +1485,8 @@
     "sellPrice": 10000,
     "location": "River",
     "size": "4",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -899,6 +1499,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
     ]
   },
   {
@@ -907,8 +1522,8 @@
     "sellPrice": 15000,
     "location": "River",
     "size": "5",
-    "time": "4 AM - 9 PM",
-    "months": [
+    "nhTime": "4 AM - 9 PM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -921,6 +1536,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "4 AM - 9 PM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
     ]
   },
   {
@@ -929,8 +1559,8 @@
     "sellPrice": 6000,
     "location": "Pond",
     "size": "6",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -943,6 +1573,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
     ]
   },
   {
@@ -951,8 +1596,8 @@
     "sellPrice": 10000,
     "location": "River",
     "size": "6",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -965,6 +1610,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
     ]
   },
   {
@@ -973,8 +1633,8 @@
     "sellPrice": 4000,
     "location": "River",
     "size": "4",
-    "time": "9 PM - 4 AM",
-    "months": [
+    "nhTime": "9 PM - 4 AM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -987,6 +1647,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "9 PM - 4 AM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
     ]
   },
   {
@@ -995,8 +1670,8 @@
     "sellPrice": 10000,
     "location": "River (Mouth)",
     "size": "6",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       true,
       true,
       true,
@@ -1009,6 +1684,21 @@
       true,
       true,
       true
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false
     ]
   },
   {
@@ -1017,8 +1707,8 @@
     "sellPrice": 1000,
     "location": "Sea",
     "size": "1",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       true,
       true,
       true,
@@ -1031,6 +1721,21 @@
       false,
       false,
       true
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false
     ]
   },
   {
@@ -1039,8 +1744,8 @@
     "sellPrice": 1100,
     "location": "Sea",
     "size": "1",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1053,6 +1758,21 @@
       true,
       true,
       false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true
     ]
   },
   {
@@ -1061,8 +1781,8 @@
     "sellPrice": 650,
     "location": "Sea",
     "size": "1",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1075,6 +1795,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true
     ]
   },
   {
@@ -1083,8 +1818,8 @@
     "sellPrice": 1000,
     "location": "Sea",
     "size": "2",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1097,6 +1832,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true
     ]
   },
   {
@@ -1105,8 +1855,8 @@
     "sellPrice": 1000,
     "location": "Sea",
     "size": "2",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1119,6 +1869,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true
     ]
   },
   {
@@ -1127,8 +1892,8 @@
     "sellPrice": 10000,
     "location": "Sea",
     "size": "6",
-    "time": "4 AM - 9 PM",
-    "months": [
+    "nhTime": "4 AM - 9 PM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1137,6 +1902,21 @@
       false,
       true,
       true,
+      false,
+      false,
+      false,
+      false
+    ],
+    "shTime": "4 AM - 9 PM",
+    "shMonths": [
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
       false,
       false,
       false,
@@ -1149,8 +1929,8 @@
     "sellPrice": 500,
     "location": "Sea",
     "size": "3",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1163,6 +1943,21 @@
       true,
       true,
       false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true
     ]
   },
   {
@@ -1171,8 +1966,8 @@
     "sellPrice": 5000,
     "location": "Sea",
     "size": "3",
-    "time": "6 PM - 4 AM",
-    "months": [
+    "nhTime": "6 PM - 4 AM",
+    "nhMonths": [
       true,
       true,
       false,
@@ -1185,6 +1980,21 @@
       false,
       true,
       true
+    ],
+    "shTime": "9 PM - 4 AM",
+    "shMonths": [
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false
     ]
   },
   {
@@ -1193,8 +2003,8 @@
     "sellPrice": 250,
     "location": "Sea",
     "size": "3",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1207,6 +2017,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
     ]
   },
   {
@@ -1215,8 +2040,23 @@
     "sellPrice": 200,
     "location": "Sea",
     "size": "2",
-    "time": "4 AM - 9 PM",
-    "months": [
+    "nhTime": "4 AM - 9 PM",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "4 AM - 9 PM",
+    "shMonths": [
       true,
       true,
       true,
@@ -1237,8 +2077,23 @@
     "sellPrice": 150,
     "location": "Sea",
     "size": "2",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "All day",
+    "shMonths": [
       true,
       true,
       true,
@@ -1259,8 +2114,8 @@
     "sellPrice": 5000,
     "location": "Sea",
     "size": "3",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       true,
@@ -1273,6 +2128,21 @@
       true,
       true,
       false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true
     ]
   },
   {
@@ -1281,8 +2151,23 @@
     "sellPrice": 400,
     "location": "Sea",
     "size": "5",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "All day",
+    "shMonths": [
       true,
       true,
       true,
@@ -1303,8 +2188,23 @@
     "sellPrice": 3000,
     "location": "Sea",
     "size": "4",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "All day",
+    "shMonths": [
       true,
       true,
       true,
@@ -1325,8 +2225,8 @@
     "sellPrice": 300,
     "location": "Sea",
     "size": "3",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       true,
       true,
       true,
@@ -1339,6 +2239,21 @@
       true,
       true,
       true
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false
     ]
   },
   {
@@ -1347,8 +2262,23 @@
     "sellPrice": 800,
     "location": "Sea",
     "size": "5",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "All day",
+    "shMonths": [
       true,
       true,
       true,
@@ -1369,8 +2299,8 @@
     "sellPrice": 500,
     "location": "Sea",
     "size": "3",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       true,
       true,
       true,
@@ -1383,6 +2313,21 @@
       false,
       false,
       true
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
     ]
   },
   {
@@ -1391,8 +2336,8 @@
     "sellPrice": 2000,
     "location": "Sea",
     "size": "Narrow",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1403,6 +2348,21 @@
       true,
       true,
       true,
+      false,
+      false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      false,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
       false,
       false
     ]
@@ -1413,8 +2373,8 @@
     "sellPrice": 600,
     "location": "Sea",
     "size": "Narrow",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1427,6 +2387,21 @@
       true,
       false,
       false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
     ]
   },
   {
@@ -1435,8 +2410,8 @@
     "sellPrice": 7000,
     "location": "Pier",
     "size": "6",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       true,
       true,
       true,
@@ -1449,6 +2424,21 @@
       false,
       true,
       true
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false
     ]
   },
   {
@@ -1457,8 +2447,8 @@
     "sellPrice": 10000,
     "location": "Pier",
     "size": "6",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       true,
       true,
       true,
@@ -1471,6 +2461,21 @@
       false,
       true,
       true
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false
     ]
   },
   {
@@ -1479,8 +2484,8 @@
     "sellPrice": 4500,
     "location": "Pier",
     "size": "5",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1493,6 +2498,21 @@
       true,
       false,
       false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true
     ]
   },
   {
@@ -1501,8 +2521,8 @@
     "sellPrice": 6000,
     "location": "Pier",
     "size": "5",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1515,6 +2535,21 @@
       true,
       false,
       false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true
     ]
   },
   {
@@ -1523,8 +2558,8 @@
     "sellPrice": 4000,
     "location": "Sea",
     "size": "6 (Fin)",
-    "time": "4 AM - 9 PM",
-    "months": [
+    "nhTime": "4 AM - 9 PM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1534,6 +2569,21 @@
       true,
       true,
       true,
+      false,
+      false,
+      false
+    ],
+    "shTime": "4 AM - 9 PM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
       false,
       false,
       false
@@ -1545,8 +2595,8 @@
     "sellPrice": 3000,
     "location": "Sea",
     "size": "5",
-    "time": "4 AM - 9 PM",
-    "months": [
+    "nhTime": "4 AM - 9 PM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1558,6 +2608,21 @@
       true,
       true,
       true,
+      false
+    ],
+    "shTime": "4 AM - 9 PM",
+    "shMonths": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
       false
     ]
   },
@@ -1567,8 +2632,8 @@
     "sellPrice": 12000,
     "location": "Sea",
     "size": "6 (Fin)",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1581,6 +2646,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
     ]
   },
   {
@@ -1589,8 +2669,8 @@
     "sellPrice": 8000,
     "location": "Sea",
     "size": "6 (Fin)",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1603,6 +2683,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
     ]
   },
   {
@@ -1611,8 +2706,8 @@
     "sellPrice": 15000,
     "location": "Sea",
     "size": "6 (Fin)",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1625,6 +2720,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
     ]
   },
   {
@@ -1633,8 +2743,8 @@
     "sellPrice": 13000,
     "location": "Sea",
     "size": "6 (Fin)",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1647,6 +2757,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "All Day",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
     ]
   },
   {
@@ -1654,9 +2779,9 @@
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/d/de/Suckerfish_NH_Icon.png/revision/latest?cb=20200323203407",
     "sellPrice": 1500,
     "location": "Sea",
-    "size": "? (Fin)",
-    "time": "All day",
-    "months": [
+    "size": "6 (Fin)",
+    "nhTime": "All day",
+    "nhMonths": [
       false,
       false,
       false,
@@ -1669,6 +2794,21 @@
       false,
       false,
       false
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
     ]
   },
   {
@@ -1677,8 +2817,8 @@
     "sellPrice": 2500,
     "location": "Sea",
     "size": "4",
-    "time": "4 PM - 9 AM",
-    "months": [
+    "nhTime": "4 PM - 9 AM",
+    "nhMonths": [
       true,
       true,
       true,
@@ -1691,6 +2831,21 @@
       false,
       true,
       true
+    ],
+    "shTime": "4 PM - 9 AM",
+    "shMonths": [
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false
     ]
   },
   {
@@ -1699,8 +2854,8 @@
     "sellPrice": 9000,
     "location": "Sea",
     "size": "6",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
       true,
       true,
       true,
@@ -1713,6 +2868,21 @@
       false,
       false,
       true
+    ],
+    "shTime": "All day",
+    "shMonths": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false
     ]
   },
   {
@@ -1721,8 +2891,23 @@
     "sellPrice": 15000,
     "location": "Sea",
     "size": "2",
-    "time": "9 PM - 4 AM",
-    "months": [
+    "nhTime": "9 PM - 4 AM",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "9 PM - 4 AM",
+    "shMonths": [
       true,
       true,
       true,
@@ -1743,8 +2928,23 @@
     "sellPrice": 15000,
     "location": "Sea (Raining)",
     "size": "6",
-    "time": "All day",
-    "months": [
+    "nhTime": "All day",
+    "nhMonths": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shTime": "All day",
+    "shMonths": [
       true,
       true,
       true,
