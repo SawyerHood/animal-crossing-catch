@@ -9,6 +9,8 @@ import { ReactComponent as Time } from "./time.svg";
 import { ReactComponent as Bells } from "./bells.svg";
 import { ReactComponent as Length } from "./length.svg";
 import { ReactComponent as Warning } from "./warning.svg";
+import { ReactComponent as Hemisphere } from "./hemisphere.svg";
+import { ReactComponent as HemisphereFilled } from "./hemisphere-filled.svg";
 
 const PUBLIC_URL = process.env.PUBLIC_URL || "";
 
@@ -125,11 +127,17 @@ export default function App() {
   return (
     <>
       <div className={styles.root}>
-        <img
-          src={PUBLIC_URL + "/img/catch_guide.svg"}
-          alt="Catch Guide"
-          className={styles.title}
+        <HemisphereSelector
+          dispatch={catchables.dispatch}
+          selectedHemi={catchables.state.selectedHemi}
         />
+        <div className={styles.titleContainer}>
+          <img
+            src={PUBLIC_URL + "/img/catch_guide.svg"}
+            alt="Catch Guide"
+            className={styles.title}
+          />
+        </div>
         <Toggle
           dispatch={catchables.dispatch}
           selectedCatchable={catchables.state.selectedCatchable}
@@ -157,6 +165,55 @@ export default function App() {
   );
 }
 
+function HemisphereSelector(props: {
+  selectedHemi: "north" | "south";
+  dispatch: React.Dispatch<Action>;
+}) {
+  const root = css`
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-self: center;
+    justify-self: flex-end;
+    grid-column: 1/-1;
+    cursor: pointer;
+    user-select: none;
+  `;
+  const notSelected = css`
+    opacity: 0.6;
+  `;
+  const bottom = css`
+    transform: rotate(180deg);
+    width: 50px;
+    height: 25px;
+    ${props.selectedHemi === "south" ? null : notSelected};
+  `;
+  const top = css`
+    width: 50px;
+    height: 25px;
+    ${props.selectedHemi === "north" ? null : notSelected};
+  `;
+
+  return (
+    <div
+      className={root}
+      onClick={() => props.dispatch({ type: "toggle hemi" })}
+      role="button"
+    >
+      {props.selectedHemi === "north" ? (
+        <HemisphereFilled className={top} />
+      ) : (
+        <Hemisphere className={top} />
+      )}
+      {props.selectedHemi === "south" ? (
+        <HemisphereFilled className={bottom} />
+      ) : (
+        <Hemisphere className={bottom} />
+      )}
+    </div>
+  );
+}
+
 function useCurrentCatchables(): {
   rightNow?: Catchable[];
   laterToday?: Catchable[];
@@ -167,16 +224,24 @@ function useCurrentCatchables(): {
     reducer,
     {
       selectedCatchable: "fish",
+      selectedHemi: "north",
     },
     (state: State): State => {
-      const storageValue = localStorage.getItem("selectedCatchable") as
+      const storageCatchabled = localStorage.getItem("selectedCatchable") as
         | "fish"
         | "bug"
+        | null;
+      const storageHemi = localStorage.getItem("selectedHemi") as
+        | "north"
+        | "south"
         | null;
       return {
         ...state,
         selectedCatchable:
-          storageValue != null ? storageValue : state.selectedCatchable,
+          storageCatchabled != null
+            ? storageCatchabled
+            : state.selectedCatchable,
+        selectedHemi: storageHemi != null ? storageHemi : state.selectedHemi,
       };
     }
   );
@@ -192,7 +257,18 @@ function useCurrentCatchables(): {
     localStorage.setItem("selectedCatchable", state.selectedCatchable);
   }, [state.selectedCatchable]);
 
+  React.useEffect(() => {
+    localStorage.setItem("selectedHemi", state.selectedHemi);
+  }, [state.selectedHemi]);
+
   const catchables = _.chain(state.selectedCatchable === "fish" ? FISH : BUGS)
+    .map(catchable => ({
+      ...catchable,
+      months:
+        state.selectedHemi === "north"
+          ? catchable.nhMonths
+          : catchable.shMonths,
+    }))
     .map(catchable => {
       let nextMonth = (currentTime.month() + 1) % 12;
       const leavingNextMonth =
@@ -224,13 +300,24 @@ function useCurrentCatchables(): {
   return { ...catchables, state, dispatch };
 }
 
-type State = { selectedCatchable: "fish" | "bug" };
-type Action = { type: "select catchable"; catchable: "fish" | "bug" };
+type State = {
+  selectedCatchable: "fish" | "bug";
+  selectedHemi: "north" | "south";
+};
+type Action =
+  | { type: "select catchable"; catchable: "fish" | "bug" }
+  | { type: "toggle hemi" };
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
     case "select catchable": {
       return { ...state, selectedCatchable: action.catchable };
+    }
+    case "toggle hemi": {
+      return {
+        ...state,
+        selectedHemi: state.selectedHemi === "north" ? "south" : "north",
+      };
     }
   }
   return state;
@@ -247,6 +334,7 @@ function Toggle(props: {
     grid-column: 1/-1;
     margin-bottom: 12px;
     justify-content: center;
+    user-select: none;
   `;
   const defaultStyle = css`
     font-size: 20px;
@@ -422,11 +510,17 @@ const styles = {
     text-overflow: ellipsis;
   `,
   title: css`
-    grid-column: 1/-1;
-    width: 95%;
+    width: 90%;
     max-width: 500px;
-    margin: 24px 0;
+    align-self: center;
     justify-self: center;
+    margin: 0 auto;
+  `,
+  titleContainer: css`
+    grid-column: 1/-1;
+    margin: 24px 0;
+    display: flex;
+    user-select: none;
   `,
 };
 
