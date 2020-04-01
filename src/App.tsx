@@ -125,6 +125,11 @@ export default function App() {
   return (
     <>
       <div className={styles.root}>
+        <img
+          src={PUBLIC_URL + "/img/catch_guide.svg"}
+          alt="Catch Guide"
+          className={styles.title}
+        />
         <Toggle
           dispatch={catchables.dispatch}
           selectedCatchable={catchables.state.selectedCatchable}
@@ -240,11 +245,11 @@ function Toggle(props: {
     flex-direction: row;
     align-items: center;
     grid-column: 1/-1;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     justify-content: center;
   `;
   const defaultStyle = css`
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
     width: 160px;
     color: ${colors.headerText};
@@ -415,6 +420,13 @@ const styles = {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  `,
+  title: css`
+    grid-column: 1/-1;
+    width: 95%;
+    max-width: 500px;
+    margin: 24px 0;
+    justify-self: center;
   `,
 };
 
