@@ -98,7 +98,27 @@ export default function App() {
           </>
         )}
       </div>
+      <Footer />
     </>
+  );
+}
+
+function Footer() {
+  const footer = css`
+    color: ${colors.accent};
+    grid-column: 1/-1;
+    align-self: center;
+    justify-self: center;
+    padding: 32px 16px;
+
+    & > a {
+      color: ${colors.accent};
+    }
+  `;
+  return (
+    <div className={footer}>
+      Made by <a href="http://sawyerhood.com">Sawyer Hood</a>
+    </div>
   );
 }
 
