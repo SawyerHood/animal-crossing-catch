@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 
 import { css, injectGlobal } from "emotion";
 
@@ -209,6 +209,9 @@ function Card({
   catchable: Catchable;
   dispatch: React.Dispatch<Action>;
 }) {
+  const [exitStatus, setExitStatus] = useState<"caught" | "not caught" | null>(
+    null
+  );
   const card = css`
     display: flex;
     flex-direction: column;
@@ -255,14 +258,29 @@ function Card({
     cursor: pointer;
   `;
 
-  const ToggleComp = catchable.isCaught ? Check : Circle;
+  const exit = css`
+    transition: all 0.2s ease-in-out;
+    transform: scale(0);
+    opacity: 0;
+  `;
+
+  let ToggleComp = catchable.isCaught
+    ? exitStatus === "not caught"
+      ? Circle
+      : Check
+    : exitStatus === "caught"
+    ? Check
+    : Circle;
 
   return (
-    <div className={card}>
+    <div className={[card, exitStatus ? exit : null].join(" ")}>
       <ToggleComp
         className={check}
         onClick={() => {
-          dispatch({ type: "toggle caught", key: catchable.key });
+          setExitStatus(catchable.isCaught ? "not caught" : "caught");
+          setTimeout(() => {
+            dispatch({ type: "toggle caught", key: catchable.key });
+          }, 200);
         }}
       />
       <img
