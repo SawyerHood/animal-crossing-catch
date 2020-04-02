@@ -124,7 +124,7 @@ function HemisphereSelector(props: {
       <div className={text}>
         {props.selectedHemi === "north" ? "Northern" : "Southern"}
       </div>
-      <Globe className={props.selectedHemi === "south" ? flipped : null} />
+      <Globe className={props.selectedHemi === "south" ? flipped : undefined} />
     </div>
   );
 }
