@@ -162,7 +162,15 @@ function Toggle(props: {
 
   const selectedStyle = css`
     ${defaultStyle};
-    ${styles.name};
+    font-weight: bold;
+    align-self: stretch;
+    background-color: ${colors.accent};
+    padding: 4px 8px;
+    border-radius: 100px;
+    color: ${colors.cardBG};
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   `;
 
   return (
@@ -220,6 +228,18 @@ function Card({ catchable }: { catchable: Catchable }) {
     color: ${colors.emText};
   `;
 
+  const name = css`
+    font-weight: bold;
+    align-self: stretch;
+    background-color: ${colors.accent};
+    padding: 4px 8px;
+    border-radius: 100px;
+    color: ${colors.cardBG};
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  `;
+
   return (
     <div className={card}>
       <img
@@ -228,7 +248,7 @@ function Card({ catchable }: { catchable: Catchable }) {
         alt={catchable.name}
       />
 
-      <div className={styles.name} title={catchable.name}>
+      <div className={name} title={catchable.name}>
         {catchable.name}
       </div>
       <Row icon={<Location />}>{catchable.location}</Row>
@@ -267,15 +287,16 @@ function Row({
     display: flex;
     flex-direction: row;
     font-size: 14px;
-    align-items: center;
     ${className};
+
+    & svg {
+      margin-top: 4px;
+    }
   `;
 
   const textStyle = css`
     margin-left: 6px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    text-align: left;
   `;
   return (
     <div className={containerStyle}>
@@ -291,20 +312,6 @@ const colors = {
   emText: "#DD1919",
   lightBG: "#CCE2CF",
   accent: "#71997F",
-};
-
-const styles = {
-  name: css`
-    font-weight: bold;
-    align-self: stretch;
-    background-color: ${colors.accent};
-    padding: 4px 8px;
-    border-radius: 100px;
-    color: ${colors.cardBG};
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  `,
 };
 
 injectGlobal`
