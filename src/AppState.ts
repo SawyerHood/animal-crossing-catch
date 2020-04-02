@@ -15,6 +15,8 @@ interface ICatchable {
   hours: boolean[];
   timeString: string;
   leavingNextMonth: boolean;
+  key: string;
+  isCaught: boolean;
 }
 
 interface Fish extends ICatchable {
@@ -31,11 +33,13 @@ export type Catchable = Fish | Bug;
 type State = {
   selectedCatchable: "fish" | "bug";
   selectedHemi: "north" | "south";
+  caught: Set<string>;
 };
 
 export type Action =
   | { type: "select catchable"; catchable: "fish" | "bug" }
-  | { type: "toggle hemi" };
+  | { type: "toggle hemi" }
+  | { type: "toggle caught"; key: string };
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -47,6 +51,15 @@ function reducer(state: State, action: Action): State {
         ...state,
         selectedHemi: state.selectedHemi === "north" ? "south" : "north",
       };
+    }
+    case "toggle caught": {
+      const clone = new Set(state.caught);
+      if (state.caught.has(action.key)) {
+        clone.delete(action.key);
+      } else {
+        clone.add(action.key);
+      }
+      return { ...state, caught: clone };
     }
   }
   return state;
@@ -63,8 +76,13 @@ function cleanCatchable(input: { [key: string]: any }): ICatchable {
     time,
   } = input;
   const hours = cleanTime(time);
+  const key = name
+    .toLowerCase()
+    .replace(/ /g, "_")
+    .replace("'", "");
 
   return {
+    key,
     name,
     imageURL,
     sellPrice,
@@ -75,6 +93,7 @@ function cleanCatchable(input: { [key: string]: any }): ICatchable {
     hours,
     timeString: time,
     leavingNextMonth: false,
+    isCaught: false,
   };
 }
 
@@ -137,6 +156,7 @@ export function useAppState(): {
   rightNow?: Catchable[];
   laterToday?: Catchable[];
   later?: Catchable[];
+  alreadyCaught?: Catchable[];
 } & { state: State; dispatch: React.Dispatch<Action> } {
   const [currentTime, setCurrentTime] = useState(() => moment());
   const [state, dispatch] = useReducer(
@@ -144,6 +164,7 @@ export function useAppState(): {
     {
       selectedCatchable: "fish",
       selectedHemi: "north",
+      caught: new Set<string>(),
     },
     (state: State): State => {
       const storageCatchabled = localStorage.getItem("selectedCatchable") as
@@ -156,6 +177,12 @@ export function useAppState(): {
         | "south"
         | null;
 
+      const caughtStr = localStorage.getItem("caught") || "[]";
+      let caught: string[] = [];
+      try {
+        caught = JSON.parse(caughtStr);
+      } catch {}
+
       return {
         ...state,
         selectedCatchable:
@@ -163,6 +190,7 @@ export function useAppState(): {
             ? storageCatchabled
             : state.selectedCatchable,
         selectedHemi: storageHemi != null ? storageHemi : state.selectedHemi,
+        caught: new Set(caught),
       };
     }
   );
@@ -182,6 +210,10 @@ export function useAppState(): {
     localStorage.setItem("selectedHemi", state.selectedHemi);
   }, [state.selectedHemi]);
 
+  useEffect(() => {
+    localStorage.setItem("caught", JSON.stringify(Array.from(state.caught)));
+  }, [state.caught]);
+
   const catchables = _.chain(state.selectedCatchable === "fish" ? FISH : BUGS)
     .map(catchable => ({
       ...catchable,
@@ -189,6 +221,7 @@ export function useAppState(): {
         state.selectedHemi === "north"
           ? catchable.nhMonths
           : catchable.shMonths,
+      isCaught: state.caught.has(catchable.key),
     }))
     .map(catchable => {
       let nextMonth = (currentTime.month() + 1) % 12;
@@ -199,6 +232,9 @@ export function useAppState(): {
     })
     .orderBy(["leavingNextMonth", "name"], ["desc", "asc"])
     .groupBy(catchable => {
+      if (state.caught.has(catchable.key)) {
+        return "alreadyCaught";
+      }
       if (
         catchable.hours[currentTime.hour()] &&
         catchable.months[currentTime.month()]
@@ -216,6 +252,7 @@ export function useAppState(): {
     rightNow?: Catchable[];
     laterToday?: Catchable[];
     later?: Catchable[];
+    alreadyCaught?: Catchable[];
   };
 
   return { ...catchables, state, dispatch };

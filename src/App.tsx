@@ -8,14 +8,20 @@ import { ReactComponent as Bells } from "./icon/bells.svg";
 import { ReactComponent as Length } from "./icon/length.svg";
 import { ReactComponent as Warning } from "./icon/warning.svg";
 import { ReactComponent as Globe } from "./icon/globe.svg";
+import { ReactComponent as Check } from "./icon/check.svg";
+import { ReactComponent as Circle } from "./icon/circle.svg";
 import { useAppState, Catchable, Action } from "./AppState";
 
 const PUBLIC_URL = process.env.PUBLIC_URL || "";
 
 export default function App() {
-  const catchables = useAppState();
+  const appState = useAppState();
   const catchableMapper = (catchable: Catchable) => (
-    <Card catchable={catchable} key={catchable.name} />
+    <Card
+      catchable={catchable}
+      dispatch={appState.dispatch}
+      key={catchable.name}
+    />
   );
 
   const root = css`
@@ -49,8 +55,8 @@ export default function App() {
     <>
       <div className={root}>
         <HemisphereSelector
-          dispatch={catchables.dispatch}
-          selectedHemi={catchables.state.selectedHemi}
+          dispatch={appState.dispatch}
+          selectedHemi={appState.state.selectedHemi}
         />
 
         <img
@@ -60,28 +66,35 @@ export default function App() {
         />
 
         <Toggle
-          dispatch={catchables.dispatch}
-          selectedCatchable={catchables.state.selectedCatchable}
+          dispatch={appState.dispatch}
+          selectedCatchable={appState.state.selectedCatchable}
         />
 
-        {catchables.rightNow && (
+        {appState.rightNow && (
           <>
             <h1 className={header}>Available Now</h1>
-            {catchables.rightNow.map(catchableMapper)}
+            {appState.rightNow.map(catchableMapper)}
           </>
         )}
 
-        {catchables.laterToday && (
+        {appState.laterToday && (
           <>
             <h1 className={header}>Available This Month</h1>
-            {catchables.laterToday.map(catchableMapper)}
+            {appState.laterToday.map(catchableMapper)}
           </>
         )}
 
-        {catchables.later && (
+        {appState.later && (
           <>
             <h1 className={header}>Not Available</h1>
-            {catchables.later.map(catchableMapper)}
+            {appState.later.map(catchableMapper)}
+          </>
+        )}
+
+        {appState.alreadyCaught && (
+          <>
+            <h1 className={header}>Already Caught</h1>
+            {appState.alreadyCaught.map(catchableMapper)}
           </>
         )}
       </div>
@@ -189,7 +202,13 @@ function Toggle(props: {
   );
 }
 
-function Card({ catchable }: { catchable: Catchable }) {
+function Card({
+  catchable,
+  dispatch,
+}: {
+  catchable: Catchable;
+  dispatch: React.Dispatch<Action>;
+}) {
   const card = css`
     display: flex;
     flex-direction: column;
@@ -230,10 +249,24 @@ function Card({ catchable }: { catchable: Catchable }) {
     text-overflow: ellipsis;
   `;
 
+  const check = css`
+    align-self: flex-end;
+    display: block;
+    cursor: pointer;
+  `;
+
+  const ToggleComp = catchable.isCaught ? Check : Circle;
+
   return (
     <div className={card}>
+      <ToggleComp
+        className={check}
+        onClick={() => {
+          dispatch({ type: "toggle caught", key: catchable.key });
+        }}
+      />
       <img
-        src={catchable.imageURL || imageFromName(catchable.name)}
+        src={catchable.imageURL || imageFromKey(catchable.key)}
         className={imgStyle}
         alt={catchable.name}
       />
@@ -256,12 +289,8 @@ function Card({ catchable }: { catchable: Catchable }) {
   );
 }
 
-function imageFromName(name: string): string {
-  const newName = name
-    .toLowerCase()
-    .replace(/ /g, "_")
-    .replace("'", "");
-  return `${PUBLIC_URL}/img/${newName}.png`;
+function imageFromKey(name: string): string {
+  return `${PUBLIC_URL}/img/${name}.png`;
 }
 
 function Row({
