@@ -7,8 +7,7 @@ import { ReactComponent as Time } from "./icon/time.svg";
 import { ReactComponent as Bells } from "./icon/bells.svg";
 import { ReactComponent as Length } from "./icon/length.svg";
 import { ReactComponent as Warning } from "./icon/warning.svg";
-import { ReactComponent as Hemisphere } from "./icon/hemisphere.svg";
-import { ReactComponent as HemisphereFilled } from "./icon/hemisphere-filled.svg";
+import { ReactComponent as Globe } from "./icon/globe.svg";
 import { useAppState, Catchable, Action } from "./AppState";
 
 const PUBLIC_URL = process.env.PUBLIC_URL || "";
@@ -96,27 +95,24 @@ function HemisphereSelector(props: {
 }) {
   const root = css`
     display: flex;
-    flex-direction: column;
     width: fit-content;
     align-self: center;
     justify-self: flex-end;
     grid-column: 1/-1;
     cursor: pointer;
     user-select: none;
+    color: ${colors.accent};
+    align-items: center;
+    font-size: 24px;
+    padding: 4px 0;
   `;
-  const notSelected = css`
-    opacity: 0.6;
+
+  const text = css`
+    margin-right: 8px;
   `;
-  const bottom = css`
+
+  const flipped = css`
     transform: rotate(180deg);
-    width: 50px;
-    height: 25px;
-    ${props.selectedHemi === "south" ? null : notSelected};
-  `;
-  const top = css`
-    width: 50px;
-    height: 25px;
-    ${props.selectedHemi === "north" ? null : notSelected};
   `;
 
   return (
@@ -125,16 +121,10 @@ function HemisphereSelector(props: {
       onClick={() => props.dispatch({ type: "toggle hemi" })}
       role="button"
     >
-      {props.selectedHemi === "north" ? (
-        <HemisphereFilled className={top} />
-      ) : (
-        <Hemisphere className={top} />
-      )}
-      {props.selectedHemi === "south" ? (
-        <HemisphereFilled className={bottom} />
-      ) : (
-        <Hemisphere className={bottom} />
-      )}
+      <div className={text}>
+        {props.selectedHemi === "north" ? "Northern" : "Southern"}
+      </div>
+      <Globe className={props.selectedHemi === "south" ? flipped : null} />
     </div>
   );
 }
