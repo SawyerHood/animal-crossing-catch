@@ -17,6 +17,7 @@ interface ICatchable {
   leavingNextMonth: boolean;
   key: string;
   isCaught: boolean;
+  monthString: string;
 }
 
 interface Fish extends ICatchable {
@@ -94,6 +95,7 @@ function cleanCatchable(input: { [key: string]: any }): ICatchable {
     timeString: time,
     leavingNextMonth: false,
     isCaught: false,
+    monthString: "",
   };
 }
 
@@ -143,6 +145,9 @@ function forRangeWrap(
   while (i !== end) {
     if (i === cap) {
       i = 0;
+      if (i === end) {
+        return;
+      }
     }
     fn(i);
     i++;
@@ -215,14 +220,18 @@ export function useAppState(): {
   }, [state.caught]);
 
   const catchables = _.chain(state.selectedCatchable === "fish" ? FISH : BUGS)
-    .map(catchable => ({
-      ...catchable,
-      months:
+    .map(catchable => {
+      const months =
         state.selectedHemi === "north"
           ? catchable.nhMonths
-          : catchable.shMonths,
-      isCaught: state.caught.has(catchable.key),
-    }))
+          : catchable.shMonths;
+      return {
+        ...catchable,
+        months,
+        isCaught: state.caught.has(catchable.key),
+        monthString: monthArrayToRange(months),
+      };
+    })
     .map(catchable => {
       let nextMonth = (currentTime.month() + 1) % 12;
       const leavingNextMonth =
@@ -256,4 +265,44 @@ export function useAppState(): {
   };
 
   return { ...catchables, state, dispatch };
+}
+
+export function monthArrayToRange(arr: boolean[]): string {
+  const firstFalse = arr.indexOf(false);
+  if (firstFalse < 0) {
+    return "All Year";
+  }
+  const res: number[][] = [];
+  let lastVal = false;
+  let lastI = 0;
+  let rangeStart: number | null = null;
+  forRangeWrap((firstFalse + 1) % 12, firstFalse, 12, mNum => {
+    if (arr[mNum] !== lastVal) {
+      if (arr[mNum] === true) {
+        rangeStart = mNum;
+      } else {
+        res.push([rangeStart!, lastI]);
+        rangeStart = null;
+      }
+    }
+    lastVal = arr[mNum];
+    lastI = mNum;
+  });
+
+  if (rangeStart != null) {
+    res.push([rangeStart!, lastI]);
+  }
+
+  return res
+    .map(
+      ([start, end]) =>
+        moment()
+          .month(start)
+          .format("MMM") +
+        " - " +
+        moment()
+          .month(end)
+          .format("MMM")
+    )
+    .join(", ");
 }
