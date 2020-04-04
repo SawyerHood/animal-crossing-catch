@@ -5,6 +5,7 @@
   "author": "sawyerhood",
   "license": "MIT",
   "dependencies": {
+    "image-downloader": "^3.5.0",
     "puppeteer": "^2.1.1"
   }
 }

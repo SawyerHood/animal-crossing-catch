@@ -305,7 +305,7 @@ function Card({
         }}
       />
       <img
-        src={catchable.imageURL || imageFromKey(catchable.key)}
+        src={imageFromKey(catchable.key)}
         className={imgStyle}
         alt={catchable.name}
       />

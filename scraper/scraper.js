@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const download = require("image-downloader");
 
 const FISH_URL = "https://animalcrossing.fandom.com/wiki/Fish_(New_Horizons)";
 const BUG_URL = "https://animalcrossing.fandom.com/wiki/Bugs_(New_Horizons)";
@@ -12,7 +13,7 @@ async function loadFish() {
     const resultMap = {};
     const bodies = Array.from(
       document.querySelectorAll(".roundy.sortable tbody")
-    ).map(body => Array.from(body.children, r => Array.from(r.children)));
+    ).map((body) => Array.from(body.children, (r) => Array.from(r.children)));
     for (row of bodies[0]) {
       const name = row[0].textContent.trim();
       const url = row[1].children[0].href;
@@ -22,7 +23,7 @@ async function loadFish() {
       const time = row[5].textContent.trim();
       const nhMonths = row
         .slice(6)
-        .map(cell => cell.textContent.trim() !== "-");
+        .map((cell) => cell.textContent.trim() !== "-");
 
       const key = name.toLowerCase();
 
@@ -41,7 +42,7 @@ async function loadFish() {
       const name = row[0].textContent.trim();
       const shMonths = row
         .slice(6)
-        .map(cell => cell.textContent.trim() !== "-");
+        .map((cell) => cell.textContent.trim() !== "-");
       const key = name.toLowerCase();
       const res = resultMap[key];
       if (res) {
@@ -52,8 +53,10 @@ async function loadFish() {
     return JSON.stringify(Object.values(resultMap));
   });
 
-  console.log(result);
   await browser.close();
+  const arr = JSON.parse(result);
+  await loadImages(arr);
+  console.log(JSON.stringify(arr));
 }
 
 async function loadBugs() {
@@ -65,7 +68,7 @@ async function loadBugs() {
     const resultMap = {};
     const bodies = Array.from(
       document.querySelectorAll(".sortable tbody")
-    ).map(body => Array.from(body.children, r => Array.from(r.children)));
+    ).map((body) => Array.from(body.children, (r) => Array.from(r.children)));
     for (row of bodies[0]) {
       const name = row[0].textContent.trim();
       const imgChild = row[1].children[0];
@@ -75,7 +78,7 @@ async function loadBugs() {
       const time = row[4].textContent.trim();
       const nhMonths = row
         .slice(5)
-        .map(cell => cell.textContent.trim() !== "-");
+        .map((cell) => cell.textContent.trim() !== "-");
 
       const key = name.toLowerCase();
       resultMap[key] = {
@@ -92,7 +95,7 @@ async function loadBugs() {
       const name = row[0].textContent.trim();
       const shMonths = row
         .slice(5)
-        .map(cell => cell.textContent.trim() !== "-");
+        .map((cell) => cell.textContent.trim() !== "-");
       const key = name.toLowerCase();
       const res = resultMap[key];
       if (res) {
@@ -103,8 +106,22 @@ async function loadBugs() {
     return JSON.stringify(Object.values(resultMap));
   });
 
-  console.log(result);
   await browser.close();
+  const arr = JSON.parse(result);
+  await loadImages(arr);
+  console.log(JSON.stringify(arr));
+}
+
+async function loadImages(arr) {
+  for (const critter of arr) {
+    const filename = await download.image({
+      url: critter.imageURL,
+      dest: `img/${critter.name
+        .toLowerCase()
+        .replace(/ /g, "_")
+        .replace("'", "")}.png`,
+    });
+  }
 }
 
 module.exports = {
