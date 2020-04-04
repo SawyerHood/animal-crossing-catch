@@ -59,7 +59,7 @@ test("monthArrayToRange", () => {
         false,
         true,
       ])
-    ).toBe("May - Jul, Dec - Feb");
+    ).toBe("May - Jul & Dec - Feb");
   });
 
   it("converts a value with lots of trues", () => {
@@ -80,7 +80,7 @@ test("monthArrayToRange", () => {
       ])
     ).toBe("Jan - Nov");
   });
-  it("converts a value with lots of trues", () => {
+  it("converts a value that starts with false", () => {
     expect(
       monthArrayToRange([
         false,

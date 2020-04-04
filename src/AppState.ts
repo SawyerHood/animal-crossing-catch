@@ -304,5 +304,5 @@ export function monthArrayToRange(arr: boolean[]): string {
           .month(end)
           .format("MMM")
     )
-    .join(", ");
+    .join(" & ");
 }

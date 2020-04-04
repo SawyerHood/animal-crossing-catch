@@ -10,6 +10,7 @@ import { ReactComponent as Warning } from "./icon/warning.svg";
 import { ReactComponent as Globe } from "./icon/globe.svg";
 import { ReactComponent as Check } from "./icon/check.svg";
 import { ReactComponent as Circle } from "./icon/circle.svg";
+import { ReactComponent as Calendar } from "./icon/calendar.svg";
 import { useAppState, Catchable, Action } from "./AppState";
 
 const PUBLIC_URL = process.env.PUBLIC_URL || "";
@@ -314,6 +315,7 @@ function Card({
       </div>
       <Row icon={<Location />}>{catchable.location}</Row>
       <Row icon={<Time />}>{catchable.timeString}</Row>
+      <Row icon={<Calendar />}>{catchable.monthString}</Row>
       <Row icon={<Bells />}>{catchable.sellPrice || "?"}</Row>
       {catchable.type === "fish" && (
         <Row icon={<Length />}>{catchable.size}</Row>
