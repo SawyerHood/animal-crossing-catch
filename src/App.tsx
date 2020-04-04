@@ -28,7 +28,7 @@ export default function App() {
   const root = css`
     text-align: center;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(172px, 1fr));
     grid-gap: 4px 4px;
     justify-content: center;
     padding: 12px;
