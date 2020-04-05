@@ -277,7 +277,7 @@ function Card({
 
   const exit = css`
     transition: all 0.2s ease-in-out;
-    transform: scale(0);
+    transform: scale(0.9);
     opacity: 0;
   `;
 
