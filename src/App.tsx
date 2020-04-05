@@ -11,9 +11,9 @@ import { ReactComponent as Globe } from "./icon/globe.svg";
 import { ReactComponent as Check } from "./icon/check.svg";
 import { ReactComponent as Circle } from "./icon/circle.svg";
 import { ReactComponent as Calendar } from "./icon/calendar.svg";
+import { ReactComponent as CatchGuide } from "./catch_guide.svg";
 import { useAppState, Catchable, Action } from "./AppState";
-
-const PUBLIC_URL = process.env.PUBLIC_URL || "";
+import imgMap from "./imgMap";
 
 export default function App() {
   const appState = useAppState();
@@ -60,11 +60,7 @@ export default function App() {
           selectedHemi={appState.state.selectedHemi}
         />
 
-        <img
-          src={PUBLIC_URL + "/img/catch_guide.svg"}
-          alt="Catch Guide"
-          className={title}
-        />
+        <CatchGuide className={title} />
 
         <Toggle
           dispatch={appState.dispatch}
@@ -330,7 +326,8 @@ function Card({
 }
 
 function imageFromKey(name: string): string {
-  return `${PUBLIC_URL}/img/${name}.png`;
+  const map: any = imgMap;
+  return map[name] || "";
 }
 
 function Row({

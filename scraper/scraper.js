@@ -1,5 +1,6 @@
 const puppeteer = require("puppeteer");
 const download = require("image-downloader");
+const fs = require("fs");
 
 const FISH_URL = "https://animalcrossing.fandom.com/wiki/Fish_(New_Horizons)";
 const BUG_URL = "https://animalcrossing.fandom.com/wiki/Bugs_(New_Horizons)";
@@ -56,7 +57,8 @@ async function loadFish() {
   await browser.close();
   const arr = JSON.parse(result);
   await loadImages(arr);
-  console.log(JSON.stringify(arr));
+  fs.writeFileSync("fish.json", JSON.stringify(arr));
+  return arr;
 }
 
 async function loadBugs() {
@@ -109,22 +111,57 @@ async function loadBugs() {
   await browser.close();
   const arr = JSON.parse(result);
   await loadImages(arr);
-  console.log(JSON.stringify(arr));
+  fs.writeFileSync("bugs.json", JSON.stringify(arr));
+  return arr;
 }
 
 async function loadImages(arr) {
   for (const critter of arr) {
     const filename = await download.image({
       url: critter.imageURL,
-      dest: `img/${critter.name
-        .toLowerCase()
-        .replace(/ /g, "_")
-        .replace("'", "")}.png`,
+      dest: getPath(critter.name),
     });
   }
 }
 
-module.exports = {
-  loadBugs,
-  loadFish,
-};
+function getPath(name) {
+  return `img/${getKey(name)}.png`;
+}
+
+function getKey(name) {
+  return name
+    .toLowerCase()
+    .replace(/ /g, "_")
+    .replace("'", "")
+    .replace("-", "_");
+}
+
+function createImgMap(arr) {
+  const imports = [];
+  const obj = [];
+  for (critter of arr) {
+    const key = getKey(critter.name);
+    const path = getPath(critter.name);
+
+    imports.push(`import ${key} from './${path}'`);
+    obj.push(`${key}`);
+  }
+
+  const file = `
+  ${imports.join("\n")}
+
+  export default {${obj.join(",\n")}}
+  `;
+  fs.writeFileSync("imgMap.js", file);
+}
+
+async function run() {
+  if (!fs.existsSync("img")) {
+    fs.mkdirSync("img");
+  }
+  const bugs = await loadBugs();
+  const fish = await loadFish();
+  createImgMap(bugs.concat(fish));
+}
+
+run();

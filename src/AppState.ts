@@ -80,7 +80,8 @@ function cleanCatchable(input: { [key: string]: any }): ICatchable {
   const key = name
     .toLowerCase()
     .replace(/ /g, "_")
-    .replace("'", "");
+    .replace("'", "")
+    .replace("-", "_");
 
   return {
     key,
@@ -106,7 +107,7 @@ function cleanTime(time: string): boolean[] {
   } else {
     for (const timeStr of time.split(" & ")) {
       const [start, end] = timeStr.split(" - ").map(parseTimeString);
-      forRangeWrap(start, end, 24, i => (hours[i] = true));
+      forRangeWrap(start, end, 24, (i) => (hours[i] = true));
     }
   }
 
@@ -220,7 +221,7 @@ export function useAppState(): {
   }, [state.caught]);
 
   const catchables = _.chain(state.selectedCatchable === "fish" ? FISH : BUGS)
-    .map(catchable => {
+    .map((catchable) => {
       const months =
         state.selectedHemi === "north"
           ? catchable.nhMonths
@@ -232,7 +233,7 @@ export function useAppState(): {
         monthString: monthArrayToRange(months),
       };
     })
-    .map(catchable => {
+    .map((catchable) => {
       let nextMonth = (currentTime.month() + 1) % 12;
       const leavingNextMonth =
         !catchable.months[nextMonth] && catchable.months[currentTime.month()];
@@ -240,7 +241,7 @@ export function useAppState(): {
       return { ...catchable, leavingNextMonth };
     })
     .orderBy(["leavingNextMonth", "name"], ["desc", "asc"])
-    .groupBy(catchable => {
+    .groupBy((catchable) => {
       if (state.caught.has(catchable.key)) {
         return "alreadyCaught";
       }
@@ -276,7 +277,7 @@ export function monthArrayToRange(arr: boolean[]): string {
   let lastVal = false;
   let lastI = 0;
   let rangeStart: number | null = null;
-  forRangeWrap((firstFalse + 1) % 12, firstFalse, 12, mNum => {
+  forRangeWrap((firstFalse + 1) % 12, firstFalse, 12, (mNum) => {
     if (arr[mNum] !== lastVal) {
       if (arr[mNum] === true) {
         rangeStart = mNum;
@@ -296,13 +297,9 @@ export function monthArrayToRange(arr: boolean[]): string {
   return res
     .map(
       ([start, end]) =>
-        moment()
-          .month(start)
-          .format("MMM") +
+        moment().month(start).format("MMM") +
         " - " +
-        moment()
-          .month(end)
-          .format("MMM")
+        moment().month(end).format("MMM")
     )
     .join(" & ");
 }

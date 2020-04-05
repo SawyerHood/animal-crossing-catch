@@ -1,5 +1,7 @@
 {
- "name": "App",
+ "name": "AC Catch Guide",
+ "start_url": ".",
+ "display": "standalone",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
