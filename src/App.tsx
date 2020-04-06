@@ -111,7 +111,7 @@ function Footer() {
     display: flex;
     align-items: center;
 
-    & > a {
+    & a {
       color: ${colors.accent};
     }
   `;
