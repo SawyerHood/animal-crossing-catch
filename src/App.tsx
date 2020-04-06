@@ -32,8 +32,12 @@ export default function App() {
     (c: Catchable) => {
       return (
         appState.filter.currentFilter === "" ||
-        c.name.toLowerCase().includes(appState.filter.currentFilter) ||
-        c.location.toLowerCase().includes(appState.filter.currentFilter)
+        c.name
+          .toLowerCase()
+          .includes(appState.filter.currentFilter.toLowerCase()) ||
+        c.location
+          .toLowerCase()
+          .includes(appState.filter.currentFilter.toLowerCase())
       );
     },
     [appState.filter]
