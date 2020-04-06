@@ -153,6 +153,7 @@ function HemisphereSelector(props: {
     align-items: center;
     font-size: 24px;
     padding: 4px 0;
+    opacity: 0.7;
   `;
 
   const text = css`
