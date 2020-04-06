@@ -8,10 +8,11 @@ import { ReactComponent as Bells } from "./icon/bells.svg";
 import { ReactComponent as Length } from "./icon/length.svg";
 import { ReactComponent as Warning } from "./icon/warning.svg";
 import { ReactComponent as Globe } from "./icon/globe.svg";
-import { ReactComponent as Check } from "./icon/check.svg";
-import { ReactComponent as Circle } from "./icon/circle.svg";
 import { ReactComponent as Calendar } from "./icon/calendar.svg";
 import { ReactComponent as CatchGuide } from "./catch_guide.svg";
+import { ReactComponent as Circle } from "./icon/circle.svg";
+import { ReactComponent as Check } from "./icon/check.svg";
+import github from "./github.png";
 import { useAppState, Catchable, Action } from "./AppState";
 import imgMap from "./imgMap";
 
@@ -107,14 +108,31 @@ function Footer() {
     align-self: center;
     justify-self: center;
     padding: 32px 16px;
+    display: flex;
+    align-items: center;
 
     & > a {
       color: ${colors.accent};
     }
   `;
+
+  const githubLink = css`
+    margin-left: 12px;
+    display: block;
+    line-height: 0;
+  `;
+
   return (
     <div className={footer}>
-      Made by <a href="http://sawyerhood.com">Sawyer Hood</a>
+      <div>
+        Made by <a href="http://sawyerhood.com">Sawyer Hood</a>{" "}
+      </div>
+      <a
+        className={githubLink}
+        href="https://github.com/SawyerHood/animal-crossing-catch"
+      >
+        <img alt="github" src={github} width={16} height={16} />
+      </a>
     </div>
   );
 }
