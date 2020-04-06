@@ -2,7 +2,7 @@ import RAW_FISH from "./data/fish.json";
 import RAW_BUGS from "./data/bugs.json";
 import moment from "moment";
 import _ from "lodash";
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useReducer, SetStateAction } from "react";
 
 interface ICatchable {
   name: string;
@@ -163,6 +163,10 @@ export function useAppState(): {
   laterToday?: Catchable[];
   later?: Catchable[];
   alreadyCaught?: Catchable[];
+  filter: {
+    currentFilter: string;
+    setFilter: React.Dispatch<SetStateAction<string>>;
+  };
 } & { state: State; dispatch: React.Dispatch<Action> } {
   const [currentTime, setCurrentTime] = useState(() => moment());
   const [state, dispatch] = useReducer(
@@ -200,6 +204,8 @@ export function useAppState(): {
       };
     }
   );
+
+  const [filter, setFilter] = useState<string>("");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -265,7 +271,12 @@ export function useAppState(): {
     alreadyCaught?: Catchable[];
   };
 
-  return { ...catchables, state, dispatch };
+  return {
+    ...catchables,
+    state,
+    dispatch,
+    filter: { currentFilter: filter, setFilter },
+  };
 }
 
 export function monthArrayToRange(arr: boolean[]): string {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import { css, injectGlobal } from "emotion";
 
@@ -15,15 +15,28 @@ import { ReactComponent as Check } from "./icon/check.svg";
 import github from "./github.png";
 import { useAppState, Catchable, Action } from "./AppState";
 import imgMap from "./imgMap";
+import SearchInput from "./SearchInput";
 
 export default function App() {
   const appState = useAppState();
+
   const catchableMapper = (catchable: Catchable) => (
     <Card
       catchable={catchable}
       dispatch={appState.dispatch}
       key={catchable.name}
     />
+  );
+
+  const filter = useCallback(
+    (c: Catchable) => {
+      return (
+        appState.filter.currentFilter === "" ||
+        c.name.toLowerCase().includes(appState.filter.currentFilter) ||
+        c.location.toLowerCase().includes(appState.filter.currentFilter)
+      );
+    },
+    [appState.filter]
   );
 
   const root = css`
@@ -56,6 +69,13 @@ export default function App() {
   return (
     <>
       <div className={root}>
+        <SearchInput
+          currentValue={appState.filter.currentFilter}
+          onChange={(e) => {
+            appState.filter.setFilter(e.target.value);
+          }}
+        />
+
         <HemisphereSelector
           dispatch={appState.dispatch}
           selectedHemi={appState.state.selectedHemi}
@@ -71,28 +91,28 @@ export default function App() {
         {appState.rightNow && (
           <>
             <h1 className={header}>Available Now</h1>
-            {appState.rightNow.map(catchableMapper)}
+            {appState.rightNow.filter(filter).map(catchableMapper)}
           </>
         )}
 
         {appState.laterToday && (
           <>
             <h1 className={header}>Available This Month</h1>
-            {appState.laterToday.map(catchableMapper)}
+            {appState.laterToday.filter(filter).map(catchableMapper)}
           </>
         )}
 
         {appState.later && (
           <>
             <h1 className={header}>Not Available</h1>
-            {appState.later.map(catchableMapper)}
+            {appState.later.filter(filter).map(catchableMapper)}
           </>
         )}
 
         {appState.alreadyCaught && (
           <>
             <h1 className={header}>Already Caught</h1>
-            {appState.alreadyCaught.map(catchableMapper)}
+            {appState.alreadyCaught.filter(filter).map(catchableMapper)}
           </>
         )}
       </div>
