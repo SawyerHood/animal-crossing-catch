@@ -1,43 +1,28 @@
-Fish generated from https://animalcrossing.fandom.com/wiki/Fish_(New_Horizons) using:
+# Animal Crossing Catch
 
-```js
-let tableBody = document.querySelector(".roundy.sortable tbody");
-let rows = Array.from(tableBody.children, r => Array.from(r.children));
-copy(
-  JSON.stringify(
-    rows.map(row => {
-      const output = {};
-      const name = row[0].textContent.trim();
-      const url = row[1].children[0].href;
-      const sellPrice = +row[2].textContent.trim().replace(",", "");
-      const location = row[3].textContent.trim();
-      const size = row[4].textContent.trim();
-      const time = row[5].textContent.trim();
-      const months = row.slice(6).map(cell => cell.textContent.trim() !== "-");
-      return { name, imageURL: url, sellPrice, location, size, time, months };
-    })
-  )
-);
+Animal Crossing Catch is a mimimal, mobile friendly site for keeping track of fish and bugs you can catch in *Animal Crossing: New Horizons*.
+
+<img src="https://i.imgur.com/vxwNRi4.png" height="500" />
+
+## Philosophy 
+* Create a companion app to the game that can easily be used while playing from any device
+* Make it easy to use and navigate without excess explanation
+* Offline first: most features should work without network access on a mobile device (ex: playing Switch on a plane)
+* Up-to-date: We should make sure that the data is always the most accurate available
+
+## Building and running:
+The site is written using Typescript, React, and Create React App. The recommended way to get up and running is via Codesandbox which will give you an editable copy of the site right from your browser. You can then make an edit and open a pull request without downloading anything to your computer.
+
+[![Edit whatcanicatchnow](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/SawyerHood/animal-crossing-catch/tree/master/?fontsize=14&hidenavigation=1&theme=dark)
+
+## Data
+All of the data is currently generated from the animalcrossing Fandom wiki.
+
+We have a static process which will scrape the site, download the images, and generate files to be used by the main app. To update the data clone the repo locally and run the following:
+
+```
+cd scraper
+node scraper.js
 ```
 
-Bugs generated from https://animalcrossing.fandom.com/wiki/Bugs_(New_Horizons) using:
-
-```js
-let tableBody = document.querySelector(".sortable tbody");
-let rows = Array.from(tableBody.children, r => Array.from(r.children));
-copy(
-  JSON.stringify(
-    rows.map(row => {
-      const output = {};
-      const name = row[0].textContent.trim();
-      const imgChild = row[1].children[0];
-      const url = imgChild ? row[1].children[0].href : null;
-      const sellPrice = +row[2].textContent.trim().replace(",", "");
-      const location = row[3].textContent.trim();
-      const time = row[4].textContent.trim();
-      const months = row.slice(5).map(cell => cell.textContent.trim() !== "-");
-      return { name, imageURL: url, sellPrice, location, time, months };
-    })
-  )
-);
-```
+You should then be able to copy the updated files (fish.json, bugs.json, imgMap.js, and the img folder) into the src directory.
