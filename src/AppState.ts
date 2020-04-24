@@ -1,13 +1,19 @@
 import RAW_FISH from "./data/fish.json";
 import RAW_BUGS from "./data/bugs.json";
+import RAW_FOSSILS from "./data/fossils.json";
 import moment from "moment";
 import _ from "lodash";
 import React, { useState, useEffect, useReducer } from "react";
 
-interface ICatchable {
+interface ICollectable {
+  key: string;
   name: string;
   imageURL: string | null;
   sellPrice: number;
+  isCaught: boolean;
+}
+
+interface ICatchable extends ICollectable {
   location: string;
   months: boolean[];
   nhMonths: boolean[];
@@ -15,9 +21,11 @@ interface ICatchable {
   hours: boolean[];
   timeString: string;
   leavingNextMonth: boolean;
-  key: string;
-  isCaught: boolean;
   monthString: string;
+}
+
+interface Fossil extends ICollectable {
+  type: "fossil";
 }
 
 interface Fish extends ICatchable {
@@ -29,16 +37,16 @@ interface Bug extends ICatchable {
   type: "bug";
 }
 
-export type Catchable = Fish | Bug;
+export type Catchable = Fish | Bug | Fossil;
 
 type State = {
-  selectedCatchable: "fish" | "bug";
+  selectedCatchable: "fish" | "bug" | "fossil";
   selectedHemi: "north" | "south";
   caught: Set<string>;
 };
 
 export type Action =
-  | { type: "select catchable"; catchable: "fish" | "bug" }
+  | { type: "select catchable"; catchable: "fish" | "bug" | "fossil" }
   | { type: "toggle hemi" }
   | { type: "toggle caught"; key: string };
 
@@ -66,17 +74,9 @@ function reducer(state: State, action: Action): State {
   return state;
 }
 
-function cleanCatchable(input: { [key: string]: any }): ICatchable {
-  const {
-    name,
-    imageURL,
-    sellPrice,
-    location,
-    nhMonths,
-    shMonths,
-    time,
-  } = input;
-  const hours = cleanTime(time);
+function cleanCollectable(input: { [key: string]: any }): ICollectable {
+  const { name, imageURL, sellPrice } = input;
+
   const key = name
     .toLowerCase()
     .replace(/ /g, "_")
@@ -89,6 +89,16 @@ function cleanCatchable(input: { [key: string]: any }): ICatchable {
     name,
     imageURL,
     sellPrice,
+    isCaught: false,
+  };
+}
+
+function cleanCatchable(input: { [key: string]: any }): ICatchable {
+  const { location, nhMonths, shMonths, time } = input;
+  const hours = cleanTime(time);
+
+  return {
+    ...cleanCollectable(input),
     location,
     months: nhMonths,
     nhMonths: nhMonths,
@@ -96,7 +106,6 @@ function cleanCatchable(input: { [key: string]: any }): ICatchable {
     hours,
     timeString: time,
     leavingNextMonth: false,
-    isCaught: false,
     monthString: "",
   };
 }
@@ -132,6 +141,13 @@ function cleanABug(input: { [key: string]: any }): Bug {
   };
 }
 
+function cleanAFossil(input: { [key: string]: any }): Fossil {
+  return {
+    ...cleanCollectable(input),
+    type: "fossil",
+  };
+}
+
 function parseTimeString(str: string): number {
   const m = moment(str, "HH A");
   return m.hour();
@@ -158,6 +174,7 @@ function forRangeWrap(
 
 const FISH: Catchable[] = RAW_FISH.map(cleanAFish);
 const BUGS: Catchable[] = RAW_BUGS.map(cleanABug);
+const FOSSILS: Catchable[] = RAW_FOSSILS.map(cleanAFossil);
 
 export function useAppState(): {
   rightNow?: Catchable[];
@@ -177,6 +194,7 @@ export function useAppState(): {
       const storageCatchabled = localStorage.getItem("selectedCatchable") as
         | "fish"
         | "bug"
+        | "fossil"
         | null;
 
       const storageHemi = localStorage.getItem("selectedHemi") as
@@ -221,8 +239,24 @@ export function useAppState(): {
     localStorage.setItem("caught", JSON.stringify(Array.from(state.caught)));
   }, [state.caught]);
 
-  const catchables = _.chain(state.selectedCatchable === "fish" ? FISH : BUGS)
+  let catchableArr = FISH;
+  switch (state.selectedCatchable) {
+    case "fish":
+      catchableArr = FISH;
+      break;
+    case "bug":
+      catchableArr = BUGS;
+      break;
+    case "fossil":
+      catchableArr = FOSSILS;
+      break;
+  }
+
+  const catchables = _.chain(catchableArr)
     .map((catchable) => {
+      if (catchable.type === "fossil") {
+        return { ...catchable, isCaught: state.caught.has(catchable.key) };
+      }
       const months =
         state.selectedHemi === "north"
           ? catchable.nhMonths
@@ -235,6 +269,9 @@ export function useAppState(): {
       };
     })
     .map((catchable) => {
+      if (catchable.type === "fossil") {
+        return catchable;
+      }
       let nextMonth = (currentTime.month() + 1) % 12;
       const leavingNextMonth =
         !catchable.months[nextMonth] && catchable.months[currentTime.month()];
@@ -245,6 +282,9 @@ export function useAppState(): {
     .groupBy((catchable) => {
       if (state.caught.has(catchable.key)) {
         return "alreadyCaught";
+      }
+      if (catchable.type === "fossil") {
+        return "rightNow";
       }
       if (
         catchable.hours[currentTime.hour()] &&

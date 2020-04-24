@@ -70,7 +70,11 @@ export default function App() {
 
         {appState.rightNow && (
           <>
-            <h1 className={header}>Available Now</h1>
+            <h1 className={header}>
+              {appState.state.selectedCatchable === "fossil"
+                ? "Not Yet Obtained"
+                : "Available Now"}
+            </h1>
             {appState.rightNow.map(catchableMapper)}
           </>
         )}
@@ -91,7 +95,11 @@ export default function App() {
 
         {appState.alreadyCaught && (
           <>
-            <h1 className={header}>Already Caught</h1>
+            <h1 className={header}>
+              {appState.state.selectedCatchable === "fossil"
+                ? "Obtained"
+                : "Already Caught"}
+            </h1>
             {appState.alreadyCaught.map(catchableMapper)}
           </>
         )}
@@ -179,7 +187,7 @@ function HemisphereSelector(props: {
 }
 
 function Toggle(props: {
-  selectedCatchable: "fish" | "bug";
+  selectedCatchable: "fish" | "bug" | "fossil";
   dispatch: React.Dispatch<Action>;
 }) {
   const root = css`
@@ -233,6 +241,16 @@ function Toggle(props: {
         }
       >
         Bugs
+      </div>
+      <div
+        className={
+          props.selectedCatchable === "fossil" ? selectedStyle : defaultStyle
+        }
+        onClick={() =>
+          props.dispatch({ type: "select catchable", catchable: "fossil" })
+        }
+      >
+        Fossils
       </div>
     </div>
   );
@@ -308,6 +326,25 @@ function Card({
     ? Check
     : Circle;
 
+  let catchableSection = null;
+  if (catchable.type === "fish" || catchable.type === "bug") {
+    catchableSection = (
+      <>
+        <Row icon={<Location />}>{catchable.location}</Row>
+        <Row icon={<Time />}>{catchable.timeString}</Row>
+        <Row icon={<Calendar />}>{catchable.monthString}</Row>
+        {catchable.type === "fish" && (
+          <Row icon={<Length />}>{catchable.size}</Row>
+        )}
+        {catchable.leavingNextMonth ? (
+          <Row className={leaving} icon={<Warning />}>
+            Gone next month
+          </Row>
+        ) : null}
+      </>
+    );
+  }
+
   return (
     <div className={[card, exitStatus ? exit : null].join(" ")}>
       <ToggleComp
@@ -328,18 +365,10 @@ function Card({
       <div className={name} title={catchable.name}>
         {catchable.name}
       </div>
-      <Row icon={<Location />}>{catchable.location}</Row>
-      <Row icon={<Time />}>{catchable.timeString}</Row>
-      <Row icon={<Calendar />}>{catchable.monthString}</Row>
+
       <Row icon={<Bells />}>{catchable.sellPrice || "?"}</Row>
-      {catchable.type === "fish" && (
-        <Row icon={<Length />}>{catchable.size}</Row>
-      )}
-      {catchable.leavingNextMonth ? (
-        <Row className={leaving} icon={<Warning />}>
-          Gone next month
-        </Row>
-      ) : null}
+
+      {catchableSection}
     </div>
   );
 }
