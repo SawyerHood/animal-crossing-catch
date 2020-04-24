@@ -159,6 +159,79 @@ import football_fish from './img/football_fish.png'
 import oarfish from './img/oarfish.png'
 import barreleye from './img/barreleye.png'
 import coelacanth from './img/coelacanth.png'
+import acanthostega from './img/acanthostega.png'
+import amber from './img/amber.png'
+import ammonite from './img/ammonite.png'
+import anomalocaris from './img/anomalocaris.png'
+import archaeopteryx from './img/archaeopteryx.png'
+import australopith from './img/australopith.png'
+import coprolite from './img/coprolite.png'
+import dinosaur_track from './img/dinosaur_track.png'
+import dunkleosteus from './img/dunkleosteus.png'
+import eusthenopteron from './img/eusthenopteron.png'
+import juramaia from './img/juramaia.png'
+import myllokunmingia from './img/myllokunmingia.png'
+import shark_tooth_pattern from './img/shark_tooth_pattern.png'
+import trilobite from './img/trilobite.png'
+import ankylo_skull from './img/ankylo_skull.png'
+import ankylo_torso from './img/ankylo_torso.png'
+import ankylo_tail from './img/ankylo_tail.png'
+import archelon_skull from './img/archelon_skull.png'
+import archelon_tail from './img/archelon_tail.png'
+import brachio_skull from './img/brachio_skull.png'
+import brachio_chest from './img/brachio_chest.png'
+import brachio_pelvis from './img/brachio_pelvis.png'
+import brachio_tail from './img/brachio_tail.png'
+import deinony_torso from './img/deinony_torso.png'
+import deinony_tail from './img/deinony_tail.png'
+import dimetrodon_skull from './img/dimetrodon_skull.png'
+import dimetrodon_torso from './img/dimetrodon_torso.png'
+import diplo_skull from './img/diplo_skull.png'
+import diplo_neck from './img/diplo_neck.png'
+import diplo_chest from './img/diplo_chest.png'
+import diplo_pelvis from './img/diplo_pelvis.png'
+import diplo_tail from './img/diplo_tail.png'
+import diplo_tail_tip from './img/diplo_tail_tip.png'
+import iguanodon_skull from './img/iguanodon_skull.png'
+import iguanodon_torso from './img/iguanodon_torso.png'
+import iguanodon_tail from './img/iguanodon_tail.png'
+import mammoth_skull from './img/mammoth_skull.png'
+import mammoth_torso from './img/mammoth_torso.png'
+import megacero_skull from './img/megacero_skull.png'
+import megacero_torso from './img/megacero_torso.png'
+import megacero_tail from './img/megacero_tail.png'
+import left_megalo_side from './img/left_megalo_side.png'
+import right_megalo_side from './img/right_megalo_side.png'
+import ophthalmo_skull from './img/ophthalmo_skull.png'
+import ophthalmo_torso from './img/ophthalmo_torso.png'
+import pachysaurus_skull from './img/pachysaurus_skull.png'
+import pachysaurus_tail from './img/pachysaurus_tail.png'
+import parasaur_skull from './img/parasaur_skull.png'
+import parasaur_torso from './img/parasaur_torso.png'
+import parasaur_tail from './img/parasaur_tail.png'
+import plesio_skull from './img/plesio_skull.png'
+import plesio_tail from './img/plesio_tail.png'
+import plesio_body from './img/plesio_body.png'
+import right_ptera_wing from './img/right_ptera_wing.png'
+import ptera_body from './img/ptera_body.png'
+import left_ptera_wing from './img/left_ptera_wing.png'
+import right_quetzal_wing from './img/right_quetzal_wing.png'
+import quetzal_torso from './img/quetzal_torso.png'
+import left_quetzal_wing from './img/left_quetzal_wing.png'
+import sabertooth_skull from './img/sabertooth_skull.png'
+import sabertooth_tail from './img/sabertooth_tail.png'
+import spino_skull from './img/spino_skull.png'
+import spino_torso from './img/spino_torso.png'
+import spino_tail from './img/spino_tail.png'
+import stego_skull from './img/stego_skull.png'
+import stego_torso from './img/stego_torso.png'
+import stego_tail from './img/stego_tail.png'
+import tricera_skull from './img/tricera_skull.png'
+import tricera_torso from './img/tricera_torso.png'
+import tricera_tail from './img/tricera_tail.png'
+import t_rex_skull from './img/t_rex_skull.png'
+import t_rex_torso from './img/t_rex_torso.png'
+import t_rex_tail from './img/t_rex_tail.png'
 
   export default {common_butterfly,
 yellow_butterfly,
@@ -319,5 +392,78 @@ suckerfish,
 football_fish,
 oarfish,
 barreleye,
-coelacanth}
+coelacanth,
+acanthostega,
+amber,
+ammonite,
+anomalocaris,
+archaeopteryx,
+australopith,
+coprolite,
+dinosaur_track,
+dunkleosteus,
+eusthenopteron,
+juramaia,
+myllokunmingia,
+shark_tooth_pattern,
+trilobite,
+ankylo_skull,
+ankylo_torso,
+ankylo_tail,
+archelon_skull,
+archelon_tail,
+brachio_skull,
+brachio_chest,
+brachio_pelvis,
+brachio_tail,
+deinony_torso,
+deinony_tail,
+dimetrodon_skull,
+dimetrodon_torso,
+diplo_skull,
+diplo_neck,
+diplo_chest,
+diplo_pelvis,
+diplo_tail,
+diplo_tail_tip,
+iguanodon_skull,
+iguanodon_torso,
+iguanodon_tail,
+mammoth_skull,
+mammoth_torso,
+megacero_skull,
+megacero_torso,
+megacero_tail,
+left_megalo_side,
+right_megalo_side,
+ophthalmo_skull,
+ophthalmo_torso,
+pachysaurus_skull,
+pachysaurus_tail,
+parasaur_skull,
+parasaur_torso,
+parasaur_tail,
+plesio_skull,
+plesio_tail,
+plesio_body,
+right_ptera_wing,
+ptera_body,
+left_ptera_wing,
+right_quetzal_wing,
+quetzal_torso,
+left_quetzal_wing,
+sabertooth_skull,
+sabertooth_tail,
+spino_skull,
+spino_torso,
+spino_tail,
+stego_skull,
+stego_torso,
+stego_tail,
+tricera_skull,
+tricera_torso,
+tricera_tail,
+t_rex_skull,
+t_rex_torso,
+t_rex_tail}
   

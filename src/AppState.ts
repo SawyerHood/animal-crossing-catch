@@ -81,7 +81,8 @@ function cleanCatchable(input: { [key: string]: any }): ICatchable {
     .toLowerCase()
     .replace(/ /g, "_")
     .replace("'", "")
-    .replace("-", "_");
+    .replace("-", "_")
+    .replace(".", "");
 
   return {
     key,

@@ -4,6 +4,8 @@ const fs = require("fs");
 
 const FISH_URL = "https://animalcrossing.fandom.com/wiki/Fish_(New_Horizons)";
 const BUG_URL = "https://animalcrossing.fandom.com/wiki/Bugs_(New_Horizons)";
+const FOSSIL_URL =
+  "https://animalcrossing.fandom.com/wiki/Fossils_(New_Horizons)";
 
 async function loadFish() {
   const browser = await puppeteer.launch();
@@ -115,6 +117,43 @@ async function loadBugs() {
   return arr;
 }
 
+async function loadFossils() {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto(FOSSIL_URL);
+
+  const result = await page.evaluate(() => {
+    const resultMap = {};
+    const rows = Array.from(
+      document.querySelectorAll(".sortable.jquery-tablesorter tbody tr")
+    ).filter((r) => r.children[0].tagName === "TD");
+    for (row of rows) {
+      const name = row.children[0].textContent.trim();
+      const imgChild = row.children[1].children[0];
+      const url = imgChild ? row.children[1].children[0].href : null;
+      const sellPrice = +row.children[2].textContent
+        .replace(",", "")
+        .replace("Bells", "")
+        .trim();
+
+      const key = name.toLowerCase();
+      resultMap[key] = {
+        name,
+        imageURL: url,
+        sellPrice,
+      };
+    }
+
+    return JSON.stringify(Object.values(resultMap));
+  });
+
+  await browser.close();
+  const arr = JSON.parse(result);
+  await loadImages(arr);
+  fs.writeFileSync("fossils.json", JSON.stringify(arr));
+  return arr;
+}
+
 async function loadImages(arr) {
   for (const critter of arr) {
     const filename = await download.image({
@@ -133,7 +172,8 @@ function getKey(name) {
     .toLowerCase()
     .replace(/ /g, "_")
     .replace("'", "")
-    .replace("-", "_");
+    .replace("-", "_")
+    .replace(".", "");
 }
 
 function createImgMap(arr) {
@@ -161,7 +201,8 @@ async function run() {
   }
   const bugs = await loadBugs();
   const fish = await loadFish();
-  createImgMap(bugs.concat(fish));
+  const fossils = await loadFossils();
+  createImgMap([...bugs, ...fish, ...fossils]);
 }
 
 run();
