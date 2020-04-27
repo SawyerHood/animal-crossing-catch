@@ -16,13 +16,6 @@ import github from "./github.png";
 import { useAppState, Catchable, Action } from "./AppState";
 import imgMap from "./imgMap";
 
-const buttonReset = css`
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border: 0;
-  background: none;
-`;
-
 export default function App() {
   const appState = useAppState();
   const catchableMapper = (catchable: Catchable) => (
@@ -168,8 +161,9 @@ function HemisphereSelector(props: {
     color: ${colors.accent};
     align-items: center;
     font-size: 24px;
-    padding: 4px 0;
+    padding: 4px 4px;
     opacity: 0.7;
+    border-radius: 100px;
   `;
 
   const text = css`
@@ -214,6 +208,9 @@ function Toggle(props: {
     width: 160px;
     color: ${colors.accent};
     cursor: pointer;
+    border-radius: 100px;
+    padding: 4px 8px;
+    margin: 0 4px;
   `;
 
   const selectedStyle = css`
@@ -221,8 +218,6 @@ function Toggle(props: {
     font-weight: bold;
     align-self: stretch;
     background-color: ${colors.accent};
-    padding: 4px 8px;
-    border-radius: 100px;
     color: ${colors.cardBG};
     white-space: nowrap;
     overflow: hidden;
@@ -320,6 +315,9 @@ function Card({
     align-self: flex-end;
     display: block;
     cursor: pointer;
+    padding: 0;
+    height: 24px;
+    border-radius: 50%;
   `;
 
   const exit = css`
@@ -428,7 +426,22 @@ const colors = {
   emText: "#DD1919",
   lightBG: "#CCE2CF",
   accent: "#71997F",
+  accentTransparent: "rgba(113, 153, 127, 0.5)",
 };
+
+const buttonReset = css`
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  background: none;
+  margin: 0;
+  display: block;
+  &:focus {
+    box-shadow: 0 0 4px 1px ${colors.accentTransparent};
+  }
+`;
 
 injectGlobal`
   body {
