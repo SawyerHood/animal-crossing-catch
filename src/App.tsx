@@ -16,6 +16,13 @@ import github from "./github.png";
 import { useAppState, Catchable, Action } from "./AppState";
 import imgMap from "./imgMap";
 
+const buttonReset = css`
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  background: none;
+`;
+
 export default function App() {
   const appState = useAppState();
   const catchableMapper = (catchable: Catchable) => (
@@ -150,6 +157,7 @@ function HemisphereSelector(props: {
   dispatch: React.Dispatch<Action>;
 }) {
   const root = css`
+    ${buttonReset}
     display: flex;
     width: fit-content;
     align-self: center;
@@ -173,16 +181,15 @@ function HemisphereSelector(props: {
   `;
 
   return (
-    <div
+    <button
       className={root}
       onClick={() => props.dispatch({ type: "toggle hemi" })}
-      role="button"
     >
       <div className={text}>
         {props.selectedHemi === "north" ? "Northern" : "Southern"}
       </div>
       <Globe className={props.selectedHemi === "south" ? flipped : undefined} />
-    </div>
+    </button>
   );
 }
 
@@ -199,7 +206,9 @@ function Toggle(props: {
     justify-content: center;
     user-select: none;
   `;
+
   const defaultStyle = css`
+    ${buttonReset}
     font-size: 20px;
     text-align: center;
     width: 160px;
@@ -222,7 +231,7 @@ function Toggle(props: {
 
   return (
     <div className={root}>
-      <div
+      <button
         className={
           props.selectedCatchable === "fish" ? selectedStyle : defaultStyle
         }
@@ -231,8 +240,8 @@ function Toggle(props: {
         }
       >
         Fish
-      </div>
-      <div
+      </button>
+      <button
         className={
           props.selectedCatchable === "bug" ? selectedStyle : defaultStyle
         }
@@ -241,8 +250,8 @@ function Toggle(props: {
         }
       >
         Bugs
-      </div>
-      <div
+      </button>
+      <button
         className={
           props.selectedCatchable === "fossil" ? selectedStyle : defaultStyle
         }
@@ -251,7 +260,7 @@ function Toggle(props: {
         }
       >
         Fossils
-      </div>
+      </button>
     </div>
   );
 }
@@ -307,6 +316,7 @@ function Card({
   `;
 
   const check = css`
+    ${buttonReset}
     align-self: flex-end;
     display: block;
     cursor: pointer;
@@ -347,7 +357,7 @@ function Card({
 
   return (
     <div className={[card, exitStatus ? exit : null].join(" ")}>
-      <ToggleComp
+      <button
         className={check}
         onClick={() => {
           setExitStatus(catchable.isCaught ? "not caught" : "caught");
@@ -355,7 +365,9 @@ function Card({
             dispatch({ type: "toggle caught", key: catchable.key });
           }, 200);
         }}
-      />
+      >
+        <ToggleComp />
+      </button>
       <img
         src={imageFromKey(catchable.key)}
         className={imgStyle}
