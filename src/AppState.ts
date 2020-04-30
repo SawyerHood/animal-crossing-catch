@@ -2,6 +2,7 @@ import RAW_FISH from "./data/fish.json";
 import RAW_BUGS from "./data/bugs.json";
 import RAW_FOSSILS from "./data/fossils.json";
 import moment from "moment";
+import "moment/locale/de";
 import _ from "lodash";
 import React, { useState, useEffect, useReducer } from "react";
 import i18n from "./i18n";
@@ -65,9 +66,11 @@ function reducer(state: State, action: Action): State {
       };
     }
     case "toggle language": {
+      const languageToChange = state.selectedLanguage === "en" ? "de" : "en";
+      i18n.changeLanguage(languageToChange);
       return {
         ...state,
-        selectedLanguage: state.selectedLanguage === "en" ? "de" : "en",
+        selectedLanguage: languageToChange,
       };
     }
     case "toggle caught": {
@@ -104,7 +107,6 @@ function cleanCollectable(input: { [key: string]: any }): ICollectable {
 function cleanCatchable(input: { [key: string]: any }): ICatchable {
   const { location, nhMonths, shMonths, time } = input;
   const hours = cleanTime(time);
-
   return {
     ...cleanCollectable(input),
     location,
@@ -128,7 +130,6 @@ function cleanTime(time: string): boolean[] {
       forRangeWrap(start, end, 24, i => (hours[i] = true));
     }
   }
-
   return hours;
 }
 
@@ -160,6 +161,12 @@ function parseTimeString(str: string): number {
   const m = moment(str, "HH A");
   return m.hour();
 }
+function parseTimeStringLocale(str: string): string {
+  const m = moment(str, "HH A");
+  let localeTime =
+    m.format("LT") === "Invalid date" ? "All day" : m.format("LT");
+  return localeTime;
+}
 
 function forRangeWrap(
   start: number,
@@ -190,7 +197,11 @@ export function useAppState(): {
   later?: Catchable[];
   alreadyCaught?: Catchable[];
 } & { state: State; dispatch: React.Dispatch<Action> } {
-  const [currentTime, setCurrentTime] = useState(() => moment());
+  const [currentTime, setCurrentTime] = useState(() =>
+    moment().locale(
+      state === undefined ? i18n.language : state.selectedLanguage
+    )
+  );
   const [state, dispatch] = useReducer(
     reducer,
     {
@@ -277,6 +288,17 @@ export function useAppState(): {
       if (catchable.type === "fossil") {
         return { ...catchable, isCaught: state.caught.has(catchable.key) };
       }
+
+      const timeLocale = catchable.timeString
+        .split(" & ")
+        .map(t =>
+          t
+            .split(" - ")
+            .map(parseTimeStringLocale)
+            .join(" - ")
+        )
+        .join(" + ");
+
       const months =
         state.selectedHemi === "north"
           ? catchable.nhMonths
@@ -286,6 +308,7 @@ export function useAppState(): {
         months,
         isCaught: state.caught.has(catchable.key),
         monthString: monthArrayToRange(months),
+        timeString: timeLocale,
       };
     })
     .map(catchable => {
@@ -354,7 +377,6 @@ export function monthArrayToRange(arr: boolean[]): string {
   if (rangeStart != null) {
     res.push([rangeStart!, lastI]);
   }
-
   return res
     .map(
       ([start, end]) =>
