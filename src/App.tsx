@@ -8,8 +8,6 @@ import { ReactComponent as Bells } from "./icon/bells.svg";
 import { ReactComponent as Length } from "./icon/length.svg";
 import { ReactComponent as Warning } from "./icon/warning.svg";
 import { ReactComponent as Globe } from "./icon/globe.svg";
-import { ReactComponent as German } from "./icon/german.svg";
-import { ReactComponent as English } from "./icon/english.svg";
 import { ReactComponent as Calendar } from "./icon/calendar.svg";
 import { ReactComponent as CatchGuide } from "./catch_guide.svg";
 import { ReactComponent as Circle } from "./icon/circle.svg";
@@ -17,10 +15,17 @@ import { ReactComponent as Check } from "./icon/check.svg";
 import github from "./github.png";
 import { useAppState, Catchable, Action } from "./AppState";
 import imgMap from "./imgMap";
+import i18n from "./i18n";
+import moment from "moment";
+import "moment/locale/de";
 
 export default function App() {
   const { t } = useTranslation();
   const appState = useAppState();
+  i18n.on("languageChanged", function(lng) {
+    moment.locale(lng);
+  });
+
   const catchableMapper = (catchable: Catchable) => (
     <Card
       catchable={catchable}
@@ -165,7 +170,6 @@ function LanguageSelector(props: {
     justify-self: flex-start;
     grid-row: 1;
     grid-column: 1/-1;
-    cursor: pointer;
     user-select: none;
     color: ${colors.accent};
     align-items: center;
@@ -177,24 +181,44 @@ function LanguageSelector(props: {
   const text = css`
     margin-right: 8px;
   `;
-  const { i18n } = useTranslation();
+
+  const languageSelector = css`
+    margin-right: 8px;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 18px;
+    opacity: 0.7;
+    border-radius: 100px;
+  `;
+
+  const option = css`
+    padding: 5px;
+    font-size: 18px;
+    opacity: 0.7;
+  `;
+
+  const { t } = useTranslation();
   return (
-    <div
-      className={root}
-      onClick={() => {
-        props.dispatch({ type: "toggle language" });
-        i18n.changeLanguage(props.selectedLanguage === "en" ? "de" : "en");
-      }}
-      role="button"
-    >
-      <div className={text}>
-        {i18n.language === "en" ? "English" : "Deutsch"}
+    <div className={root}>
+      <div className={text}>{t("Language Select")}</div>
+
+      <div>
+        <select
+          className={languageSelector}
+          value={props.selectedLanguage}
+          onChange={() => {
+            props.dispatch({ type: "toggle language" });
+          }}
+          id="language"
+        >
+          <option className={option} value="en">
+            English
+          </option>
+          <option className={option} value="de">
+            Deutsch
+          </option>
+        </select>
       </div>
-      {i18n.language === "en" ? (
-        <English width="40px" height="40px" />
-      ) : (
-        <German width="40px" height="40px" />
-      )}
     </div>
   );
 }
@@ -215,7 +239,7 @@ function HemisphereSelector(props: {
     user-select: none;
     color: ${colors.accent};
     align-items: center;
-    font-size: 24px;
+    font-size: 20px;
     padding: 4px 0;
     opacity: 0.7;
   `;
@@ -257,7 +281,7 @@ function Toggle(props: {
     user-select: none;
   `;
   const defaultStyle = css`
-    font-size: 20px;
+    font-size: 24px;
     text-align: center;
     width: 160px;
     color: ${colors.accent};
@@ -389,10 +413,18 @@ function Card({
     catchableSection = (
       <>
         <Row icon={<Location />}>{t(catchable.location)}</Row>
-        <Row icon={<Time />}>{t(catchable.timeString)}</Row>
-        <Row icon={<Calendar />}>{t(catchable.monthString)}</Row>
+        <Row icon={<Time />}>
+          {catchable.timeString === "All day"
+            ? t(catchable.timeString)
+            : catchable.timeString}
+        </Row>
+        <Row icon={<Calendar />}>
+          {catchable.monthString === "All Year"
+            ? t(catchable.monthString)
+            : catchable.monthString}
+        </Row>
         {catchable.type === "fish" && (
-          <Row icon={<Length />}>{catchable.size}</Row>
+          <Row icon={<Length />}>{t(catchable.size)}</Row>
         )}
         {catchable.leavingNextMonth ? (
           <Row className={leaving} icon={<Warning />}>
