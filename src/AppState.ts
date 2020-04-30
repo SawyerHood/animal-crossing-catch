@@ -297,7 +297,7 @@ export function useAppState(): {
             .map(parseTimeStringLocale)
             .join(" - ")
         )
-        .join(" + ");
+        .join(" & ");
 
       const months =
         state.selectedHemi === "north"
