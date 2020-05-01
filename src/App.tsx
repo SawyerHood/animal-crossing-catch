@@ -164,62 +164,39 @@ function LanguageSelector(props: {
   dispatch: React.Dispatch<Action>;
 }) {
   const root = css`
+    ${buttonReset}
     display: flex;
     width: fit-content;
     align-self: center;
     justify-self: flex-start;
     grid-row: 1;
     grid-column: 1/-1;
+    cursor: pointer;
     user-select: none;
     color: ${colors.accent};
     align-items: center;
     font-size: 24px;
-    padding: 4px 0;
+    padding: 4px 4px;
     opacity: 0.7;
+    border-radius: 100px;
   `;
 
   const text = css`
     margin-right: 8px;
   `;
-
-  const languageSelector = css`
-    margin-right: 8px;
-    cursor: pointer;
-    padding: 5px;
-    font-size: 18px;
-    opacity: 0.7;
-    border-radius: 100px;
-  `;
-
-  const option = css`
-    padding: 5px;
-    font-size: 18px;
-    opacity: 0.7;
-  `;
-
-  const { t } = useTranslation();
+  const { i18n } = useTranslation();
   return (
-    <div className={root}>
-      <div className={text}>{t("Language Select")}</div>
-
-      <div>
-        <select
-          className={languageSelector}
-          value={props.selectedLanguage}
-          onChange={() => {
-            props.dispatch({ type: "toggle language" });
-          }}
-          id="language"
-        >
-          <option className={option} value="en">
-            English
-          </option>
-          <option className={option} value="de">
-            Deutsch
-          </option>
-        </select>
+    <button
+      className={root}
+      onClick={() => {
+        props.dispatch({ type: "toggle language" });
+        i18n.changeLanguage(props.selectedLanguage === "en" ? "de" : "en");
+      }}
+    >
+      <div className={text}>
+        {i18n.language === "en" ? "English" : "Deutsch"}
       </div>
-    </div>
+    </button>
   );
 }
 

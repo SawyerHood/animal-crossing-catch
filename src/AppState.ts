@@ -127,7 +127,7 @@ function cleanTime(time: string): boolean[] {
   } else {
     for (const timeStr of time.split(" & ")) {
       const [start, end] = timeStr.split(" - ").map(parseTimeString);
-      forRangeWrap(start, end, 24, i => (hours[i] = true));
+      forRangeWrap(start, end, 24, (i) => (hours[i] = true));
     }
   }
   return hours;
@@ -197,11 +197,6 @@ export function useAppState(): {
   later?: Catchable[];
   alreadyCaught?: Catchable[];
 } & { state: State; dispatch: React.Dispatch<Action> } {
-  const [currentTime, setCurrentTime] = useState(() =>
-    moment().locale(
-      state === undefined ? i18n.language : state.selectedLanguage
-    )
-  );
   const [state, dispatch] = useReducer(
     reducer,
     {
@@ -247,6 +242,10 @@ export function useAppState(): {
     }
   );
 
+  const [currentTime, setCurrentTime] = useState(() =>
+    moment().locale(state.selectedLanguage)
+  );
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(moment());
@@ -284,19 +283,14 @@ export function useAppState(): {
   }
 
   const catchables = _.chain(catchableArr)
-    .map(catchable => {
+    .map((catchable) => {
       if (catchable.type === "fossil") {
         return { ...catchable, isCaught: state.caught.has(catchable.key) };
       }
 
       const timeLocale = catchable.timeString
         .split(" & ")
-        .map(t =>
-          t
-            .split(" - ")
-            .map(parseTimeStringLocale)
-            .join(" - ")
-        )
+        .map((t) => t.split(" - ").map(parseTimeStringLocale).join(" - "))
         .join(" & ");
 
       const months =
@@ -311,7 +305,7 @@ export function useAppState(): {
         timeString: timeLocale,
       };
     })
-    .map(catchable => {
+    .map((catchable) => {
       if (catchable.type === "fossil") {
         return catchable;
       }
@@ -322,7 +316,7 @@ export function useAppState(): {
       return { ...catchable, leavingNextMonth };
     })
     .orderBy(["leavingNextMonth", "name"], ["desc", "asc"])
-    .groupBy(catchable => {
+    .groupBy((catchable) => {
       if (state.caught.has(catchable.key)) {
         return "alreadyCaught";
       }
@@ -361,7 +355,7 @@ export function monthArrayToRange(arr: boolean[]): string {
   let lastVal = false;
   let lastI = 0;
   let rangeStart: number | null = null;
-  forRangeWrap((firstFalse + 1) % 12, firstFalse, 12, mNum => {
+  forRangeWrap((firstFalse + 1) % 12, firstFalse, 12, (mNum) => {
     if (arr[mNum] !== lastVal) {
       if (arr[mNum] === true) {
         rangeStart = mNum;
@@ -380,13 +374,9 @@ export function monthArrayToRange(arr: boolean[]): string {
   return res
     .map(
       ([start, end]) =>
-        moment()
-          .month(start)
-          .format("MMM") +
+        moment().month(start).format("MMM") +
         " - " +
-        moment()
-          .month(end)
-          .format("MMM")
+        moment().month(end).format("MMM")
     )
     .join(" & ");
 }
