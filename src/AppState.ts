@@ -2,7 +2,6 @@ import RAW_FISH from "./data/fish.json";
 import RAW_BUGS from "./data/bugs.json";
 import RAW_FOSSILS from "./data/fossils.json";
 import moment from "moment";
-import "moment/locale/de";
 import _ from "lodash";
 import React, { useState, useEffect, useReducer } from "react";
 import i18n from "./i18n";
@@ -161,6 +160,7 @@ function parseTimeString(str: string): number {
   const m = moment(str, "HH A");
   return m.hour();
 }
+
 function parseTimeStringLocale(str: string): string {
   const m = moment(str, "HH A");
   let localeTime =
@@ -202,7 +202,7 @@ export function useAppState(): {
     {
       selectedCatchable: "fish",
       selectedHemi: "north",
-      selectedLanguage: i18n.language === "en" ? "en" : "de",
+      selectedLanguage: "en",
       caught: new Set<string>(),
     },
     (state: State): State => {
@@ -242,9 +242,9 @@ export function useAppState(): {
     }
   );
 
-  const [currentTime, setCurrentTime] = useState(() =>
-    moment().locale(state.selectedLanguage)
-  );
+  const [currentTime, setCurrentTime] = useState(() => {
+    return moment().locale(state.selectedLanguage);
+  });
 
   useEffect(() => {
     const interval = setInterval(() => {

@@ -17,7 +17,6 @@ import { useAppState, Catchable, Action } from "./AppState";
 import imgMap from "./imgMap";
 import i18n from "./i18n";
 import moment from "moment";
-import "moment/locale/de";
 
 export default function App() {
   const { t } = useTranslation();
