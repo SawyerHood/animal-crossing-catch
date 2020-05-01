@@ -22,7 +22,7 @@ import "moment/locale/de";
 export default function App() {
   const { t } = useTranslation();
   const appState = useAppState();
-  i18n.on("languageChanged", function(lng) {
+  i18n.on("languageChanged", function (lng) {
     moment.locale(lng);
   });
 
@@ -164,62 +164,39 @@ function LanguageSelector(props: {
   dispatch: React.Dispatch<Action>;
 }) {
   const root = css`
+    ${buttonReset}
     display: flex;
     width: fit-content;
     align-self: center;
     justify-self: flex-start;
     grid-row: 1;
     grid-column: 1/-1;
+    cursor: pointer;
     user-select: none;
     color: ${colors.accent};
     align-items: center;
     font-size: 24px;
-    padding: 4px 0;
+    padding: 4px 4px;
     opacity: 0.7;
+    border-radius: 100px;
   `;
 
   const text = css`
     margin-right: 8px;
   `;
-
-  const languageSelector = css`
-    margin-right: 8px;
-    cursor: pointer;
-    padding: 5px;
-    font-size: 18px;
-    opacity: 0.7;
-    border-radius: 100px;
-  `;
-
-  const option = css`
-    padding: 5px;
-    font-size: 18px;
-    opacity: 0.7;
-  `;
-
-  const { t } = useTranslation();
+  const { i18n } = useTranslation();
   return (
-    <div className={root}>
-      <div className={text}>{t("Language Select")}</div>
-
-      <div>
-        <select
-          className={languageSelector}
-          value={props.selectedLanguage}
-          onChange={() => {
-            props.dispatch({ type: "toggle language" });
-          }}
-          id="language"
-        >
-          <option className={option} value="en">
-            English
-          </option>
-          <option className={option} value="de">
-            Deutsch
-          </option>
-        </select>
+    <button
+      className={root}
+      onClick={() => {
+        props.dispatch({ type: "toggle language" });
+        i18n.changeLanguage(props.selectedLanguage === "en" ? "de" : "en");
+      }}
+    >
+      <div className={text}>
+        {i18n.language === "en" ? "English" : "Deutsch"}
       </div>
-    </div>
+    </button>
   );
 }
 
@@ -229,6 +206,7 @@ function HemisphereSelector(props: {
 }) {
   const { t } = useTranslation();
   const root = css`
+    ${buttonReset}
     display: flex;
     width: fit-content;
     align-self: center;
@@ -239,9 +217,10 @@ function HemisphereSelector(props: {
     user-select: none;
     color: ${colors.accent};
     align-items: center;
-    font-size: 20px;
-    padding: 4px 0;
+    font-size: 24px;
+    padding: 4px 4px;
     opacity: 0.7;
+    border-radius: 100px;
   `;
 
   const text = css`
@@ -253,16 +232,15 @@ function HemisphereSelector(props: {
   `;
 
   return (
-    <div
+    <button
       className={root}
       onClick={() => props.dispatch({ type: "toggle hemi" })}
-      role="button"
     >
       <div className={text}>
         {props.selectedHemi === "north" ? t("Northern") : t("Southern")}
       </div>
       <Globe className={props.selectedHemi === "south" ? flipped : undefined} />
-    </div>
+    </button>
   );
 }
 
@@ -280,12 +258,17 @@ function Toggle(props: {
     justify-content: center;
     user-select: none;
   `;
+
   const defaultStyle = css`
-    font-size: 24px;
+    ${buttonReset}
+    font-size: 20px;
     text-align: center;
     width: 160px;
     color: ${colors.accent};
     cursor: pointer;
+    border-radius: 100px;
+    padding: 4px 8px;
+    margin: 0 4px;
   `;
 
   const selectedStyle = css`
@@ -293,8 +276,6 @@ function Toggle(props: {
     font-weight: bold;
     align-self: stretch;
     background-color: ${colors.accent};
-    padding: 4px 8px;
-    border-radius: 100px;
     color: ${colors.cardBG};
     white-space: nowrap;
     overflow: hidden;
@@ -303,7 +284,7 @@ function Toggle(props: {
 
   return (
     <div className={root}>
-      <div
+      <button
         className={
           props.selectedCatchable === "fish" ? selectedStyle : defaultStyle
         }
@@ -312,8 +293,8 @@ function Toggle(props: {
         }
       >
         {t("Fish")}
-      </div>
-      <div
+      </button>
+      <button
         className={
           props.selectedCatchable === "bug" ? selectedStyle : defaultStyle
         }
@@ -322,8 +303,8 @@ function Toggle(props: {
         }
       >
         {t("Bugs")}
-      </div>
-      <div
+      </button>
+      <button
         className={
           props.selectedCatchable === "fossil" ? selectedStyle : defaultStyle
         }
@@ -332,7 +313,7 @@ function Toggle(props: {
         }
       >
         {t("Fossils")}
-      </div>
+      </button>
     </div>
   );
 }
@@ -389,9 +370,13 @@ function Card({
   `;
 
   const check = css`
+    ${buttonReset}
     align-self: flex-end;
     display: block;
     cursor: pointer;
+    padding: 0;
+    height: 24px;
+    border-radius: 50%;
   `;
 
   const exit = css`
@@ -437,7 +422,7 @@ function Card({
 
   return (
     <div className={[card, exitStatus ? exit : null].join(" ")}>
-      <ToggleComp
+      <button
         className={check}
         onClick={() => {
           setExitStatus(catchable.isCaught ? "not caught" : "caught");
@@ -445,7 +430,9 @@ function Card({
             dispatch({ type: "toggle caught", key: catchable.key });
           }, 200);
         }}
-      />
+      >
+        <ToggleComp />
+      </button>
       <img
         src={imageFromKey(catchable.key)}
         className={imgStyle}
@@ -506,7 +493,22 @@ const colors = {
   emText: "#DD1919",
   lightBG: "#CCE2CF",
   accent: "#71997F",
+  accentTransparent: "rgba(113, 153, 127, 0.5)",
 };
+
+const buttonReset = css`
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  background: none;
+  margin: 0;
+  display: block;
+  &:focus {
+    box-shadow: 0 0 4px 1px ${colors.accentTransparent};
+  }
+`;
 
 injectGlobal`
   body {
