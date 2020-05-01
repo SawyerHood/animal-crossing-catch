@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { css, injectGlobal } from "emotion";
-
+import { useTranslation } from "react-i18next";
 import { ReactComponent as Location } from "./icon/location.svg";
 import { ReactComponent as Time } from "./icon/time.svg";
 import { ReactComponent as Bells } from "./icon/bells.svg";
@@ -15,9 +15,17 @@ import { ReactComponent as Check } from "./icon/check.svg";
 import github from "./github.png";
 import { useAppState, Catchable, Action } from "./AppState";
 import imgMap from "./imgMap";
+import i18n from "./i18n";
+import moment from "moment";
+import "moment/locale/de";
 
 export default function App() {
+  const { t } = useTranslation();
   const appState = useAppState();
+  i18n.on("languageChanged", function (lng) {
+    moment.locale(lng);
+  });
+
   const catchableMapper = (catchable: Catchable) => (
     <Card
       catchable={catchable}
@@ -56,11 +64,15 @@ export default function App() {
   return (
     <>
       <div className={root}>
+        <LanguageSelector
+          dispatch={appState.dispatch}
+          selectedLanguage={appState.state.selectedLanguage}
+        />
+
         <HemisphereSelector
           dispatch={appState.dispatch}
           selectedHemi={appState.state.selectedHemi}
         />
-
         <CatchGuide className={title} />
 
         <Toggle
@@ -72,8 +84,8 @@ export default function App() {
           <>
             <h1 className={header}>
               {appState.state.selectedCatchable === "fossil"
-                ? "Not Yet Obtained"
-                : "Available Now"}
+                ? t("Not Yet Obtained")
+                : t("Available Now")}
             </h1>
             {appState.rightNow.map(catchableMapper)}
           </>
@@ -81,14 +93,14 @@ export default function App() {
 
         {appState.laterToday && (
           <>
-            <h1 className={header}>Available This Month</h1>
+            <h1 className={header}>{t("Available This Month")}</h1>
             {appState.laterToday.map(catchableMapper)}
           </>
         )}
 
         {appState.later && (
           <>
-            <h1 className={header}>Not Available</h1>
+            <h1 className={header}>{t("Not Available")}</h1>
             {appState.later.map(catchableMapper)}
           </>
         )}
@@ -97,8 +109,8 @@ export default function App() {
           <>
             <h1 className={header}>
               {appState.state.selectedCatchable === "fossil"
-                ? "Obtained"
-                : "Already Caught"}
+                ? t("Obtained")
+                : t("Already Caught")}
             </h1>
             {appState.alreadyCaught.map(catchableMapper)}
           </>
@@ -110,6 +122,7 @@ export default function App() {
 }
 
 function Footer() {
+  const { t } = useTranslation();
   const footer = css`
     color: ${colors.accent};
     grid-column: 1/-1;
@@ -123,7 +136,6 @@ function Footer() {
       color: ${colors.accent};
     }
   `;
-
   const githubLink = css`
     margin-left: 12px;
     display: block;
@@ -132,9 +144,11 @@ function Footer() {
 
   return (
     <div className={footer}>
-      <div>
-        Made by <a href="http://sawyerhood.com">Sawyer Hood</a>{" "}
-      </div>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: t("Made By"),
+        }}
+      />
       <a
         className={githubLink}
         href="https://github.com/SawyerHood/animal-crossing-catch"
@@ -145,8 +159,8 @@ function Footer() {
   );
 }
 
-function HemisphereSelector(props: {
-  selectedHemi: "north" | "south";
+function LanguageSelector(props: {
+  selectedLanguage: "en" | "de";
   dispatch: React.Dispatch<Action>;
 }) {
   const root = css`
@@ -154,7 +168,50 @@ function HemisphereSelector(props: {
     display: flex;
     width: fit-content;
     align-self: center;
+    justify-self: flex-start;
+    grid-row: 1;
+    grid-column: 1/-1;
+    cursor: pointer;
+    user-select: none;
+    color: ${colors.accent};
+    align-items: center;
+    font-size: 24px;
+    padding: 4px 4px;
+    opacity: 0.7;
+    border-radius: 100px;
+  `;
+
+  const text = css`
+    margin-right: 8px;
+  `;
+  const { i18n } = useTranslation();
+  return (
+    <button
+      className={root}
+      onClick={() => {
+        props.dispatch({ type: "toggle language" });
+        i18n.changeLanguage(props.selectedLanguage === "en" ? "de" : "en");
+      }}
+    >
+      <div className={text}>
+        {i18n.language === "en" ? "English" : "Deutsch"}
+      </div>
+    </button>
+  );
+}
+
+function HemisphereSelector(props: {
+  selectedHemi: "north" | "south";
+  dispatch: React.Dispatch<Action>;
+}) {
+  const { t } = useTranslation();
+  const root = css`
+    ${buttonReset}
+    display: flex;
+    width: fit-content;
+    align-self: center;
     justify-self: flex-end;
+    grid-row: 1;
     grid-column: 1/-1;
     cursor: pointer;
     user-select: none;
@@ -180,7 +237,7 @@ function HemisphereSelector(props: {
       onClick={() => props.dispatch({ type: "toggle hemi" })}
     >
       <div className={text}>
-        {props.selectedHemi === "north" ? "Northern" : "Southern"}
+        {props.selectedHemi === "north" ? t("Northern") : t("Southern")}
       </div>
       <Globe className={props.selectedHemi === "south" ? flipped : undefined} />
     </button>
@@ -191,6 +248,7 @@ function Toggle(props: {
   selectedCatchable: "fish" | "bug" | "fossil";
   dispatch: React.Dispatch<Action>;
 }) {
+  const { t } = useTranslation();
   const root = css`
     display: flex;
     flex-direction: row;
@@ -234,7 +292,7 @@ function Toggle(props: {
           props.dispatch({ type: "select catchable", catchable: "fish" })
         }
       >
-        Fish
+        {t("Fish")}
       </button>
       <button
         className={
@@ -244,7 +302,7 @@ function Toggle(props: {
           props.dispatch({ type: "select catchable", catchable: "bug" })
         }
       >
-        Bugs
+        {t("Bugs")}
       </button>
       <button
         className={
@@ -254,7 +312,7 @@ function Toggle(props: {
           props.dispatch({ type: "select catchable", catchable: "fossil" })
         }
       >
-        Fossils
+        {t("Fossils")}
       </button>
     </div>
   );
@@ -267,6 +325,7 @@ function Card({
   catchable: Catchable;
   dispatch: React.Dispatch<Action>;
 }) {
+  const { t } = useTranslation();
   const [exitStatus, setExitStatus] = useState<"caught" | "not caught" | null>(
     null
   );
@@ -338,15 +397,23 @@ function Card({
   if (catchable.type === "fish" || catchable.type === "bug") {
     catchableSection = (
       <>
-        <Row icon={<Location />}>{catchable.location}</Row>
-        <Row icon={<Time />}>{catchable.timeString}</Row>
-        <Row icon={<Calendar />}>{catchable.monthString}</Row>
+        <Row icon={<Location />}>{t(catchable.location)}</Row>
+        <Row icon={<Time />}>
+          {catchable.timeString === "All day"
+            ? t(catchable.timeString)
+            : catchable.timeString}
+        </Row>
+        <Row icon={<Calendar />}>
+          {catchable.monthString === "All Year"
+            ? t(catchable.monthString)
+            : catchable.monthString}
+        </Row>
         {catchable.type === "fish" && (
-          <Row icon={<Length />}>{catchable.size}</Row>
+          <Row icon={<Length />}>{t(catchable.size)}</Row>
         )}
         {catchable.leavingNextMonth ? (
           <Row className={leaving} icon={<Warning />}>
-            Gone next month
+            {t("Gone next month")}
           </Row>
         ) : null}
       </>
@@ -372,8 +439,8 @@ function Card({
         alt={catchable.name}
       />
 
-      <div className={name} title={catchable.name}>
-        {catchable.name}
+      <div className={name} title={t(catchable.name)}>
+        {t(catchable.name)}
       </div>
 
       <Row icon={<Bells />}>{catchable.sellPrice || "?"}</Row>
