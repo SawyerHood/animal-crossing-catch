@@ -2,9 +2,12 @@ import RAW_FISH from "./data/fish.json";
 import RAW_BUGS from "./data/bugs.json";
 import RAW_FOSSILS from "./data/fossils.json";
 import moment from "moment";
+import "moment/locale/de";
 import _ from "lodash";
 import React, { useState, useEffect, useReducer } from "react";
 import i18n from "./i18n";
+
+moment.locale("en");
 
 interface ICollectable {
   key: string;
@@ -67,6 +70,7 @@ function reducer(state: State, action: Action): State {
     case "toggle language": {
       const languageToChange = state.selectedLanguage === "en" ? "de" : "en";
       i18n.changeLanguage(languageToChange);
+      moment.locale(languageToChange);
       return {
         ...state,
         selectedLanguage: languageToChange,
@@ -222,6 +226,12 @@ export function useAppState(): {
         | "de"
         | null;
 
+      const selectedLanguage =
+        storageLanguage != null ? storageLanguage : state.selectedLanguage;
+
+      i18n.changeLanguage(selectedLanguage);
+      moment.locale(selectedLanguage);
+
       const caughtStr = localStorage.getItem("caught") || "[]";
       let caught: string[] = [];
       try {
@@ -235,15 +245,14 @@ export function useAppState(): {
             ? storageCatchabled
             : state.selectedCatchable,
         selectedHemi: storageHemi != null ? storageHemi : state.selectedHemi,
-        selectedLanguage:
-          storageLanguage != null ? storageLanguage : state.selectedLanguage,
+        selectedLanguage,
         caught: new Set(caught),
       };
     }
   );
 
   const [currentTime, setCurrentTime] = useState(() => {
-    return moment().locale(state.selectedLanguage);
+    return moment();
   });
 
   useEffect(() => {
