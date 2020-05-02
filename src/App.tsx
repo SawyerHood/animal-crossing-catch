@@ -467,10 +467,10 @@ function Row({
     display: flex;
     flex-direction: row;
     font-size: 14px;
+    align-items: center;
     ${className};
 
     & svg {
-      margin-top: 4px;
     }
   `;
 
