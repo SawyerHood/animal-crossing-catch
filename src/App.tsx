@@ -179,10 +179,6 @@ function LanguageSelector(props: {
     opacity: 0.7;
     border-radius: 100px;
   `;
-
-  const text = css`
-    margin-right: 8px;
-  `;
   const { i18n } = useTranslation();
   return (
     <button
@@ -192,9 +188,7 @@ function LanguageSelector(props: {
         i18n.changeLanguage(props.selectedLanguage === "en" ? "de" : "en");
       }}
     >
-      <div className={text}>
-        {i18n.language === "en" ? "English" : "Deutsch"}
-      </div>
+      {i18n.language === "en" ? "English" : "Deutsch"}
     </button>
   );
 }
