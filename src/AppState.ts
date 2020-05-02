@@ -69,8 +69,6 @@ function reducer(state: State, action: Action): State {
       };
     }
     case "set language": {
-      i18n.changeLanguage(action.language);
-      moment.locale(action.language);
       return {
         ...state,
         selectedLanguage: action.language,
@@ -271,6 +269,9 @@ export function useAppState(): {
 
   useEffect(() => {
     localStorage.setItem("selectedLanguage", state.selectedLanguage);
+    moment.locale(state.selectedLanguage);
+    // Note we do this last so that we trigger a rerender after we have set moment
+    i18n.changeLanguage(state.selectedLanguage);
   }, [state.selectedLanguage]);
 
   useEffect(() => {

@@ -810,7 +810,7 @@ i18n
         },
       },
     },
-    fallbackLng: false,
+    fallbackLng: "en",
     debug: process.env.NODE_ENV === "development",
 
     // have a common namespace used around the full app
