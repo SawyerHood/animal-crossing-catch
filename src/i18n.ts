@@ -517,12 +517,12 @@ i18n
       },
       fr: {
         translations: {
-          "Not Yet Obtained": "Pas encore attrapé",
+          "Not Yet Obtained": "Pas encore obtenu",
           "Available Now": "Disponible maintenant",
           "Available This Month": "Disponible ce mois-ci",
           "Not Available": "Non disponible",
-          Obtained: "Attrapé",
-          "Already Caught": "Déjà attrapé",
+          Obtained: "Obtenu",
+          "Already Caught": "Déjà obtenu",
           "Made By":
             'Fait par <a href="http://sawyerhood.com">Sawyer Hood</a> | Traduction par Julien Humbert et Verena Leifert | ',
           Northern: "Hémisphère nord",
