@@ -3,6 +3,7 @@ import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import de from "./de.json";
 import fr from "./fr.json";
+import ja from "./ja.json";
 
 i18n
   .use(LanguageDetector)
@@ -17,6 +18,7 @@ i18n
       },
       de,
       fr,
+      ja,
     },
     fallbackLng: false,
     debug: false,
@@ -30,6 +32,7 @@ i18n
     interpolation: {
       escapeValue: false,
     },
+    
   });
 
 export default i18n;
@@ -38,6 +41,7 @@ export const LANGUAGES = {
   en: "English",
   de: "Deutsch",
   fr: "Français",
+  ja: "日本語",
 };
 
 export type LanguageOption = keyof typeof LANGUAGES;
