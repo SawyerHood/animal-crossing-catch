@@ -190,8 +190,8 @@ function LanguageSelector(props: {
       onClick={() => {
         props.dispatch({ type: "toggle language" });
         i18n.changeLanguage(
-          state.selectedLanguage === "en" ? "de" :
-          state.selectedLanguage === "de" ? "fr" :
+          props.selectedLanguage === "en" ? "de" :
+          props.selectedLanguage === "de" ? "fr" :
           "en"
         );
       }}
