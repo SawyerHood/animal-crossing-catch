@@ -159,7 +159,7 @@ function Footer() {
 }
 
 function LanguageSelector(props: {
-  selectedLanguage: "en" | "de";
+  selectedLanguage: "en" | "de" | "fr";
   dispatch: React.Dispatch<Action>;
 }) {
   const root = css`
@@ -189,11 +189,19 @@ function LanguageSelector(props: {
       className={root}
       onClick={() => {
         props.dispatch({ type: "toggle language" });
-        i18n.changeLanguage(props.selectedLanguage === "en" ? "de" : "en");
+        i18n.changeLanguage(
+          props.selectedLanguage === "en" ? "de" :
+          props.selectedLanguage === "de" ? "fr" :
+          "en"
+        );
       }}
     >
       <div className={text}>
-        {i18n.language === "en" ? "English" : "Deutsch"}
+        {
+          i18n.language === "en" ? "English" :
+          i18n.language === "de" ? "Deutsch" :
+          "Français"
+        }
       </div>
     </button>
   );

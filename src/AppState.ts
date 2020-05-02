@@ -3,6 +3,7 @@ import RAW_BUGS from "./data/bugs.json";
 import RAW_FOSSILS from "./data/fossils.json";
 import moment from "moment";
 import "moment/locale/de";
+import "moment/locale/fr";
 import _ from "lodash";
 import React, { useState, useEffect, useReducer } from "react";
 import i18n from "./i18n";
@@ -46,7 +47,7 @@ export type Catchable = Fish | Bug | Fossil;
 type State = {
   selectedCatchable: "fish" | "bug" | "fossil";
   selectedHemi: "north" | "south";
-  selectedLanguage: "en" | "de";
+  selectedLanguage: "en" | "de" | "fr";
   caught: Set<string>;
 };
 
@@ -68,7 +69,10 @@ function reducer(state: State, action: Action): State {
       };
     }
     case "toggle language": {
-      const languageToChange = state.selectedLanguage === "en" ? "de" : "en";
+      const languageToChange =
+        state.selectedLanguage === "en" ? "de" :
+        state.selectedLanguage === "de" ? "fr" :
+        "en";
       i18n.changeLanguage(languageToChange);
       moment.locale(languageToChange);
       return {
@@ -224,6 +228,7 @@ export function useAppState(): {
       const storageLanguage = localStorage.getItem("selectedLanguage") as
         | "en"
         | "de"
+        | "fr"
         | null;
 
       const selectedLanguage =
