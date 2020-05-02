@@ -811,7 +811,7 @@ i18n
       },
     },
     fallbackLng: false,
-    debug: true,
+    debug: process.env.NODE_ENV === "development",
 
     // have a common namespace used around the full app
     ns: ["translations"],
@@ -825,3 +825,10 @@ i18n
   });
 
 export default i18n;
+
+export const LANGUAGES = {
+  en: "English",
+  de: "Deutsch",
+};
+
+export type LanguageOption = keyof typeof LANGUAGES;
