@@ -5,7 +5,7 @@ import moment from "moment";
 import "moment/locale/de";
 import _ from "lodash";
 import React, { useState, useEffect, useReducer } from "react";
-import i18n from "./i18n";
+import i18n, { LanguageOption } from "./i18n";
 
 moment.locale("en");
 
@@ -46,7 +46,7 @@ export type Catchable = Fish | Bug | Fossil;
 type State = {
   selectedCatchable: "fish" | "bug" | "fossil";
   selectedHemi: "north" | "south";
-  selectedLanguage: "en" | "de";
+  selectedLanguage: LanguageOption;
   caught: Set<string>;
 };
 
@@ -54,7 +54,7 @@ export type Action =
   | { type: "select catchable"; catchable: "fish" | "bug" | "fossil" }
   | { type: "toggle hemi" }
   | { type: "toggle caught"; key: string }
-  | { type: "toggle language" };
+  | { type: "set language"; language: LanguageOption };
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -67,13 +67,12 @@ function reducer(state: State, action: Action): State {
         selectedHemi: state.selectedHemi === "north" ? "south" : "north",
       };
     }
-    case "toggle language": {
-      const languageToChange = state.selectedLanguage === "en" ? "de" : "en";
-      i18n.changeLanguage(languageToChange);
-      moment.locale(languageToChange);
+    case "set language": {
+      i18n.changeLanguage(action.language);
+      moment.locale(action.language);
       return {
         ...state,
-        selectedLanguage: languageToChange,
+        selectedLanguage: action.language,
       };
     }
     case "toggle caught": {
@@ -221,10 +220,9 @@ export function useAppState(): {
         | "south"
         | null;
 
-      const storageLanguage = localStorage.getItem("selectedLanguage") as
-        | "en"
-        | "de"
-        | null;
+      const storageLanguage = localStorage.getItem(
+        "selectedLanguage"
+      ) as LanguageOption | null;
 
       const selectedLanguage =
         storageLanguage != null ? storageLanguage : state.selectedLanguage;

@@ -15,15 +15,11 @@ import { ReactComponent as Check } from "./icon/check.svg";
 import github from "./github.png";
 import { useAppState, Catchable, Action } from "./AppState";
 import imgMap from "./imgMap";
-import i18n from "./i18n";
-import moment from "moment";
+import { LanguageOption, LANGUAGES } from "./i18n";
 
 export default function App() {
   const { t } = useTranslation();
   const appState = useAppState();
-  i18n.on("languageChanged", function (lng) {
-    moment.locale(lng);
-  });
 
   const catchableMapper = (catchable: Catchable) => (
     <Card
@@ -159,7 +155,7 @@ function Footer() {
 }
 
 function LanguageSelector(props: {
-  selectedLanguage: "en" | "de";
+  selectedLanguage: LanguageOption;
   dispatch: React.Dispatch<Action>;
 }) {
   const root = css`
@@ -178,18 +174,25 @@ function LanguageSelector(props: {
     padding: 4px 4px;
     opacity: 0.7;
     border-radius: 100px;
+    text-align: center;
   `;
-  const { i18n } = useTranslation();
   return (
-    <button
+    <select
       className={root}
-      onClick={() => {
-        props.dispatch({ type: "toggle language" });
-        i18n.changeLanguage(props.selectedLanguage === "en" ? "de" : "en");
+      onChange={(e) => {
+        props.dispatch({
+          type: "set language",
+          language: e.target.value as LanguageOption,
+        });
       }}
+      value={props.selectedLanguage}
     >
-      {i18n.language === "en" ? "English" : "Deutsch"}
-    </button>
+      {Object.entries(LANGUAGES).map(([key, text]) => (
+        <option key={key} value={key}>
+          {text}
+        </option>
+      ))}
+    </select>
   );
 }
 

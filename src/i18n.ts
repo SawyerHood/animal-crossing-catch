@@ -524,3 +524,10 @@ i18n
   });
 
 export default i18n;
+
+export const LANGUAGES = {
+  en: "English",
+  de: "Deutsch",
+};
+
+export type LanguageOption = keyof typeof LANGUAGES;
