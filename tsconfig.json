@@ -1,13 +1,8 @@
 {
-  "include": [
-    "./src/*"
-  ],
+  "include": ["./src/*", "src/i18n/*"],
   "compilerOptions": {
     "strict": true,
-    "lib": [
-      "dom",
-      "es2015"
-    ],
+    "lib": ["dom", "es2015"],
     "jsx": "react",
     "resolveJsonModule": true,
     "esModuleInterop": true,
