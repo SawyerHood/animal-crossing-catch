@@ -68,7 +68,9 @@ function reducer(state: State, action: Action): State {
         selectedHemi: state.selectedHemi === "north" ? "south" : "north",
       };
     }
+    case "set language": {
       i18n.changeLanguage(action.language);
+      moment.locale(action.language);
       return {
         ...state,
         selectedLanguage: action.language,
@@ -219,7 +221,9 @@ export function useAppState(): {
         | "south"
         | null;
 
+      const storageLanguage = localStorage.getItem(
         "selectedLanguage"
+      ) as LanguageOption | null;
 
       const selectedLanguage =
         storageLanguage != null ? storageLanguage : state.selectedLanguage;

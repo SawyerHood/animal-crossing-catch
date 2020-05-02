@@ -179,11 +179,20 @@ function LanguageSelector(props: {
   return (
     <select
       className={root}
+      onChange={(e) => {
+        props.dispatch({
+          type: "set language",
           language: e.target.value as LanguageOption,
+        });
       }}
       value={props.selectedLanguage}
     >
+      {Object.entries(LANGUAGES).map(([key, text]) => (
+        <option key={key} value={key}>
           {text}
+        </option>
+      ))}
+    </select>
   );
 }
 
