@@ -3,6 +3,7 @@ import RAW_BUGS from "./data/bugs.json";
 import RAW_FOSSILS from "./data/fossils.json";
 import moment from "moment";
 import "moment/locale/de";
+import "moment/locale/fr";
 import _ from "lodash";
 import React, { useState, useEffect, useReducer } from "react";
 import i18n, { LanguageOption } from "./i18n";
