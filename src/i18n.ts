@@ -578,7 +578,7 @@ i18n
           "Atlas moth": "Attacus Atlas",
           "Madagascan sunset moth": "Chrysiridia rhipheus",
           "Long locust": "Acrida cinerea",
-          "Migratory locust": "Migratory locust",
+          "Migratory locust": "Criquet pèlerin",
           "Rice grasshopper": "Criquet",
           Grasshopper: "Sauterelle",
           Cricket: "Grillon des près",
@@ -749,7 +749,7 @@ i18n
           "Brachio chest": "Torse de brachiosaure",
           "Brachio pelvis": "Bassin de brachiosaure",
           "Brachio tail": "Queue de brachiosaure",
-          "Deinony torso": "Torse déinonychus",
+          "Deinony torso": "Torse de déinonychus",
           "Deinony tail": "Queue de déinonychus",
           "Dimetrodon skull": "Crâne de dimétrodon",
           "Dimetrodon torso": "Corps de dimétrodon",
@@ -829,6 +829,7 @@ export default i18n;
 export const LANGUAGES = {
   en: "English",
   de: "Deutsch",
+  fr: "Français",
 };
 
 export type LanguageOption = keyof typeof LANGUAGES;
