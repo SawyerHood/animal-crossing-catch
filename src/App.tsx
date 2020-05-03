@@ -173,7 +173,7 @@ function LanguageSelector(props: {
     font-size: 24px;
     padding: 4px 4px;
     opacity: 0.7;
-    border-radius: 100px;
+    border-radius: 4px;
     text-align: center;
   `;
   return (
