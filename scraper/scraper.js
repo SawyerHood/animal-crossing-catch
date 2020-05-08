@@ -231,7 +231,7 @@ function createImgMap(arr) {
 
   export default {${obj.join(",\n")}}
   `;
-  fs.writeFileSync("imgMap.ts", file);
+  fs.writeFileSync("imgMap.js", file);
 }
 
 async function run() {
@@ -241,8 +241,8 @@ async function run() {
   const bugs = await loadBugs();
   const fish = await loadFish();
   const fossils = await loadFossils();
-  await loadArt();
-  createImgMap([...bugs, ...fish, ...fossils]);
+  const art = await loadArt();
+  createImgMap([...bugs, ...fish, ...fossils, ...art]);
 }
 
 run();
