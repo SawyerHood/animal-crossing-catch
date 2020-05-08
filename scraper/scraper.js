@@ -7,6 +7,8 @@ const BUG_URL = "https://animalcrossing.fandom.com/wiki/Bugs_(New_Horizons)";
 const FOSSIL_URL =
   "https://animalcrossing.fandom.com/wiki/Fossils_(New_Horizons)";
 
+const ART_URL = "https://animalcrossing.fandom.com/wiki/Artwork_(New_Horizons)";
+
 async function loadFish() {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
@@ -154,6 +156,37 @@ async function loadFossils() {
   return arr;
 }
 
+async function loadArt() {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto(ART_URL);
+
+  const result = await page.evaluate(() => {
+    const resultMap = {};
+    const rows = Array.from(document.querySelectorAll(".wikitable tr")).filter(
+      (r) => r.children[0].tagName === "TD"
+    );
+    for (row of rows) {
+      const name = row.children[0].textContent.trim().replace(/\n/g, " ");
+      const hasForgery = row.children[1].textContent.trim() !== "N/A";
+      const desc = row.children[3].textContent.trim();
+
+      const key = name.toLowerCase();
+      resultMap[key] = {
+        name,
+        hasForgery,
+        desc,
+      };
+    }
+    return JSON.stringify(Object.values(resultMap));
+  });
+
+  await browser.close();
+  const arr = JSON.parse(result);
+  fs.writeFileSync("art.json", JSON.stringify(arr));
+  return arr;
+}
+
 async function loadImages(arr) {
   for (const critter of arr) {
     const filename = await download.image({
@@ -165,6 +198,10 @@ async function loadImages(arr) {
 
 function getPath(name) {
   return `img/${getKey(name)}.png`;
+}
+
+function getArtPath(name) {
+  return `art_img/${getKey(name)}.png`;
 }
 
 function getKey(name) {
@@ -181,7 +218,9 @@ function createImgMap(arr) {
   const obj = [];
   for (critter of arr) {
     const key = getKey(critter.name);
-    const path = getPath(critter.name);
+    const path = critter.hasOwnProperty("hasForgery")
+      ? getArtPath(critter.name)
+      : getPath(critter.name);
 
     imports.push(`import ${key} from './${path}'`);
     obj.push(`${key}`);
@@ -202,7 +241,8 @@ async function run() {
   const bugs = await loadBugs();
   const fish = await loadFish();
   const fossils = await loadFossils();
-  createImgMap([...bugs, ...fish, ...fossils]);
+  const art = await loadArt();
+  createImgMap([...bugs, ...fish, ...fossils, ...art]);
 }
 
 run();

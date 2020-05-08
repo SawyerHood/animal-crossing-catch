@@ -1,6 +1,7 @@
 import RAW_FISH from "./data/fish.json";
 import RAW_BUGS from "./data/bugs.json";
 import RAW_FOSSILS from "./data/fossils.json";
+import RAW_ART from "./data/art.json";
 import moment from "moment";
 import "moment/locale/de";
 import "moment/locale/fr";
@@ -14,7 +15,6 @@ moment.locale("en");
 interface ICollectable {
   key: string;
   name: string;
-  imageURL: string | null;
   sellPrice: number;
   isCaught: boolean;
 }
@@ -34,6 +34,11 @@ interface Fossil extends ICollectable {
   type: "fossil";
 }
 
+interface Art extends ICollectable {
+  type: "art";
+  hasForgery: boolean;
+}
+
 interface Fish extends ICatchable {
   type: "fish";
   size: string;
@@ -43,17 +48,18 @@ interface Bug extends ICatchable {
   type: "bug";
 }
 
-export type Catchable = Fish | Bug | Fossil;
+export type Catchable = Fish | Bug | Fossil | Art;
+export type CatchableType = "fish" | "bug" | "fossil" | "art";
 
 type State = {
-  selectedCatchable: "fish" | "bug" | "fossil";
+  selectedCatchable: CatchableType;
   selectedHemi: "north" | "south";
   selectedLanguage: LanguageOption;
   caught: Set<string>;
 };
 
 export type Action =
-  | { type: "select catchable"; catchable: "fish" | "bug" | "fossil" }
+  | { type: "select catchable"; catchable: CatchableType }
   | { type: "toggle hemi" }
   | { type: "toggle caught"; key: string }
   | { type: "set language"; language: LanguageOption };
@@ -89,7 +95,7 @@ function reducer(state: State, action: Action): State {
 }
 
 function cleanCollectable(input: { [key: string]: any }): ICollectable {
-  const { name, imageURL, sellPrice } = input;
+  const { name, sellPrice } = input;
   const key = name
     .toLowerCase()
     .replace(/ /g, "_")
@@ -100,7 +106,6 @@ function cleanCollectable(input: { [key: string]: any }): ICollectable {
   return {
     key,
     name,
-    imageURL,
     sellPrice,
     isCaught: false,
   };
@@ -159,6 +164,14 @@ function cleanAFossil(input: { [key: string]: any }): Fossil {
   };
 }
 
+function cleanArt(input: { [key: string]: any }): Art {
+  return {
+    ...cleanCollectable(input),
+    hasForgery: input.hasForgery,
+    type: "art",
+  };
+}
+
 function parseTimeString(str: string): number {
   const m = moment(str, "HH A");
   return m.hour();
@@ -193,6 +206,7 @@ function forRangeWrap(
 const FISH: Catchable[] = RAW_FISH.map(cleanAFish);
 const BUGS: Catchable[] = RAW_BUGS.map(cleanABug);
 const FOSSILS: Catchable[] = RAW_FOSSILS.map(cleanAFossil);
+const ART: Catchable[] = RAW_ART.map(cleanArt);
 
 export function useAppState(): {
   rightNow?: Catchable[];
@@ -209,11 +223,9 @@ export function useAppState(): {
       caught: new Set<string>(),
     },
     (state: State): State => {
-      const storageCatchabled = localStorage.getItem("selectedCatchable") as
-        | "fish"
-        | "bug"
-        | "fossil"
-        | null;
+      const storageCatchabled = localStorage.getItem(
+        "selectedCatchable"
+      ) as CatchableType | null;
 
       const storageHemi = localStorage.getItem("selectedHemi") as
         | "north"
@@ -290,11 +302,14 @@ export function useAppState(): {
     case "fossil":
       catchableArr = FOSSILS;
       break;
+    case "art":
+      catchableArr = ART;
+      break;
   }
 
   const catchables = _.chain(catchableArr)
     .map((catchable) => {
-      if (catchable.type === "fossil") {
+      if (catchable.type === "fossil" || catchable.type === "art") {
         return { ...catchable, isCaught: state.caught.has(catchable.key) };
       }
 
@@ -316,7 +331,7 @@ export function useAppState(): {
       };
     })
     .map((catchable) => {
-      if (catchable.type === "fossil") {
+      if (catchable.type === "fossil" || catchable.type === "art") {
         return catchable;
       }
       let nextMonth = (currentTime.month() + 1) % 12;
@@ -330,7 +345,7 @@ export function useAppState(): {
       if (state.caught.has(catchable.key)) {
         return "alreadyCaught";
       }
-      if (catchable.type === "fossil") {
+      if (catchable.type === "fossil" || catchable.type === "art") {
         return "rightNow";
       }
       if (

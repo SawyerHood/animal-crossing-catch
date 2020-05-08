@@ -13,7 +13,7 @@ import { ReactComponent as CatchGuide } from "./catch_guide.svg";
 import { ReactComponent as Circle } from "./icon/circle.svg";
 import { ReactComponent as Check } from "./icon/check.svg";
 import github from "./github.png";
-import { useAppState, Catchable, Action } from "./AppState";
+import { useAppState, Catchable, Action, CatchableType } from "./AppState";
 import imgMap from "./imgMap";
 import { LanguageOption, LANGUAGES } from "./i18n";
 
@@ -78,7 +78,8 @@ export default function App() {
         {appState.rightNow && (
           <>
             <h1 className={header}>
-              {appState.state.selectedCatchable === "fossil"
+              {appState.state.selectedCatchable === "fossil" ||
+              appState.state.selectedCatchable === "art"
                 ? t("Not Yet Obtained")
                 : t("Available Now")}
             </h1>
@@ -103,7 +104,8 @@ export default function App() {
         {appState.alreadyCaught && (
           <>
             <h1 className={header}>
-              {appState.state.selectedCatchable === "fossil"
+              {appState.state.selectedCatchable === "fossil" ||
+              appState.state.selectedCatchable === "art"
                 ? t("Obtained")
                 : t("Already Caught")}
             </h1>
@@ -241,7 +243,7 @@ function HemisphereSelector(props: {
 }
 
 function Toggle(props: {
-  selectedCatchable: "fish" | "bug" | "fossil";
+  selectedCatchable: CatchableType;
   dispatch: React.Dispatch<Action>;
 }) {
   const { t } = useTranslation();
@@ -309,6 +311,16 @@ function Toggle(props: {
         }
       >
         {t("Fossils")}
+      </button>
+      <button
+        className={
+          props.selectedCatchable === "art" ? selectedStyle : defaultStyle
+        }
+        onClick={() =>
+          props.dispatch({ type: "select catchable", catchable: "art" })
+        }
+      >
+        {t("Art")}
       </button>
     </div>
   );
@@ -389,7 +401,13 @@ function Card({
     ? Check
     : Circle;
 
+  let bellSection = null;
   let catchableSection = null;
+
+  if (catchable.type !== "art") {
+    bellSection = <Row icon={<Bells />}>{catchable.sellPrice || "?"}</Row>;
+  }
+
   if (catchable.type === "fish" || catchable.type === "bug") {
     catchableSection = (
       <>
@@ -438,9 +456,7 @@ function Card({
       <div className={name} title={t(catchable.name)}>
         {t(catchable.name)}
       </div>
-
-      <Row icon={<Bells />}>{catchable.sellPrice || "?"}</Row>
-
+      {bellSection}
       {catchableSection}
     </div>
   );
