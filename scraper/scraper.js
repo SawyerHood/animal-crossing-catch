@@ -167,7 +167,7 @@ async function loadArt() {
       (r) => r.children[0].tagName === "TD"
     );
     for (row of rows) {
-      const name = row.children[0].textContent.trim();
+      const name = row.children[0].textContent.trim().replace(/\n/g, " ");
       const hasForgery = row.children[1].textContent.trim() !== "N/A";
       const desc = row.children[3].textContent.trim();
 
@@ -200,6 +200,10 @@ function getPath(name) {
   return `img/${getKey(name)}.png`;
 }
 
+function getArtPath(name) {
+  return `art_img/${getKey(name)}.png`;
+}
+
 function getKey(name) {
   return name
     .toLowerCase()
@@ -214,7 +218,9 @@ function createImgMap(arr) {
   const obj = [];
   for (critter of arr) {
     const key = getKey(critter.name);
-    const path = getPath(critter.name);
+    const path = critter.hasOwnProperty("hasForgery")
+      ? getArtPath(critter.name)
+      : getPath(critter.name);
 
     imports.push(`import ${key} from './${path}'`);
     obj.push(`${key}`);
@@ -225,7 +231,7 @@ function createImgMap(arr) {
 
   export default {${obj.join(",\n")}}
   `;
-  fs.writeFileSync("imgMap.js", file);
+  fs.writeFileSync("imgMap.ts", file);
 }
 
 async function run() {
