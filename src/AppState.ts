@@ -282,6 +282,7 @@ export function useAppState(): {
   }, [state.selectedHemi]);
 
   useEffect(() => {
+    localStorage.setItem("selectedLanguage", state.selectedLanguage);
     updateLanguage(state.selectedLanguage);
   }, [state.selectedLanguage]);
 
