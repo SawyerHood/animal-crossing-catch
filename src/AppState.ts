@@ -241,8 +241,7 @@ export function useAppState(): {
       const selectedLanguage =
         storageLanguage != null ? storageLanguage : state.selectedLanguage;
 
-      i18n.changeLanguage(selectedLanguage);
-      moment.locale(selectedLanguage);
+      updateLanguage(selectedLanguage);
 
       const caughtStr = localStorage.getItem("caught") || "[]";
       let caught: string[] = [];
@@ -283,10 +282,7 @@ export function useAppState(): {
   }, [state.selectedHemi]);
 
   useEffect(() => {
-    localStorage.setItem("selectedLanguage", state.selectedLanguage);
-    moment.locale(state.selectedLanguage);
-    // Note we do this last so that we trigger a rerender after we have set moment
-    i18n.changeLanguage(state.selectedLanguage);
+    updateLanguage(state.selectedLanguage);
   }, [state.selectedLanguage]);
 
   useEffect(() => {
@@ -406,4 +402,14 @@ export function monthArrayToRange(arr: boolean[]): string {
         moment().month(end).format("MMM")
     )
     .join(" & ");
+}
+
+function updateLanguage(lang: string) {
+  const html = document.querySelector("html");
+  if (html) {
+    html.lang = lang;
+  }
+  moment.locale(lang);
+  // Note we do this last so that we trigger a rerender after we have set moment
+  i18n.changeLanguage(lang);
 }
