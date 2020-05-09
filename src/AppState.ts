@@ -37,6 +37,7 @@ interface Fossil extends ICollectable {
 interface Art extends ICollectable {
   type: "art";
   hasForgery: boolean;
+  desc: string;
 }
 
 interface Fish extends ICatchable {
@@ -168,6 +169,7 @@ function cleanArt(input: { [key: string]: any }): Art {
   return {
     ...cleanCollectable(input),
     hasForgery: input.hasForgery,
+    desc: input.desc,
     type: "art",
   };
 }
