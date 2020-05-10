@@ -4,6 +4,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import de from "./de.json";
 import fr from "./fr.json";
 import ja from "./ja.json";
+import es from "./es.json";
 
 i18n
   .use(LanguageDetector)
@@ -19,6 +20,7 @@ i18n
       de,
       fr,
       ja,
+      es,
     },
     fallbackLng: false,
     debug: false,
@@ -42,6 +44,7 @@ export const LANGUAGES = {
   de: "Deutsch",
   fr: "Français",
   ja: "日本語",
+  es: "Español",
 };
 
 export type LanguageOption = keyof typeof LANGUAGES;
