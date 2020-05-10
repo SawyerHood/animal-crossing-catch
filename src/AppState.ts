@@ -6,6 +6,7 @@ import moment from "moment";
 import "moment/locale/de";
 import "moment/locale/fr";
 import "moment/locale/ja";
+import "moment/locale/es";
 import _ from "lodash";
 import React, { useState, useEffect, useReducer } from "react";
 import i18n, { LanguageOption } from "./i18n";
