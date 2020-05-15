@@ -4,6 +4,7 @@ const fs = require("fs");
 
 const FISH_URL = "https://animalcrossing.fandom.com/wiki/Fish_(New_Horizons)";
 const BUG_URL = "https://animalcrossing.fandom.com/wiki/Bugs_(New_Horizons)";
+const RARITY_BASE_URL = "https://animalcrossing.fandom.com/wiki/";
 const FOSSIL_URL =
   "https://animalcrossing.fandom.com/wiki/Fossils_(New_Horizons)";
 
@@ -112,8 +113,29 @@ async function loadBugs() {
     return JSON.stringify(Object.values(resultMap));
   });
 
-  await browser.close();
   const arr = JSON.parse(result);
+
+  for (bug of arr) {
+    await page.goto(`${RARITY_BASE_URL}${encodeURIComponent(bug.name.replace(' ', '_'))}`);
+    bug.rarity = await page.evaluate(() => {
+      const rarity = document.querySelector("[data-source=rarity] div").textContent;
+      if (rarity.includes("Common")) {
+        return "*";
+      } else if (rarity.includes("Fairly")) {
+        return "**";
+      } else if (rarity.includes("Uncommon")) {
+        return "***";
+      } else if (rarity.includes("Scarce")) {
+        return "****";
+      } else if (rarity.includes("Rare")) {
+        return "*****";
+      } else {
+        return "";
+      }
+    });
+  }
+
+  await browser.close();
   await loadImages(arr);
   fs.writeFileSync("bugs.json", JSON.stringify(arr));
   return arr;
@@ -239,9 +261,9 @@ async function run() {
     fs.mkdirSync("img");
   }
   const bugs = await loadBugs();
-  const fish = await loadFish();
-  const fossils = await loadFossils();
-  const art = await loadArt();
+  const fish = await Promise.resolve([]);//loadFish();
+  const fossils = await Promise.resolve([]);//loadFossils();
+  const art = await Promise.resolve([]);//loadArt();
   createImgMap([...bugs, ...fish, ...fossils, ...art]);
 }
 
