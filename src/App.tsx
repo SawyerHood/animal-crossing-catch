@@ -81,7 +81,7 @@ export default function App() {
               {appState.state.selectedCatchable === "fossil" ||
               appState.state.selectedCatchable === "art"
                 ? t("Not Yet Obtained")
-                : t("Available Now")}
+                : t("Available Now")} ({appState.rightNow.length})
             </h1>
             {appState.rightNow.map(catchableMapper)}
           </>
@@ -89,14 +89,14 @@ export default function App() {
 
         {appState.laterToday && (
           <>
-            <h1 className={header}>{t("Available This Month")}</h1>
+            <h1 className={header}>{t("Available This Month")} ({appState.laterToday.length})</h1>
             {appState.laterToday.map(catchableMapper)}
           </>
         )}
 
         {appState.later && (
           <>
-            <h1 className={header}>{t("Not Available")}</h1>
+            <h1 className={header}>{t("Not Available")} ({appState.later.length})</h1>
             {appState.later.map(catchableMapper)}
           </>
         )}
@@ -107,7 +107,7 @@ export default function App() {
               {appState.state.selectedCatchable === "fossil" ||
               appState.state.selectedCatchable === "art"
                 ? t("Obtained")
-                : t("Already Caught")}
+                : t("Already Caught")} ({appState.alreadyCaught.length})
             </h1>
             {appState.alreadyCaught.map(catchableMapper)}
           </>
