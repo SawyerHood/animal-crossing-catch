@@ -261,9 +261,9 @@ async function run() {
     fs.mkdirSync("img");
   }
   const bugs = await loadBugs();
-  const fish = await Promise.resolve([]);//loadFish();
-  const fossils = await Promise.resolve([]);//loadFossils();
-  const art = await Promise.resolve([]);//loadArt();
+  const fish = await loadFish();
+  const fossils = await loadFossils();
+  const art = await loadArt();
   createImgMap([...bugs, ...fish, ...fossils, ...art]);
 }
 
