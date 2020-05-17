@@ -79,7 +79,8 @@ export default function App() {
           <>
             <h1 className={header}>
               {appState.state.selectedCatchable === "fossil" ||
-              appState.state.selectedCatchable === "art"
+              appState.state.selectedCatchable === "art" ||
+              appState.state.selectedCatchable === "music"
                 ? t("Not Yet Obtained")
                 : t("Available Now")} ({appState.rightNow.length})
             </h1>
@@ -105,7 +106,8 @@ export default function App() {
           <>
             <h1 className={header}>
               {appState.state.selectedCatchable === "fossil" ||
-              appState.state.selectedCatchable === "art"
+              appState.state.selectedCatchable === "art" ||
+              appState.state.selectedCatchable === "music"
                 ? t("Obtained")
                 : t("Already Caught")} ({appState.alreadyCaught.length})
             </h1>
@@ -322,6 +324,16 @@ function Toggle(props: {
       >
         {t("Art")}
       </button>
+      <button
+        className={
+          props.selectedCatchable === "music" ? selectedStyle : defaultStyle
+        }
+        onClick={() =>
+          props.dispatch({ type: "select catchable", catchable: "music" })
+        }
+      >
+        {t("Music")}
+      </button>
     </div>
   );
 }
@@ -403,9 +415,20 @@ function Card({
 
   let bellSection = null;
   let catchableSection = null;
+  let noteSection = null;
 
   if (catchable.type !== "art") {
     bellSection = <Row icon={<Bells />}>{catchable.sellPrice || "?"}</Row>;
+  }
+
+  if (catchable.type === "music" && catchable.source === "not_for_sale") {
+    let note = "By concert request only";
+    if (catchable.key === "welcome_horizons") {
+      note = "Gifted at first concert";
+    } else if (catchable.key === "kk_birthday") {
+      note = "By concert request only (on birthday, or Saturday before)";
+    }
+    noteSection = <Row icon={<Warning />}>{note}</Row>;
   }
 
   if (catchable.type === "fish" || catchable.type === "bug") {
@@ -458,6 +481,7 @@ function Card({
       </div>
       {bellSection}
       {catchableSection}
+      {noteSection}
     </div>
   );
 }
@@ -484,12 +508,14 @@ function Row({
     ${className};
 
     & svg {
+      flex: 1;
     }
   `;
 
   const textStyle = css`
     margin-left: 6px;
     text-align: left;
+    flex: 10;
   `;
   return (
     <div className={containerStyle}>
