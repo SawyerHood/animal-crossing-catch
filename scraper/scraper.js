@@ -117,7 +117,23 @@ async function loadBugs() {
 
   const arr = JSON.parse(result);
 
-  const promises = arr.map(async bug => {
+  await Promise.all([
+    loadBugsRarity(arr, 0, arr.length / 4, browser),
+    loadBugsRarity(arr, arr.length / 4, 2 * arr.length / 4, browser),
+    loadBugsRarity(arr, 2 * arr.length / 4, 3 * arr.length / 4, browser),
+    loadBugsRarity(arr, 3 * arr.length / 4, arr.length, browser),
+  ]);
+
+  await browser.close();
+  await loadImages(arr);
+  fs.writeFileSync("bugs.json", JSON.stringify(arr));
+  return arr;
+}
+
+async function loadBugsRarity(bugs, arrayStart, arrayEnd, browser) {
+  for (let i = arrayStart; i < arrayEnd; i++) {
+    const bug = bugs[i];
+    console.log(`[${arrayStart},${arrayEnd}] [${i}] Scrap bug rarity ${bug.name}`);
     const bugPage = await browser.newPage();
     await bugPage.goto(`${RARITY_BASE_URL}${encodeURIComponent(bug.name.replace(' ', '_'))}`);
     bug.rarity = await bugPage.evaluate(() => {
@@ -136,13 +152,8 @@ async function loadBugs() {
         return "";
       }
     });
-  });
-  await Promise.all(promises);
-
-  await browser.close();
-  await loadImages(arr);
-  fs.writeFileSync("bugs.json", JSON.stringify(arr));
-  return arr;
+    console.log(`[${arrayStart},${arrayEnd}] [${i}] Scrap bug rarity ${bug.name} DONE`);
+  }
 }
 
 async function loadFossils() {
@@ -265,7 +276,6 @@ async function run() {
     fs.mkdirSync("img");
   }
   const bugs = await loadBugs();
-  return;
   const fish = await loadFish();
   const fossils = await loadFossils();
   const art = await loadArt();
