@@ -113,27 +113,31 @@ async function loadBugs() {
     return JSON.stringify(Object.values(resultMap));
   });
 
+  page.close();
+
   const arr = JSON.parse(result);
 
-  for (bug of arr) {
-    await page.goto(`${RARITY_BASE_URL}${encodeURIComponent(bug.name.replace(' ', '_'))}`);
-    bug.rarity = await page.evaluate(() => {
+  const promises = arr.map(async bug => {
+    const bugPage = await browser.newPage();
+    await bugPage.goto(`${RARITY_BASE_URL}${encodeURIComponent(bug.name.replace(' ', '_'))}`);
+    bug.rarity = await bugPage.evaluate(() => {
       const rarity = document.querySelector("[data-source=rarity] div").textContent;
       if (rarity.includes("Common")) {
-        return "*";
+        return "Common";
       } else if (rarity.includes("Fairly")) {
-        return "**";
+        return "Fairly";
       } else if (rarity.includes("Uncommon")) {
-        return "***";
+        return "Uncommon";
       } else if (rarity.includes("Scarce")) {
-        return "****";
+        return "Scarce";
       } else if (rarity.includes("Rare")) {
-        return "*****";
+        return "Rare";
       } else {
         return "";
       }
     });
-  }
+  });
+  await Promise.all(promises);
 
   await browser.close();
   await loadImages(arr);
@@ -261,6 +265,7 @@ async function run() {
     fs.mkdirSync("img");
   }
   const bugs = await loadBugs();
+  return;
   const fish = await loadFish();
   const fossils = await loadFossils();
   const art = await loadArt();
