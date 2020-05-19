@@ -6,7 +6,6 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "csv": "^5.3.2",
     "fast-csv": "^4.1.6",
     "image-downloader": "^4.0.1",
     "puppeteer": "^3.1.0"
