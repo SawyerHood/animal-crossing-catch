@@ -106,11 +106,8 @@ function cleanCollectable(input: { [key: string]: any }): ICollectable {
   const { name, sellPrice } = input;
   const key = name
     .toLowerCase()
-    .replace(/ /g, "_")
-    .replaceAll("'", "")
-    .replaceAll("-", "_")
-    .replaceAll(".", "")
-    .replaceAll("&", "")
+    .replace(/[- ]/g, "_")
+    .replace(/['&.]/g, "")
     .normalize('NFKD').replace(/[^\w]/g, ''); // Strip diacritics from names
 
   return {
