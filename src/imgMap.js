@@ -274,6 +274,101 @@ import rock_head_statue from "./art_img/rock_head_statue.png";
 import tremendous_statue from "./art_img/tremendous_statue.png";
 import valiant_statue from "./art_img/valiant_statue.png";
 import warrior_statue from "./art_img/warrior_statue.png";
+import agent_kk from './music_img/agent_kk.png'
+import aloha_kk from './music_img/aloha_kk.png'
+import animal_city from './music_img/animal_city.png'
+import bubblegum_kk from './music_img/bubblegum_kk.png'
+import cafe_kk from './music_img/cafe_kk.png'
+import comrade_kk from './music_img/comrade_kk.png'
+import dj_kk from './music_img/dj_kk.png'
+import drivin from './music_img/drivin.png'
+import farewell from './music_img/farewell.png'
+import forest_life from './music_img/forest_life.png'
+import go_kk_rider from './music_img/go_kk_rider.png'
+import hypno_kk from './music_img/hypno_kk.png'
+import i_love_you from './music_img/i_love_you.png'
+import imperial_kk from './music_img/imperial_kk.png'
+import kk_adventure from './music_img/kk_adventure.png'
+import kk_aria from './music_img/kk_aria.png'
+import kk_ballad from './music_img/kk_ballad.png'
+import kk_bazaar from './music_img/kk_bazaar.png'
+import kk_birthday from './music_img/kk_birthday.png'
+import kk_blues from './music_img/kk_blues.png'
+import kk_bossa from './music_img/kk_bossa.png'
+import kk_calypso from './music_img/kk_calypso.png'
+import kk_casbah from './music_img/kk_casbah.png'
+import kk_chorale from './music_img/kk_chorale.png'
+import kk_condor from './music_img/kk_condor.png'
+import kk_country from './music_img/kk_country.png'
+import kk_cruisin from './music_img/kk_cruisin.png'
+import kk_db from './music_img/kk_db.png'
+import kk_dirge from './music_img/kk_dirge.png'
+import kk_disco from './music_img/kk_disco.png'
+import kk_dixie from './music_img/kk_dixie.png'
+import kk_etude from './music_img/kk_etude.png'
+import kk_faire from './music_img/kk_faire.png'
+import kk_flamenco from './music_img/kk_flamenco.png'
+import kk_folk from './music_img/kk_folk.png'
+import kk_fusion from './music_img/kk_fusion.png'
+import kk_groove from './music_img/kk_groove.png'
+import kk_gumbo from './music_img/kk_gumbo.png'
+import kk_house from './music_img/kk_house.png'
+import kk_island from './music_img/kk_island.png'
+import kk_jazz from './music_img/kk_jazz.png'
+import kk_jongara from './music_img/kk_jongara.png'
+import kk_lament from './music_img/kk_lament.png'
+import kk_love_song from './music_img/kk_love_song.png'
+import kk_lullaby from './music_img/kk_lullaby.png'
+import kk_mambo from './music_img/kk_mambo.png'
+import kk_marathon from './music_img/kk_marathon.png'
+import kk_march from './music_img/kk_march.png'
+import kk_mariachi from './music_img/kk_mariachi.png'
+import kk_metal from './music_img/kk_metal.png'
+import kk_milonga from './music_img/kk_milonga.png'
+import kk_moody from './music_img/kk_moody.png'
+import kk_oasis from './music_img/kk_oasis.png'
+import kk_parade from './music_img/kk_parade.png'
+import kk_ragtime from './music_img/kk_ragtime.png'
+import kk_rally from './music_img/kk_rally.png'
+import kk_reggae from './music_img/kk_reggae.png'
+import kk_rock from './music_img/kk_rock.png'
+import kk_rockabilly from './music_img/kk_rockabilly.png'
+import kk_safari from './music_img/kk_safari.png'
+import kk_salsa from './music_img/kk_salsa.png'
+import kk_samba from './music_img/kk_samba.png'
+import kk_ska from './music_img/kk_ska.png'
+import kk_sonata from './music_img/kk_sonata.png'
+import kk_song from './music_img/kk_song.png'
+import kk_soul from './music_img/kk_soul.png'
+import kk_steppe from './music_img/kk_steppe.png'
+import kk_stroll from './music_img/kk_stroll.png'
+import kk_swing from './music_img/kk_swing.png'
+import kk_synth from './music_img/kk_synth.png'
+import kk_tango from './music_img/kk_tango.png'
+import kk_technopop from './music_img/kk_technopop.png'
+import kk_waltz from './music_img/kk_waltz.png'
+import kk_western from './music_img/kk_western.png'
+import king_kk from './music_img/king_kk.png'
+import lucky_kk from './music_img/lucky_kk.png'
+import marine_song_2001 from './music_img/marine_song_2001.png'
+import mountain_song from './music_img/mountain_song.png'
+import mr_kk from './music_img/mr_kk.png'
+import my_place from './music_img/my_place.png'
+import neapolitan from './music_img/neapolitan.png'
+import only_me from './music_img/only_me.png'
+import pondering from './music_img/pondering.png'
+import rockin_kk from './music_img/rockin_kk.png'
+import soulful_kk from './music_img/soulful_kk.png'
+import space_kk from './music_img/space_kk.png'
+import spring_blossoms from './music_img/spring_blossoms.png'
+import stale_cupcakes from './music_img/stale_cupcakes.png'
+import steep_hill from './music_img/steep_hill.png'
+import surfin_kk from './music_img/surfin_kk.png'
+import the_k_funk from './music_img/the_k_funk.png'
+import to_the_edge from './music_img/to_the_edge.png'
+import two_days_ago from './music_img/two_days_ago.png'
+import wandering from './music_img/wandering.png'
+import welcome_horizons from './music_img/welcome_horizons.png'
 
 export default {
   common_butterfly,
@@ -552,4 +647,99 @@ export default {
   tremendous_statue,
   valiant_statue,
   warrior_statue,
+  agent_kk,
+  aloha_kk,
+  animal_city,
+  bubblegum_kk,
+  cafe_kk,
+  comrade_kk,
+  dj_kk,
+  drivin,
+  farewell,
+  forest_life,
+  go_kk_rider,
+  hypno_kk,
+  i_love_you,
+  imperial_kk,
+  kk_adventure,
+  kk_aria,
+  kk_ballad,
+  kk_bazaar,
+  kk_birthday,
+  kk_blues,
+  kk_bossa,
+  kk_calypso,
+  kk_casbah,
+  kk_chorale,
+  kk_condor,
+  kk_country,
+  kk_cruisin,
+  kk_db,
+  kk_dirge,
+  kk_disco,
+  kk_dixie,
+  kk_etude,
+  kk_faire,
+  kk_flamenco,
+  kk_folk,
+  kk_fusion,
+  kk_groove,
+  kk_gumbo,
+  kk_house,
+  kk_island,
+  kk_jazz,
+  kk_jongara,
+  kk_lament,
+  kk_love_song,
+  kk_lullaby,
+  kk_mambo,
+  kk_marathon,
+  kk_march,
+  kk_mariachi,
+  kk_metal,
+  kk_milonga,
+  kk_moody,
+  kk_oasis,
+  kk_parade,
+  kk_ragtime,
+  kk_rally,
+  kk_reggae,
+  kk_rock,
+  kk_rockabilly,
+  kk_safari,
+  kk_salsa,
+  kk_samba,
+  kk_ska,
+  kk_sonata,
+  kk_song,
+  kk_soul,
+  kk_steppe,
+  kk_stroll,
+  kk_swing,
+  kk_synth,
+  kk_tango,
+  kk_technopop,
+  kk_waltz,
+  kk_western,
+  king_kk,
+  lucky_kk,
+  marine_song_2001,
+  mountain_song,
+  mr_kk,
+  my_place,
+  neapolitan,
+  only_me,
+  pondering,
+  rockin_kk,
+  soulful_kk,
+  space_kk,
+  spring_blossoms,
+  stale_cupcakes,
+  steep_hill,
+  surfin_kk,
+  the_k_funk,
+  to_the_edge,
+  two_days_ago,
+  wandering,
+  welcome_horizons,
 };

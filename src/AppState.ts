@@ -2,6 +2,7 @@ import RAW_FISH from "./data/fish.json";
 import RAW_BUGS from "./data/bugs.json";
 import RAW_FOSSILS from "./data/fossils.json";
 import RAW_ART from "./data/art.json";
+import RAW_MUSIC from "./data/music.json";
 import moment from "moment";
 import "moment/locale/de";
 import "moment/locale/fr";
@@ -35,6 +36,11 @@ interface Fossil extends ICollectable {
   type: "fossil";
 }
 
+interface Music extends ICollectable {
+  type: "music";
+  source: string;
+}
+
 interface Art extends ICollectable {
   type: "art";
   hasForgery: boolean;
@@ -50,8 +56,8 @@ interface Bug extends ICatchable {
   type: "bug";
 }
 
-export type Catchable = Fish | Bug | Fossil | Art;
-export type CatchableType = "fish" | "bug" | "fossil" | "art";
+export type Catchable = Fish | Bug | Fossil | Art | Music;
+export type CatchableType = "fish" | "bug" | "fossil" | "art" | "music";
 
 type State = {
   selectedCatchable: CatchableType;
@@ -100,10 +106,9 @@ function cleanCollectable(input: { [key: string]: any }): ICollectable {
   const { name, sellPrice } = input;
   const key = name
     .toLowerCase()
-    .replace(/ /g, "_")
-    .replace("'", "")
-    .replace("-", "_")
-    .replace(".", "");
+    .replace(/[- ]/g, "_")
+    .replace(/['&.]/g, "")
+    .normalize('NFKD').replace(/[^\w]/g, ''); // Strip diacritics from names
 
   return {
     key,
@@ -175,6 +180,14 @@ function cleanArt(input: { [key: string]: any }): Art {
   };
 }
 
+function cleanMusic(input: { [key: string]: any}): Music {
+  return {
+    ...cleanCollectable(input),
+    source: input.source,
+    type: "music"
+  };
+}
+
 function parseTimeString(str: string): number {
   const m = moment(str, "HH A");
   return m.hour();
@@ -210,6 +223,7 @@ const FISH: Catchable[] = RAW_FISH.map(cleanAFish);
 const BUGS: Catchable[] = RAW_BUGS.map(cleanABug);
 const FOSSILS: Catchable[] = RAW_FOSSILS.map(cleanAFossil);
 const ART: Catchable[] = RAW_ART.map(cleanArt);
+const MUSIC: Catchable[] = RAW_MUSIC.map(cleanMusic);
 
 export function useAppState(): {
   rightNow?: Catchable[];
@@ -305,11 +319,14 @@ export function useAppState(): {
     case "art":
       catchableArr = ART;
       break;
+    case "music":
+      catchableArr = MUSIC;
+      break;
   }
 
   const catchables = _.chain(catchableArr)
     .map((catchable) => {
-      if (catchable.type === "fossil" || catchable.type === "art") {
+      if (catchable.type === "fossil" || catchable.type === "art" || catchable.type === "music") {
         return { ...catchable, isCaught: state.caught.has(catchable.key) };
       }
 
@@ -331,7 +348,7 @@ export function useAppState(): {
       };
     })
     .map((catchable) => {
-      if (catchable.type === "fossil" || catchable.type === "art") {
+      if (catchable.type === "fossil" || catchable.type === "art" || catchable.type === "music") {
         return catchable;
       }
       let nextMonth = (currentTime.month() + 1) % 12;
@@ -345,7 +362,7 @@ export function useAppState(): {
       if (state.caught.has(catchable.key)) {
         return "alreadyCaught";
       }
-      if (catchable.type === "fossil" || catchable.type === "art") {
+      if (catchable.type === "fossil" || catchable.type === "art" || catchable.type === "music") {
         return "rightNow";
       }
       if (

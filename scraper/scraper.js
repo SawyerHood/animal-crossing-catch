@@ -1,13 +1,17 @@
 const puppeteer = require("puppeteer");
+const util = require('util');
+const stream = require('stream');
 const download = require("image-downloader");
 const fs = require("fs");
+const path = require('path');
+const csv = require('fast-csv');
 
 const FISH_URL = "https://animalcrossing.fandom.com/wiki/Fish_(New_Horizons)";
 const BUG_URL = "https://animalcrossing.fandom.com/wiki/Bugs_(New_Horizons)";
 const FOSSIL_URL =
   "https://animalcrossing.fandom.com/wiki/Fossils_(New_Horizons)";
-
 const ART_URL = "https://animalcrossing.fandom.com/wiki/Artwork_(New_Horizons)";
+
 
 async function loadFish() {
   const browser = await puppeteer.launch();
@@ -175,6 +179,7 @@ async function loadArt() {
       resultMap[key] = {
         name,
         hasForgery,
+        imageURL: url,
         desc,
       };
     }
@@ -187,30 +192,74 @@ async function loadArt() {
   return arr;
 }
 
+async function loadMusic() {
+  /* Uses music.csv, which was exported manually from a community ACNH Google Sheet
+   * See https://docs.google.com/spreadsheets/d/13d_LAJPlxMa_DubPTuirkIV4DERBMXbrWQsmSh8ReK4/edit#gid=83555737
+   * Note:
+   *  > We fully welcome the use of our data for creators to make websites or applications from for the betterment of the Animal Crossing community.
+   *  > If you use our data for an app or site, please provide a link back to the spreadsheet on your page, and contact us to get your name added to the list of partners.
+   *
+   * Also uses acnhcdn.com for raw image data
+   */
+  const CATALOG_CODES = {
+    'Not in catalog': "not_in_catalog",
+    'For sale': "for_sale",
+    'Not for sale': "not_for_sale"
+  }
+
+  const arr = [];
+  const addMusicToList = (row) => {
+    if (row.Catalog === 'Not in catalog') {
+      // Skip music that can't be collected
+      return;
+    }
+
+    arr.push({
+      name: row.Name,
+      sellPrice: Number(row.Sell),
+      source: CATALOG_CODES[row.Catalog] || null,
+      imageURL: `https://acnhcdn.com/latest/FtrIcon/${row.Filename}.png`
+    });
+  }
+
+  const pipeline = util.promisify(stream.pipeline);
+  await pipeline(
+    fs.createReadStream(path.resolve(__dirname, 'data', 'music.csv')),
+    csv.parse({ headers: true })
+    .on('error', error => console.error(error))
+    .on('data', row => addMusicToList(row))
+  )
+
+  await loadImages(arr);
+  fs.writeFileSync("music.json", JSON.stringify(arr));
+  return arr;
+}
+
 async function loadImages(arr) {
   for (const critter of arr) {
     const filename = await download.image({
       url: critter.imageURL,
-      dest: getPath(critter.name),
+      dest: getPath(critter),
     });
   }
 }
 
-function getPath(name) {
+function getPath(critter) {
+  const { name } = critter;
+  if (critter.hasOwnProperty("hasForgery")) {
+    return `art_img/${getKey(name)}.png`;
+  } else if (critter.hasOwnProperty("source")) {
+    return `music_img/${getKey(name)}.png`;
+  }
   return `img/${getKey(name)}.png`;
-}
-
-function getArtPath(name) {
-  return `art_img/${getKey(name)}.png`;
 }
 
 function getKey(name) {
   return name
     .toLowerCase()
-    .replace(/ /g, "_")
-    .replace("'", "")
-    .replace("-", "_")
-    .replace(".", "");
+    .replace(/[- ]/g, "_")
+    .replace(/['&.]/g, "")
+    .normalize('NFKD').replace(/[^\w]/g, ''); // Strip diacritics from names
 }
 
 function createImgMap(arr) {
@@ -218,9 +267,7 @@ function createImgMap(arr) {
   const obj = [];
   for (critter of arr) {
     const key = getKey(critter.name);
-    const path = critter.hasOwnProperty("hasForgery")
-      ? getArtPath(critter.name)
-      : getPath(critter.name);
+    const path = getPath(critter);
 
     imports.push(`import ${key} from './${path}'`);
     obj.push(`${key}`);
@@ -238,11 +285,15 @@ async function run() {
   if (!fs.existsSync("img")) {
     fs.mkdirSync("img");
   }
+  if (!fs.existsSync("music_img")) {
+    fs.mkdirSync("music_img");
+  }
   const bugs = await loadBugs();
   const fish = await loadFish();
   const fossils = await loadFossils();
   const art = await loadArt();
-  createImgMap([...bugs, ...fish, ...fossils, ...art]);
+  const music = await loadMusic();
+  createImgMap([...bugs, ...fish, ...fossils, ...art, ...music]);
 }
 
 run();
