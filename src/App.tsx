@@ -79,8 +79,8 @@ export default function App() {
           <>
             <h1 className={header}>
               {appState.state.selectedCatchable === "fossil" ||
-              appState.state.selectedCatchable === "art" ||
-              appState.state.selectedCatchable === "music"
+                appState.state.selectedCatchable === "art" ||
+                appState.state.selectedCatchable === "music"
                 ? t("Not Yet Obtained")
                 : t("Available Now")} ({appState.rightNow.length})
             </h1>
@@ -90,14 +90,18 @@ export default function App() {
 
         {appState.laterToday && (
           <>
-            <h1 className={header}>{t("Available This Month")} ({appState.laterToday.length})</h1>
+            <h1 className={header}>
+              {t("Available This Month")} ({appState.laterToday.length})
+            </h1>
             {appState.laterToday.map(catchableMapper)}
           </>
         )}
 
         {appState.later && (
           <>
-            <h1 className={header}>{t("Not Available")} ({appState.later.length})</h1>
+            <h1 className={header}>
+              {t("Not Available")} ({appState.later.length})
+            </h1>
             {appState.later.map(catchableMapper)}
           </>
         )}
@@ -106,8 +110,8 @@ export default function App() {
           <>
             <h1 className={header}>
               {appState.state.selectedCatchable === "fossil" ||
-              appState.state.selectedCatchable === "art" ||
-              appState.state.selectedCatchable === "music"
+                appState.state.selectedCatchable === "art" ||
+                appState.state.selectedCatchable === "music"
                 ? t("Obtained")
                 : t("Already Caught")} ({appState.alreadyCaught.length})
             </h1>
@@ -257,18 +261,20 @@ function Toggle(props: {
     margin-bottom: 12px;
     justify-content: center;
     user-select: none;
+    flex-wrap: wrap;
   `;
 
   const defaultStyle = css`
     ${buttonReset}
     font-size: 20px;
     text-align: center;
-    width: 160px;
     color: ${colors.accent};
     cursor: pointer;
     border-radius: 100px;
     padding: 4px 8px;
     margin: 0 4px;
+    flex-grow: 1;
+    max-width: 160px;
   `;
 
   const selectedStyle = css`
@@ -285,52 +291,43 @@ function Toggle(props: {
   return (
     <div className={root}>
       <button
-        className={
-          props.selectedCatchable === "fish" ? selectedStyle : defaultStyle
-        }
+        className={props.selectedCatchable === "fish"
+          ? selectedStyle
+          : defaultStyle}
         onClick={() =>
-          props.dispatch({ type: "select catchable", catchable: "fish" })
-        }
+          props.dispatch({ type: "select catchable", catchable: "fish" })}
       >
         {t("Fish")}
       </button>
       <button
-        className={
-          props.selectedCatchable === "bug" ? selectedStyle : defaultStyle
-        }
+        className={props.selectedCatchable === "bug" ? selectedStyle
+        : defaultStyle}
         onClick={() =>
-          props.dispatch({ type: "select catchable", catchable: "bug" })
-        }
+          props.dispatch({ type: "select catchable", catchable: "bug" })}
       >
         {t("Bugs")}
       </button>
       <button
-        className={
-          props.selectedCatchable === "fossil" ? selectedStyle : defaultStyle
-        }
+        className={props.selectedCatchable === "fossil" ? selectedStyle
+        : defaultStyle}
         onClick={() =>
-          props.dispatch({ type: "select catchable", catchable: "fossil" })
-        }
+          props.dispatch({ type: "select catchable", catchable: "fossil" })}
       >
         {t("Fossils")}
       </button>
       <button
-        className={
-          props.selectedCatchable === "art" ? selectedStyle : defaultStyle
-        }
+        className={props.selectedCatchable === "art" ? selectedStyle
+        : defaultStyle}
         onClick={() =>
-          props.dispatch({ type: "select catchable", catchable: "art" })
-        }
+          props.dispatch({ type: "select catchable", catchable: "art" })}
       >
         {t("Art")}
       </button>
       <button
-        className={
-          props.selectedCatchable === "music" ? selectedStyle : defaultStyle
-        }
+        className={props.selectedCatchable === "music" ? selectedStyle
+        : defaultStyle}
         onClick={() =>
-          props.dispatch({ type: "select catchable", catchable: "music" })
-        }
+          props.dispatch({ type: "select catchable", catchable: "music" })}
       >
         {t("Music")}
       </button>
@@ -347,7 +344,7 @@ function Card({
 }) {
   const { t } = useTranslation();
   const [exitStatus, setExitStatus] = useState<"caught" | "not caught" | null>(
-    null
+    null,
   );
   const card = css`
     display: flex;
@@ -406,9 +403,7 @@ function Card({
   `;
 
   let ToggleComp = catchable.isCaught
-    ? exitStatus === "not caught"
-      ? Circle
-      : Check
+    ? exitStatus === "not caught" ? Circle : Check
     : exitStatus === "caught"
     ? Check
     : Circle;
@@ -448,11 +443,13 @@ function Card({
         {catchable.type === "fish" && (
           <Row icon={<Length />}>{t(catchable.size)}</Row>
         )}
-        {catchable.leavingNextMonth ? (
-          <Row className={leaving} icon={<Warning />}>
-            {t("Gone next month")}
-          </Row>
-        ) : null}
+        {catchable.leavingNextMonth
+          ? (
+            <Row className={leaving} icon={<Warning />}>
+              {t("Gone next month")}
+            </Row>
+          )
+          : null}
       </>
     );
   }
