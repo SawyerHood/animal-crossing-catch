@@ -79,10 +79,11 @@ export default function App() {
           <>
             <h1 className={header}>
               {appState.state.selectedCatchable === "fossil" ||
-                appState.state.selectedCatchable === "art" ||
-                appState.state.selectedCatchable === "music"
+              appState.state.selectedCatchable === "art" ||
+              appState.state.selectedCatchable === "music"
                 ? t("Not Yet Obtained")
-                : t("Available Now")} ({appState.rightNow.length})
+                : t("Available Now")}{" "}
+              ({appState.rightNow.length})
             </h1>
             {appState.rightNow.map(catchableMapper)}
           </>
@@ -110,10 +111,11 @@ export default function App() {
           <>
             <h1 className={header}>
               {appState.state.selectedCatchable === "fossil" ||
-                appState.state.selectedCatchable === "art" ||
-                appState.state.selectedCatchable === "music"
+              appState.state.selectedCatchable === "art" ||
+              appState.state.selectedCatchable === "music"
                 ? t("Obtained")
-                : t("Already Caught")} ({appState.alreadyCaught.length})
+                : t("Already Caught")}{" "}
+              ({appState.alreadyCaught.length})
             </h1>
             {appState.alreadyCaught.map(catchableMapper)}
           </>
@@ -291,43 +293,52 @@ function Toggle(props: {
   return (
     <div className={root}>
       <button
-        className={props.selectedCatchable === "fish"
-          ? selectedStyle
-          : defaultStyle}
+        className={
+          props.selectedCatchable === "fish" ? selectedStyle : defaultStyle
+        }
         onClick={() =>
-          props.dispatch({ type: "select catchable", catchable: "fish" })}
+          props.dispatch({ type: "select catchable", catchable: "fish" })
+        }
       >
         {t("Fish")}
       </button>
       <button
-        className={props.selectedCatchable === "bug" ? selectedStyle
-        : defaultStyle}
+        className={
+          props.selectedCatchable === "bug" ? selectedStyle : defaultStyle
+        }
         onClick={() =>
-          props.dispatch({ type: "select catchable", catchable: "bug" })}
+          props.dispatch({ type: "select catchable", catchable: "bug" })
+        }
       >
         {t("Bugs")}
       </button>
       <button
-        className={props.selectedCatchable === "fossil" ? selectedStyle
-        : defaultStyle}
+        className={
+          props.selectedCatchable === "fossil" ? selectedStyle : defaultStyle
+        }
         onClick={() =>
-          props.dispatch({ type: "select catchable", catchable: "fossil" })}
+          props.dispatch({ type: "select catchable", catchable: "fossil" })
+        }
       >
         {t("Fossils")}
       </button>
       <button
-        className={props.selectedCatchable === "art" ? selectedStyle
-        : defaultStyle}
+        className={
+          props.selectedCatchable === "art" ? selectedStyle : defaultStyle
+        }
         onClick={() =>
-          props.dispatch({ type: "select catchable", catchable: "art" })}
+          props.dispatch({ type: "select catchable", catchable: "art" })
+        }
       >
         {t("Art")}
       </button>
       <button
-        className={props.selectedCatchable === "music" ? selectedStyle
-        : defaultStyle}
+        className={
+          props.selectedCatchable === "music" ? selectedStyle : defaultStyle
+        }
         onClick={() =>
-          props.dispatch({ type: "select catchable", catchable: "music" })}
+          props.dispatch({ type: "select catchable", catchable: "music" })
+        }
       >
         {t("Music")}
       </button>
@@ -344,7 +355,7 @@ function Card({
 }) {
   const { t } = useTranslation();
   const [exitStatus, setExitStatus] = useState<"caught" | "not caught" | null>(
-    null,
+    null
   );
   const card = css`
     display: flex;
@@ -403,7 +414,9 @@ function Card({
   `;
 
   let ToggleComp = catchable.isCaught
-    ? exitStatus === "not caught" ? Circle : Check
+    ? exitStatus === "not caught"
+      ? Circle
+      : Check
     : exitStatus === "caught"
     ? Check
     : Circle;
@@ -443,13 +456,11 @@ function Card({
         {catchable.type === "fish" && (
           <Row icon={<Length />}>{t(catchable.size)}</Row>
         )}
-        {catchable.leavingNextMonth
-          ? (
-            <Row className={leaving} icon={<Warning />}>
-              {t("Gone next month")}
-            </Row>
-          )
-          : null}
+        {catchable.leavingNextMonth ? (
+          <Row className={leaving} icon={<Warning />}>
+            {t("Gone next month")}
+          </Row>
+        ) : null}
       </>
     );
   }

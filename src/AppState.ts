@@ -108,7 +108,8 @@ function cleanCollectable(input: { [key: string]: any }): ICollectable {
     .toLowerCase()
     .replace(/[- ]/g, "_")
     .replace(/['&.]/g, "")
-    .normalize('NFKD').replace(/[^\w]/g, ''); // Strip diacritics from names
+    .normalize("NFKD")
+    .replace(/[^\w]/g, ""); // Strip diacritics from names
 
   return {
     key,
@@ -180,11 +181,11 @@ function cleanArt(input: { [key: string]: any }): Art {
   };
 }
 
-function cleanMusic(input: { [key: string]: any}): Music {
+function cleanMusic(input: { [key: string]: any }): Music {
   return {
     ...cleanCollectable(input),
     source: input.source,
-    type: "music"
+    type: "music",
   };
 }
 
@@ -326,7 +327,11 @@ export function useAppState(): {
 
   const catchables = _.chain(catchableArr)
     .map((catchable) => {
-      if (catchable.type === "fossil" || catchable.type === "art" || catchable.type === "music") {
+      if (
+        catchable.type === "fossil" ||
+        catchable.type === "art" ||
+        catchable.type === "music"
+      ) {
         return { ...catchable, isCaught: state.caught.has(catchable.key) };
       }
 
@@ -348,7 +353,11 @@ export function useAppState(): {
       };
     })
     .map((catchable) => {
-      if (catchable.type === "fossil" || catchable.type === "art" || catchable.type === "music") {
+      if (
+        catchable.type === "fossil" ||
+        catchable.type === "art" ||
+        catchable.type === "music"
+      ) {
         return catchable;
       }
       let nextMonth = (currentTime.month() + 1) % 12;
@@ -362,7 +371,11 @@ export function useAppState(): {
       if (state.caught.has(catchable.key)) {
         return "alreadyCaught";
       }
-      if (catchable.type === "fossil" || catchable.type === "art" || catchable.type === "music") {
+      if (
+        catchable.type === "fossil" ||
+        catchable.type === "art" ||
+        catchable.type === "music"
+      ) {
         return "rightNow";
       }
       if (

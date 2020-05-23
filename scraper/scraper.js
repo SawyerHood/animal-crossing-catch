@@ -1,17 +1,16 @@
 const puppeteer = require("puppeteer");
-const util = require('util');
-const stream = require('stream');
+const util = require("util");
+const stream = require("stream");
 const download = require("image-downloader");
 const fs = require("fs");
-const path = require('path');
-const csv = require('fast-csv');
+const path = require("path");
+const csv = require("fast-csv");
 
 const FISH_URL = "https://animalcrossing.fandom.com/wiki/Fish_(New_Horizons)";
 const BUG_URL = "https://animalcrossing.fandom.com/wiki/Bugs_(New_Horizons)";
 const FOSSIL_URL =
   "https://animalcrossing.fandom.com/wiki/Fossils_(New_Horizons)";
 const ART_URL = "https://animalcrossing.fandom.com/wiki/Artwork_(New_Horizons)";
-
 
 async function loadFish() {
   const browser = await puppeteer.launch();
@@ -202,14 +201,14 @@ async function loadMusic() {
    * Also uses acnhcdn.com for raw image data
    */
   const CATALOG_CODES = {
-    'Not in catalog': "not_in_catalog",
-    'For sale': "for_sale",
-    'Not for sale': "not_for_sale"
-  }
+    "Not in catalog": "not_in_catalog",
+    "For sale": "for_sale",
+    "Not for sale": "not_for_sale",
+  };
 
   const arr = [];
   const addMusicToList = (row) => {
-    if (row.Catalog === 'Not in catalog') {
+    if (row.Catalog === "Not in catalog") {
       // Skip music that can't be collected
       return;
     }
@@ -218,17 +217,18 @@ async function loadMusic() {
       name: row.Name,
       sellPrice: Number(row.Sell),
       source: CATALOG_CODES[row.Catalog] || null,
-      imageURL: `https://acnhcdn.com/latest/FtrIcon/${row.Filename}.png`
+      imageURL: `https://acnhcdn.com/latest/FtrIcon/${row.Filename}.png`,
     });
-  }
+  };
 
   const pipeline = util.promisify(stream.pipeline);
   await pipeline(
-    fs.createReadStream(path.resolve(__dirname, 'data', 'music.csv')),
-    csv.parse({ headers: true })
-    .on('error', error => console.error(error))
-    .on('data', row => addMusicToList(row))
-  )
+    fs.createReadStream(path.resolve(__dirname, "data", "music.csv")),
+    csv
+      .parse({ headers: true })
+      .on("error", (error) => console.error(error))
+      .on("data", (row) => addMusicToList(row))
+  );
 
   await loadImages(arr);
   fs.writeFileSync("music.json", JSON.stringify(arr));
@@ -259,7 +259,8 @@ function getKey(name) {
     .toLowerCase()
     .replace(/[- ]/g, "_")
     .replace(/['&.]/g, "")
-    .normalize('NFKD').replace(/[^\w]/g, ''); // Strip diacritics from names
+    .normalize("NFKD")
+    .replace(/[^\w]/g, ""); // Strip diacritics from names
 }
 
 function createImgMap(arr) {
