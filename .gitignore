@@ -4,3 +4,4 @@ build
 scraper/*.json
 scraper/music_img
 scraper/imgMap.js
+.vscode
