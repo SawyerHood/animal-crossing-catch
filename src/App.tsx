@@ -430,11 +430,11 @@ function Card({
   }
 
   if (catchable.type === "music" && catchable.source === "not_for_sale") {
-    let note = "By concert request only";
+    let note = t("By concert request only");
     if (catchable.key === "welcome_horizons") {
-      note = "Gifted at first concert";
+      note = t("Gifted at first concert");
     } else if (catchable.key === "kk_birthday") {
-      note = "By concert request only (on birthday, or Saturday before)";
+      note = t("By concert request only (on birthday, or Saturday before)");
     }
     noteSection = <Row icon={<Warning />}>{note}</Row>;
   }
