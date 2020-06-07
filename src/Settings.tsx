@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { css } from "emotion";
 import * as Constants from "./Constants";
 import { IconButton } from "./IconButton";
@@ -59,6 +59,12 @@ export function Settings({ state, dispatch }: Props) {
           selectedHemi={state.selectedHemi}
         />
       </Section>
+      <Section header="Export Caught Items">
+        <ExportButton state={state} />
+      </Section>
+      <Section header="Import Caught Items">
+        <ImportControl dispatch={dispatch} />
+      </Section>
     </div>
   );
 }
@@ -71,12 +77,14 @@ function Section({
   children: React.ReactNode;
 }) {
   const root = css`
-    margin-bottom: 8px;
+    margin-bottom: 16px;
   `;
 
   const headerStyle = css`
     padding-left: 4px;
     margin-block: 4px;
+    text-transform: uppercase;
+    font-size: 16px;
   `;
 
   return (
@@ -100,7 +108,7 @@ function LanguageSelector(props: {
     color: ${Constants.colors.accent};
     align-items: center;
     font-size: 24px;
-    padding: 4px 4px;
+    padding: 4px;
     border-radius: 4px;
     opacity: 0.7;
   `;
@@ -138,7 +146,7 @@ function HemisphereSelector(props: {
     color: ${Constants.colors.accent};
     align-items: center;
     font-size: 24px;
-    padding: 4px 4px;
+    padding: 4px;
     opacity: 0.7;
     border-radius: 100px;
   `;
@@ -162,4 +170,83 @@ function HemisphereSelector(props: {
       <Globe className={props.selectedHemi === "south" ? flipped : undefined} />
     </button>
   );
+}
+
+function ExportButton(props: { state: State }) {
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const onClick = () => {
+    const text = Array.from(props.state.caught).join("\n");
+    copy(text);
+    setShowSuccess(true);
+    setTimeout(() => setShowSuccess(false), 3000);
+  };
+
+  return (
+    <TextButton onClick={showSuccess ? undefined : onClick}>
+      {showSuccess ? "Copied!" : "Copy to Clipboard"}
+    </TextButton>
+  );
+}
+
+function ImportControl({ dispatch }: { dispatch: React.Dispatch<Action> }) {
+  const [text, setText] = useState("");
+
+  const root = css`
+    display: flex;
+    flex-direction: row;
+  `;
+
+  const textAreaStyle = css`
+    ${Constants.buttonReset}
+    color: ${Constants.colors.accent};
+    opacity: 0.7;
+    margin: 4px;
+    resize: none;
+  `;
+
+  const onClick = () => {
+    if (!text) {
+      return;
+    }
+    const caught = new Set(text.split("\n"));
+    dispatch({ type: "set caught", caught });
+    setText("");
+  };
+
+  return (
+    <div className={root}>
+      <textarea
+        className={textAreaStyle}
+        placeholder="Paste Here"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <TextButton onClick={onClick}>Import</TextButton>
+    </div>
+  );
+}
+
+function TextButton(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+  const root = css`
+    ${Constants.buttonReset}
+    color: ${Constants.colors.accent};
+    opacity: 0.7;
+    font-size: 24px;
+    padding: 4px;
+    border-radius: 150px;
+  `;
+  return <button className={root} {...props} />;
+}
+
+function copy(txt: string) {
+  const el = document.createElement("textarea");
+  el.value = txt;
+  el.setAttribute("readonly", "");
+  el.style.position = "absolute";
+  el.style.left = "-9999px";
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
 }

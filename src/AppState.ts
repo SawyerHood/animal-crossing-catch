@@ -72,7 +72,8 @@ export type Action =
   | { type: "toggle hemi" }
   | { type: "toggle caught"; key: string }
   | { type: "set language"; language: LanguageOption }
-  | { type: "toggle settings" };
+  | { type: "toggle settings" }
+  | { type: "set caught"; caught: Set<string> };
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -102,6 +103,9 @@ function reducer(state: State, action: Action): State {
     }
     case "toggle settings": {
       return { ...state, isSettingsOpen: !state.isSettingsOpen };
+    }
+    case "set caught": {
+      return { ...state, caught: action.caught };
     }
   }
   return state;
