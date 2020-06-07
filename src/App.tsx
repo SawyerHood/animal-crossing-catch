@@ -16,6 +16,9 @@ import github from "./github.png";
 import { useAppState, Catchable, Action, CatchableType } from "./AppState";
 import imgMap from "./imgMap";
 import { LanguageOption, LANGUAGES } from "./i18n";
+import { Settings } from "./Settings";
+import * as Constants from "./Constants";
+import { IconButton } from "./IconButton";
 
 export default function App() {
   const { t } = useTranslation();
@@ -41,7 +44,7 @@ export default function App() {
   const header = css`
     grid-column: 1/-1;
     text-align: left;
-    color: ${colors.accent};
+    color: ${Constants.colors.accent};
     margin: 16px 0;
   `;
 
@@ -129,7 +132,7 @@ export default function App() {
 function Footer() {
   const { t } = useTranslation();
   const footer = css`
-    color: ${colors.accent};
+    color: ${Constants.colors.accent};
     grid-column: 1/-1;
     align-self: center;
     justify-self: center;
@@ -138,7 +141,7 @@ function Footer() {
     align-items: center;
 
     & a {
-      color: ${colors.accent};
+      color: ${Constants.colors.accent};
     }
   `;
   const githubLink = css`
@@ -169,7 +172,7 @@ function LanguageSelector(props: {
   dispatch: React.Dispatch<Action>;
 }) {
   const root = css`
-    ${buttonReset}
+    ${Constants.buttonReset}
     display: flex;
     width: fit-content;
     align-self: center;
@@ -178,7 +181,7 @@ function LanguageSelector(props: {
     grid-column: 1/-1;
     cursor: pointer;
     user-select: none;
-    color: ${colors.accent};
+    color: ${Constants.colors.accent};
     align-items: center;
     font-size: 24px;
     padding: 4px 4px;
@@ -212,7 +215,7 @@ function HemisphereSelector(props: {
 }) {
   const { t } = useTranslation();
   const root = css`
-    ${buttonReset}
+    ${Constants.buttonReset}
     display: flex;
     width: fit-content;
     align-self: center;
@@ -221,7 +224,7 @@ function HemisphereSelector(props: {
     grid-column: 1/-1;
     cursor: pointer;
     user-select: none;
-    color: ${colors.accent};
+    color: ${Constants.colors.accent};
     align-items: center;
     font-size: 24px;
     padding: 4px 4px;
@@ -267,10 +270,10 @@ function Toggle(props: {
   `;
 
   const defaultStyle = css`
-    ${buttonReset}
+    ${Constants.buttonReset}
     font-size: 20px;
     text-align: center;
-    color: ${colors.accent};
+    color: ${Constants.colors.accent};
     cursor: pointer;
     border-radius: 100px;
     padding: 4px 8px;
@@ -283,8 +286,8 @@ function Toggle(props: {
     ${defaultStyle};
     font-weight: bold;
     align-self: stretch;
-    background-color: ${colors.accent};
-    color: ${colors.cardBG};
+    background-color: ${Constants.colors.accent};
+    color: ${Constants.colors.cardBG};
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -363,7 +366,7 @@ function Card({
     padding: 16px;
     flex-grow: 1;
     min-width: 160px;
-    background-color: ${colors.cardBG};
+    background-color: ${Constants.colors.cardBG};
     border-radius: 6px;
     box-shadow: 0px 2px 15px rgba(170, 191, 172, 0.3);
     & > * {
@@ -382,23 +385,22 @@ function Card({
   `;
 
   const leaving = css`
-    color: ${colors.emText};
+    color: ${Constants.colors.emText};
   `;
 
   const name = css`
     font-weight: bold;
     align-self: stretch;
-    background-color: ${colors.accent};
+    background-color: ${Constants.colors.accent};
     padding: 4px 8px;
     border-radius: 100px;
-    color: ${colors.cardBG};
+    color: ${Constants.colors.cardBG};
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   `;
 
   const check = css`
-    ${buttonReset}
     align-self: flex-end;
     display: block;
     cursor: pointer;
@@ -467,7 +469,8 @@ function Card({
 
   return (
     <div className={[card, exitStatus ? exit : null].join(" ")}>
-      <button
+      <IconButton
+        icon={<ToggleComp />}
         className={check}
         onClick={() => {
           setExitStatus(catchable.isCaught ? "not caught" : "caught");
@@ -475,9 +478,7 @@ function Card({
             dispatch({ type: "toggle caught", key: catchable.key });
           }, 200);
         }}
-      >
-        <ToggleComp />
-      </button>
+      />
       <img
         src={imageFromKey(catchable.key)}
         className={imgStyle}
@@ -533,34 +534,11 @@ function Row({
   );
 }
 
-const colors = {
-  cardBG: "#FFFAE3",
-  text: "#805A2D",
-  emText: "#DD1919",
-  lightBG: "#CCE2CF",
-  accent: "#71997F",
-  accentTransparent: "rgba(113, 153, 127, 0.5)",
-};
-
-const buttonReset = css`
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border: 0;
-  background: none;
-  margin: 0;
-  display: block;
-  &:focus {
-    box-shadow: 0 0 4px 1px ${colors.accentTransparent};
-  }
-`;
-
 injectGlobal`
   body {
     margin: 0;
-    background-color: ${colors.lightBG};
-    color: ${colors.text};
+    background-color: ${Constants.colors.lightBG};
+    color: ${Constants.colors.text};
     text-align: left;
     font-family: 'Nunito', sans-serif;
     width: 100%;
