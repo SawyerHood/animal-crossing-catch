@@ -10,6 +10,7 @@ export const colors = {
 };
 
 export const buttonReset = css`
+  cursor: pointer;
   outline: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-appearance: none;

@@ -7,15 +7,14 @@ import { ReactComponent as Time } from "./icon/time.svg";
 import { ReactComponent as Bells } from "./icon/bells.svg";
 import { ReactComponent as Length } from "./icon/length.svg";
 import { ReactComponent as Warning } from "./icon/warning.svg";
-import { ReactComponent as Globe } from "./icon/globe.svg";
 import { ReactComponent as Calendar } from "./icon/calendar.svg";
 import { ReactComponent as CatchGuide } from "./catch_guide.svg";
 import { ReactComponent as Circle } from "./icon/circle.svg";
 import { ReactComponent as Check } from "./icon/check.svg";
+import { ReactComponent as Hamburger } from "./icon/hamburger.svg";
 import github from "./github.png";
 import { useAppState, Catchable, Action, CatchableType } from "./AppState";
 import imgMap from "./imgMap";
-import { LanguageOption, LANGUAGES } from "./i18n";
 import { Settings } from "./Settings";
 import * as Constants from "./Constants";
 import { IconButton } from "./IconButton";
@@ -62,17 +61,8 @@ export default function App() {
   return (
     <>
       <div className={root}>
-        <LanguageSelector
-          dispatch={appState.dispatch}
-          selectedLanguage={appState.state.selectedLanguage}
-        />
-
-        <HemisphereSelector
-          dispatch={appState.dispatch}
-          selectedHemi={appState.state.selectedHemi}
-        />
+        <HamburgerButton dispatch={appState.dispatch} />
         <CatchGuide className={title} />
-
         <Toggle
           dispatch={appState.dispatch}
           selectedCatchable={appState.state.selectedCatchable}
@@ -125,7 +115,38 @@ export default function App() {
         )}
       </div>
       <Footer />
+      <Settings state={appState.state} dispatch={appState.dispatch} />
     </>
+  );
+}
+
+function HamburgerButton({ dispatch }: { dispatch: React.Dispatch<Action> }) {
+  const root = css`
+    ${Constants.buttonReset}
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    align-self: center;
+    justify-self: flex-end;
+    grid-row: 1;
+    grid-column: 1/-1;
+    cursor: pointer;
+    user-select: none;
+    color: ${Constants.colors.accent};
+    align-items: center;
+    font-size: 24px;
+    padding: 4px 4px;
+    opacity: 0.7;
+    border-radius: 4px;
+    text-align: center;
+  `;
+
+  return (
+    <IconButton
+      className={root}
+      onClick={() => dispatch({ type: "toggle settings" })}
+      icon={<Hamburger />}
+    />
   );
 }
 
@@ -164,92 +185,6 @@ function Footer() {
         <img alt="github" src={github} width={16} height={16} />
       </a>
     </div>
-  );
-}
-
-function LanguageSelector(props: {
-  selectedLanguage: LanguageOption;
-  dispatch: React.Dispatch<Action>;
-}) {
-  const root = css`
-    ${Constants.buttonReset}
-    display: flex;
-    width: fit-content;
-    align-self: center;
-    justify-self: flex-start;
-    grid-row: 1;
-    grid-column: 1/-1;
-    cursor: pointer;
-    user-select: none;
-    color: ${Constants.colors.accent};
-    align-items: center;
-    font-size: 24px;
-    padding: 4px 4px;
-    opacity: 0.7;
-    border-radius: 4px;
-    text-align: center;
-  `;
-  return (
-    <select
-      className={root}
-      onChange={(e) => {
-        props.dispatch({
-          type: "set language",
-          language: e.target.value as LanguageOption,
-        });
-      }}
-      value={props.selectedLanguage}
-    >
-      {Object.entries(LANGUAGES).map(([key, text]) => (
-        <option key={key} value={key}>
-          {text}
-        </option>
-      ))}
-    </select>
-  );
-}
-
-function HemisphereSelector(props: {
-  selectedHemi: "north" | "south";
-  dispatch: React.Dispatch<Action>;
-}) {
-  const { t } = useTranslation();
-  const root = css`
-    ${Constants.buttonReset}
-    display: flex;
-    width: fit-content;
-    align-self: center;
-    justify-self: flex-end;
-    grid-row: 1;
-    grid-column: 1/-1;
-    cursor: pointer;
-    user-select: none;
-    color: ${Constants.colors.accent};
-    align-items: center;
-    font-size: 24px;
-    padding: 4px 4px;
-    opacity: 0.7;
-    border-radius: 100px;
-  `;
-
-  const text = css`
-    margin-right: 8px;
-  `;
-
-  const flipped = css`
-    transform: rotate(180deg);
-  `;
-
-  return (
-    <button
-      className={root}
-      onClick={() => props.dispatch({ type: "toggle hemi" })}
-    >
-      <div className={text}>
-        {props.selectedHemi === "north" ? t("Northern") : t("Southern")}
-      </div>
-      <Globe className={props.selectedHemi === "south" ? flipped : undefined} />
-    </button>
   );
 }
 

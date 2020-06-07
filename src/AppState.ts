@@ -59,18 +59,20 @@ interface Bug extends ICatchable {
 export type Catchable = Fish | Bug | Fossil | Art | Music;
 export type CatchableType = "fish" | "bug" | "fossil" | "art" | "music";
 
-type State = {
+export type State = {
   selectedCatchable: CatchableType;
   selectedHemi: "north" | "south";
   selectedLanguage: LanguageOption;
   caught: Set<string>;
+  isSettingsOpen: boolean;
 };
 
 export type Action =
   | { type: "select catchable"; catchable: CatchableType }
   | { type: "toggle hemi" }
   | { type: "toggle caught"; key: string }
-  | { type: "set language"; language: LanguageOption };
+  | { type: "set language"; language: LanguageOption }
+  | { type: "toggle settings" };
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -97,6 +99,9 @@ function reducer(state: State, action: Action): State {
         clone.add(action.key);
       }
       return { ...state, caught: clone };
+    }
+    case "toggle settings": {
+      return { ...state, isSettingsOpen: !state.isSettingsOpen };
     }
   }
   return state;
@@ -239,6 +244,7 @@ export function useAppState(): {
       selectedHemi: "north",
       selectedLanguage: "en",
       caught: new Set<string>(),
+      isSettingsOpen: false,
     },
     (state: State): State => {
       const storageCatchabled = localStorage.getItem(
