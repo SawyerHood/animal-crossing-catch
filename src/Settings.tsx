@@ -16,7 +16,7 @@ type Props = {
 export function Settings({ state, dispatch }: Props) {
   const root = css`
     display: ${state.isSettingsOpen ? "flex" : "none"};
-    position: absolute;
+    position: fixed;
     height: 100vh;
     top: 0;
     right: 0;
