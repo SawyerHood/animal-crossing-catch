@@ -420,8 +420,8 @@ function Card({
         alt={catchable.name}
       />
 
-      <div className={name} title={t(catchable.name)}>
-        {t(catchable.name)}
+      <div className={name} title={catchable.name}>
+        {catchable.name}
       </div>
       {bellSection}
       {catchableSection}

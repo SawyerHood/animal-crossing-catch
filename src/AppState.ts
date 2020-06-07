@@ -11,6 +11,7 @@ import "moment/locale/es";
 import _ from "lodash";
 import React, { useState, useEffect, useReducer } from "react";
 import i18n, { LanguageOption } from "./i18n";
+import { useTranslation } from "react-i18next";
 
 moment.locale("en");
 
@@ -241,6 +242,7 @@ export function useAppState(): {
   later?: Catchable[];
   alreadyCaught?: Catchable[];
 } & { state: State; dispatch: React.Dispatch<Action> } {
+  const { t } = useTranslation();
   const [state, dispatch] = useReducer(
     reducer,
     {
@@ -360,6 +362,7 @@ export function useAppState(): {
         isCaught: state.caught.has(catchable.key),
         monthString: monthArrayToRange(months),
         timeString: timeLocale,
+        name: t(catchable.name),
       };
     })
     .map((catchable) => {
