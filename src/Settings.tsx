@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { css } from "emotion";
+import { css, cx } from "emotion";
 import * as Constants from "./Constants";
 import { IconButton } from "./IconButton";
 import { ReactComponent as Cross } from "./icon/cross.svg";
@@ -15,7 +15,7 @@ type Props = {
 
 export function Settings({ state, dispatch }: Props) {
   const root = css`
-    display: ${state.isSettingsOpen ? "flex" : "none"};
+    display: flex;
     position: fixed;
     height: 100vh;
     top: 0;
@@ -28,6 +28,12 @@ export function Settings({ state, dispatch }: Props) {
     box-shadow: -7px 0px 64px rgba(170, 191, 172, 0.9);
     color: ${Constants.colors.accent};
     font-size: 18px;
+    transform: translateX(400px);
+    transition: all 0.5s;
+  `;
+
+  const move = css`
+    transform: translateX(0);
   `;
 
   const closeRow = css`
@@ -37,7 +43,7 @@ export function Settings({ state, dispatch }: Props) {
     margin-bottom: 8px;
   `;
   return (
-    <div className={root}>
+    <div className={cx({ [root]: true, [move]: state.isSettingsOpen })}>
       <div className={closeRow}>
         <IconButton
           icon={<Cross />}
