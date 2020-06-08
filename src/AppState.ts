@@ -344,7 +344,11 @@ export function useAppState(): {
         catchable.type === "art" ||
         catchable.type === "music"
       ) {
-        return { ...catchable, isCaught: state.caught.has(catchable.key) };
+        return {
+          ...catchable,
+          isCaught: state.caught.has(catchable.key),
+          name: t(catchable.name),
+        };
       }
 
       const timeLocale = catchable.timeString
