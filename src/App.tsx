@@ -371,7 +371,7 @@ function Card({
     if (catchable.key === "welcome_horizons") {
       note = t("Gifted at first concert");
     } else if (catchable.key === "kk_birthday") {
-      note = t("By concert request only (on birthday, or Saturday before)");
+      note = t("By concert request only (on birthday)");
     }
     noteSection = <Row icon={<Warning />}>{note}</Row>;
   }
