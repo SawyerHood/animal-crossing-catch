@@ -369,6 +369,46 @@ import to_the_edge from "./music_img/to_the_edge.png";
 import two_days_ago from "./music_img/two_days_ago.png";
 import wandering from "./music_img/wandering.png";
 import welcome_horizons from "./music_img/welcome_horizons.png";
+import seaweed from "./img/seaweed.png";
+import sea_grapes from "./img/sea_grapes.png";
+import sea_cucumber from "./img/sea_cucumber.png";
+import sea_pig from "./img/sea_pig.png";
+import sea_star from "./img/sea_star.png";
+import sea_urchin from "./img/sea_urchin.png";
+import slate_pencil_urchin from "./img/slate_pencil_urchin.png";
+import sea_anemone from "./img/sea_anemone.png";
+import moon_jellyfish from "./img/moon_jellyfish.png";
+import sea_slug from "./img/sea_slug.png";
+import pearl_oyster from "./img/pearl_oyster.png";
+import mussel from "./img/mussel.png";
+import oyster from "./img/oyster.png";
+import scallop from "./img/scallop.png";
+import whelk from "./img/whelk.png";
+import turban_shell from "./img/turban_shell.png";
+import abalone from "./img/abalone.png";
+import gigas_giant_clam from "./img/gigas_giant_clam.png";
+import chambered_nautilus from "./img/chambered_nautilus.png";
+import octopus from "./img/octopus.png";
+import umbrella_octopus from "./img/umbrella_octopus.png";
+import vampire_squid from "./img/vampire_squid.png";
+import firefly_squid from "./img/firefly_squid.png";
+import gazami_crab from "./img/gazami_crab.png";
+import dungeness_crab from "./img/dungeness_crab.png";
+import snow_crab from "./img/snow_crab.png";
+import red_king_crab from "./img/red_king_crab.png";
+import acorn_barnacle from "./img/acorn_barnacle.png";
+import spider_crab from "./img/spider_crab.png";
+import tiger_prawn from "./img/tiger_prawn.png";
+import sweet_shrimp from "./img/sweet_shrimp.png";
+import mantis_shrimp from "./img/mantis_shrimp.png";
+import spiny_lobster from "./img/spiny_lobster.png";
+import lobster from "./img/lobster.png";
+import giant_isopod from "./img/giant_isopod.png";
+import horseshoe_crab from "./img/horseshoe_crab.png";
+import sea_pineapple from "./img/sea_pineapple.png";
+import spotted_garden_eel from "./img/spotted_garden_eel.png";
+import flatworm from "./img/flatworm.png";
+import venus_flower_basket from "./img/venus_flower_basket.png";
 
 export default {
   common_butterfly,
@@ -742,4 +782,44 @@ export default {
   two_days_ago,
   wandering,
   welcome_horizons,
+  seaweed,
+  sea_grapes,
+  sea_cucumber,
+  sea_pig,
+  sea_star,
+  sea_urchin,
+  slate_pencil_urchin,
+  sea_anemone,
+  moon_jellyfish,
+  sea_slug,
+  pearl_oyster,
+  mussel,
+  oyster,
+  scallop,
+  whelk,
+  turban_shell,
+  abalone,
+  gigas_giant_clam,
+  chambered_nautilus,
+  octopus,
+  umbrella_octopus,
+  vampire_squid,
+  firefly_squid,
+  gazami_crab,
+  dungeness_crab,
+  snow_crab,
+  red_king_crab,
+  acorn_barnacle,
+  spider_crab,
+  tiger_prawn,
+  sweet_shrimp,
+  mantis_shrimp,
+  spiny_lobster,
+  lobster,
+  giant_isopod,
+  horseshoe_crab,
+  sea_pineapple,
+  spotted_garden_eel,
+  flatworm,
+  venus_flower_basket,
 };
