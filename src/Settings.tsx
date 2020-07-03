@@ -14,6 +14,8 @@ type Props = {
 };
 
 export function Settings({ state, dispatch }: Props) {
+  const { t } = useTranslation();
+
   const root = css`
     display: flex;
     position: fixed;
@@ -53,22 +55,22 @@ export function Settings({ state, dispatch }: Props) {
           `}
         />
       </div>
-      <Section header="Language">
+      <Section header={t("Language")}>
         <LanguageSelector
           dispatch={dispatch}
           selectedLanguage={state.selectedLanguage}
         />
       </Section>
-      <Section header="Hemisphere">
+      <Section header={t("Hemisphere")}>
         <HemisphereSelector
           dispatch={dispatch}
           selectedHemi={state.selectedHemi}
         />
       </Section>
-      <Section header="Export Caught Items">
+      <Section header={t("Export Caught Items")}>
         <ExportButton state={state} />
       </Section>
-      <Section header="Import Caught Items">
+      <Section header={t("Import Caught Items")}>
         <ImportControl dispatch={dispatch} />
       </Section>
     </div>
@@ -180,6 +182,7 @@ function HemisphereSelector(props: {
 
 function ExportButton(props: { state: State }) {
   const [showSuccess, setShowSuccess] = useState(false);
+  const { t } = useTranslation();
 
   const onClick = () => {
     const text = Array.from(props.state.caught).join("\n");
@@ -190,13 +193,14 @@ function ExportButton(props: { state: State }) {
 
   return (
     <TextButton onClick={showSuccess ? undefined : onClick}>
-      {showSuccess ? "Copied!" : "Copy to Clipboard"}
+      {showSuccess ? t("Copied!") : t("Copy to Clipboard")}
     </TextButton>
   );
 }
 
 function ImportControl({ dispatch }: { dispatch: React.Dispatch<Action> }) {
   const [text, setText] = useState("");
+  const { t } = useTranslation();
 
   const root = css`
     display: flex;
@@ -224,7 +228,7 @@ function ImportControl({ dispatch }: { dispatch: React.Dispatch<Action> }) {
     <div className={root}>
       <textarea
         className={textAreaStyle}
-        placeholder="Paste Here"
+        placeholder={t("Paste Here")}
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
