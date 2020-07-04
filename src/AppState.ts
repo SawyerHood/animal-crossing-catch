@@ -1,5 +1,6 @@
 import RAW_FISH from "./data/fish.json";
 import RAW_BUGS from "./data/bugs.json";
+import RAW_SEA_CREATURES from "./data/sea-creatures.json";
 import RAW_FOSSILS from "./data/fossils.json";
 import RAW_ART from "./data/art.json";
 import RAW_MUSIC from "./data/music.json";
@@ -57,8 +58,19 @@ interface Bug extends ICatchable {
   type: "bug";
 }
 
-export type Catchable = Fish | Bug | Fossil | Art | Music;
-export type CatchableType = "fish" | "bug" | "fossil" | "art" | "music";
+interface SeaCreature extends ICatchable {
+  type: "sea_creature";
+  size: string;
+}
+
+export type Catchable = Fish | Bug | Fossil | Art | Music | SeaCreature;
+export type CatchableType =
+  | "fish"
+  | "bug"
+  | "fossil"
+  | "art"
+  | "music"
+  | "sea_creature";
 
 export type State = {
   selectedCatchable: CatchableType;
@@ -175,6 +187,15 @@ function cleanABug(input: { [key: string]: any }): Bug {
   };
 }
 
+function cleanASeaCreature(input: { [key: string]: any }): SeaCreature {
+  let catchable = cleanCatchable(input);
+  return {
+    ...catchable,
+    type: "sea_creature",
+    size: input.size,
+  };
+}
+
 function cleanAFossil(input: { [key: string]: any }): Fossil {
   return {
     ...cleanCollectable(input),
@@ -232,6 +253,7 @@ function forRangeWrap(
 
 const FISH: Catchable[] = RAW_FISH.map(cleanAFish);
 const BUGS: Catchable[] = RAW_BUGS.map(cleanABug);
+const SEA_CREATURES: Catchable[] = RAW_SEA_CREATURES.map(cleanASeaCreature);
 const FOSSILS: Catchable[] = RAW_FOSSILS.map(cleanAFossil);
 const ART: Catchable[] = RAW_ART.map(cleanArt);
 const MUSIC: Catchable[] = RAW_MUSIC.map(cleanMusic);
@@ -325,6 +347,9 @@ export function useAppState(): {
       break;
     case "bug":
       catchableArr = BUGS;
+      break;
+    case "sea_creature":
+      catchableArr = SEA_CREATURES;
       break;
     case "fossil":
       catchableArr = FOSSILS;

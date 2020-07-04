@@ -12,6 +12,64 @@ const RARITY_BASE_URL = "https://animalcrossing.fandom.com/wiki/";
 const FOSSIL_URL =
   "https://animalcrossing.fandom.com/wiki/Fossils_(New_Horizons)";
 const ART_URL = "https://animalcrossing.fandom.com/wiki/Artwork_(New_Horizons)";
+const SEA_CREATURES_URL =
+  "https://animalcrossing.fandom.com/wiki/Deep-sea_creatures_(New_Horizons)";
+
+async function loadSeaCreatures() {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto(SEA_CREATURES_URL);
+
+  const result = await page.evaluate(() => {
+    const resultMap = {};
+    const bodies = Array.from(
+      document.querySelectorAll(".roundy.sortable tbody")
+    ).map((body) => Array.from(body.children, (r) => Array.from(r.children)));
+    for (row of bodies[0]) {
+      const name = row[0].textContent.trim();
+      const url = row[1].children[0].href;
+      const sellPrice = +row[2].textContent.trim().replace(",", "");
+      const size = row[3].textContent.trim();
+      const location = row[4].textContent.trim();
+      const time = row[5].textContent.trim();
+      const nhMonths = row
+        .slice(6)
+        .map((cell) => cell.textContent.trim() !== "-");
+
+      const key = name.toLowerCase();
+
+      resultMap[key] = {
+        name,
+        imageURL: url,
+        sellPrice,
+        location,
+        size,
+        time,
+        nhMonths,
+      };
+    }
+
+    for (row of bodies[1]) {
+      const name = row[0].textContent.trim();
+      const shMonths = row
+        .slice(6)
+        .map((cell) => cell.textContent.trim() !== "-");
+      const key = name.toLowerCase();
+      const res = resultMap[key];
+      if (res) {
+        res.shMonths = shMonths;
+      }
+    }
+
+    return JSON.stringify(Object.values(resultMap));
+  });
+
+  await browser.close();
+  const arr = JSON.parse(result);
+  await loadImages(arr);
+  fs.writeFileSync("sea-creature.json", JSON.stringify(arr));
+  return arr;
+}
 
 async function loadFish() {
   const browser = await puppeteer.launch();
@@ -122,9 +180,9 @@ async function loadBugs() {
 
   await Promise.all([
     loadBugsRarity(arr, 0, arr.length / 4, browser),
-    loadBugsRarity(arr, arr.length / 4, 2 * arr.length / 4, browser),
-    loadBugsRarity(arr, 2 * arr.length / 4, 3 * arr.length / 4, browser),
-    loadBugsRarity(arr, 3 * arr.length / 4, arr.length, browser),
+    loadBugsRarity(arr, arr.length / 4, (2 * arr.length) / 4, browser),
+    loadBugsRarity(arr, (2 * arr.length) / 4, (3 * arr.length) / 4, browser),
+    loadBugsRarity(arr, (3 * arr.length) / 4, arr.length, browser),
   ]);
 
   await browser.close();
@@ -136,11 +194,16 @@ async function loadBugs() {
 async function loadBugsRarity(bugs, arrayStart, arrayEnd, browser) {
   for (let i = arrayStart; i < arrayEnd; i++) {
     const bug = bugs[i];
-    console.log(`[${arrayStart},${arrayEnd}] [${i}] Scrap bug rarity ${bug.name}`);
+    console.log(
+      `[${arrayStart},${arrayEnd}] [${i}] Scrap bug rarity ${bug.name}`
+    );
     const bugPage = await browser.newPage();
-    await bugPage.goto(`${RARITY_BASE_URL}${encodeURIComponent(bug.name.replace(' ', '_'))}`);
+    await bugPage.goto(
+      `${RARITY_BASE_URL}${encodeURIComponent(bug.name.replace(" ", "_"))}`
+    );
     bug.rarity = await bugPage.evaluate(() => {
-      const rarity = document.querySelector("[data-source=rarity] div").textContent;
+      const rarity = document.querySelector("[data-source=rarity] div")
+        .textContent;
       if (rarity.includes("Common")) {
         return "Common";
       } else if (rarity.includes("Fairly")) {
@@ -155,7 +218,9 @@ async function loadBugsRarity(bugs, arrayStart, arrayEnd, browser) {
         return "";
       }
     });
-    console.log(`[${arrayStart},${arrayEnd}] [${i}] Scrap bug rarity ${bug.name} DONE`);
+    console.log(
+      `[${arrayStart},${arrayEnd}] [${i}] Scrap bug rarity ${bug.name} DONE`
+    );
   }
 }
 
@@ -328,10 +393,19 @@ async function run() {
   }
   const bugs = await loadBugs();
   const fish = await loadFish();
+  const seaCreatures = await loadSeaCreatures();
   const fossils = await loadFossils();
   const art = await loadArt();
   const music = await loadMusic();
-  createImgMap([...bugs, ...fish, ...fossils, ...art, ...music]);
+
+  createImgMap([
+    ...bugs,
+    ...fish,
+    ...seaCreatures,
+    ...fossils,
+    ...art,
+    ...music,
+  ]);
 }
 
 run();

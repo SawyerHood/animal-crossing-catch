@@ -252,6 +252,21 @@ function Toggle(props: {
       </button>
       <button
         className={
+          props.selectedCatchable === "sea_creature"
+            ? selectedStyle
+            : defaultStyle
+        }
+        onClick={() =>
+          props.dispatch({
+            type: "select catchable",
+            catchable: "sea_creature",
+          })
+        }
+      >
+        {t("Sea Creature")}
+      </button>
+      <button
+        className={
           props.selectedCatchable === "fossil" ? selectedStyle : defaultStyle
         }
         onClick={() =>
@@ -376,7 +391,11 @@ function Card({
     noteSection = <Row icon={<Warning />}>{note}</Row>;
   }
 
-  if (catchable.type === "fish" || catchable.type === "bug") {
+  if (
+    catchable.type === "fish" ||
+    catchable.type === "bug" ||
+    catchable.type === "sea_creature"
+  ) {
     catchableSection = (
       <>
         <Row icon={<Location />}>{t(catchable.location)}</Row>
