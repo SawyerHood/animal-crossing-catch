@@ -263,7 +263,7 @@ function Toggle(props: {
           })
         }
       >
-        {t("Sea Creature")}
+        {t("Sea Creatures")}
       </button>
       <button
         className={
