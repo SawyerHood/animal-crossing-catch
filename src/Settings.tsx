@@ -228,7 +228,7 @@ function ImportControl({ dispatch }: { dispatch: React.Dispatch<Action> }) {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <TextButton onClick={onClick}>Import</TextButton>
+      <TextButton onClick={onClick}>{t("Import")}</TextButton>
     </div>
   );
 }
