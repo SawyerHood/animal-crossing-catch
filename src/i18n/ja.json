@@ -1,5 +1,11 @@
 {
   "translations": {
+    "Language": "言語",
+    "Hemisphere": "半球",
+    "Export Caught Items": "取得済みのエキスポート",
+    "Copy to Clipboard": "クリップボードへコピー",
+    "Import Caught Items": "取得済みのインポート",
+    "Paste Here": "ここに貼り付ける",
     "Not Yet Obtained": "未取得",
     "Available Now": "出現中",
     "Available This Month": "今月出現する",
@@ -482,6 +488,7 @@
     "Slow Consistent Movement": "遅い（なめらか）",
     "Medium Consistent Movement": "並（なめらか）",
     "Moderate Consistent Movement": "並（なめらか）",
+    "Slow Short Movement": "遅い（短い移動）",
     "Slow": "遅い",
     "Quick": "速い"
   }
