@@ -72,7 +72,7 @@
   {
     "name": "Ankylo skull",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/8/8e/NH-Furniture-ankyloskull.png/revision/latest?cb=20200404013825",
-    "sellPrice": 5000
+    "sellPrice": 3500
   },
   {
     "name": "Ankylo torso",
@@ -225,12 +225,12 @@
     "sellPrice": 2000
   },
   {
-    "name": "Pachysaurus skull",
+    "name": "Pachy skull",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/f/f7/NH-Furniture-pachysaurusskull.png/revision/latest?cb=20200404013826",
     "sellPrice": 4000
   },
   {
-    "name": "Pachysaurus tail",
+    "name": "Pachy tail",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/5/53/NH-Furniture-pachysaurustail.png/revision/latest?cb=20200404013827",
     "sellPrice": 3500
   },
@@ -260,8 +260,8 @@
     "sellPrice": 4500
   },
   {
-    "name": "Plesio body",
-    "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/9/9f/NH-Furniture-plesiobody.png/revision/latest?cb=20200404013827",
+    "name": "Plesio torso",
+    "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/8/88/NH-Furniture-plesiotorso.png/revision/latest?cb=20200404013827",
     "sellPrice": 4500
   },
   {

@@ -158,6 +158,46 @@ import football_fish from "./img/football_fish.png";
 import oarfish from "./img/oarfish.png";
 import barreleye from "./img/barreleye.png";
 import coelacanth from "./img/coelacanth.png";
+import seaweed from "./img/seaweed.png";
+import sea_grapes from "./img/sea_grapes.png";
+import sea_cucumber from "./img/sea_cucumber.png";
+import sea_pig from "./img/sea_pig.png";
+import sea_star from "./img/sea_star.png";
+import sea_urchin from "./img/sea_urchin.png";
+import slate_pencil_urchin from "./img/slate_pencil_urchin.png";
+import sea_anemone from "./img/sea_anemone.png";
+import moon_jellyfish from "./img/moon_jellyfish.png";
+import sea_slug from "./img/sea_slug.png";
+import pearl_oyster from "./img/pearl_oyster.png";
+import mussel from "./img/mussel.png";
+import oyster from "./img/oyster.png";
+import scallop from "./img/scallop.png";
+import whelk from "./img/whelk.png";
+import turban_shell from "./img/turban_shell.png";
+import abalone from "./img/abalone.png";
+import gigas_giant_clam from "./img/gigas_giant_clam.png";
+import chambered_nautilus from "./img/chambered_nautilus.png";
+import octopus from "./img/octopus.png";
+import umbrella_octopus from "./img/umbrella_octopus.png";
+import vampire_squid from "./img/vampire_squid.png";
+import firefly_squid from "./img/firefly_squid.png";
+import gazami_crab from "./img/gazami_crab.png";
+import dungeness_crab from "./img/dungeness_crab.png";
+import snow_crab from "./img/snow_crab.png";
+import red_king_crab from "./img/red_king_crab.png";
+import acorn_barnacle from "./img/acorn_barnacle.png";
+import spider_crab from "./img/spider_crab.png";
+import tiger_prawn from "./img/tiger_prawn.png";
+import sweet_shrimp from "./img/sweet_shrimp.png";
+import mantis_shrimp from "./img/mantis_shrimp.png";
+import spiny_lobster from "./img/spiny_lobster.png";
+import lobster from "./img/lobster.png";
+import giant_isopod from "./img/giant_isopod.png";
+import horseshoe_crab from "./img/horseshoe_crab.png";
+import sea_pineapple from "./img/sea_pineapple.png";
+import spotted_garden_eel from "./img/spotted_garden_eel.png";
+import flatworm from "./img/flatworm.png";
+import venus_flower_basket from "./img/venus_flower_basket.png";
 import acanthostega from "./img/acanthostega.png";
 import amber from "./img/amber.png";
 import ammonite from "./img/ammonite.png";
@@ -203,14 +243,14 @@ import left_megalo_side from "./img/left_megalo_side.png";
 import right_megalo_side from "./img/right_megalo_side.png";
 import ophthalmo_skull from "./img/ophthalmo_skull.png";
 import ophthalmo_torso from "./img/ophthalmo_torso.png";
-import pachysaurus_skull from "./img/pachysaurus_skull.png";
-import pachysaurus_tail from "./img/pachysaurus_tail.png";
+import pachy_skull from "./img/pachy_skull.png";
+import pachy_tail from "./img/pachy_tail.png";
 import parasaur_skull from "./img/parasaur_skull.png";
 import parasaur_torso from "./img/parasaur_torso.png";
 import parasaur_tail from "./img/parasaur_tail.png";
 import plesio_skull from "./img/plesio_skull.png";
 import plesio_tail from "./img/plesio_tail.png";
-import plesio_body from "./img/plesio_body.png";
+import plesio_torso from "./img/plesio_torso.png";
 import right_ptera_wing from "./img/right_ptera_wing.png";
 import ptera_body from "./img/ptera_body.png";
 import left_ptera_wing from "./img/left_ptera_wing.png";
@@ -236,16 +276,16 @@ import amazing_painting from "./art_img/amazing_painting.png";
 import basic_painting from "./art_img/basic_painting.png";
 import calm_painting from "./art_img/calm_painting.png";
 import common_painting from "./art_img/common_painting.png";
-import dynamic_painting from "./art_img/dynamic_painting.png";
 import detailed_painting from "./art_img/detailed_painting.png";
+import dynamic_painting from "./art_img/dynamic_painting.png";
 import famous_painting from "./art_img/famous_painting.png";
-import glowing_painting from "./art_img/glowing_painting.png";
 import flowery_painting from "./art_img/flowery_painting.png";
+import glowing_painting from "./art_img/glowing_painting.png";
 import graceful_painting from "./art_img/graceful_painting.png";
 import jolly_painting from "./art_img/jolly_painting.png";
-import mysterious_painting from "./art_img/mysterious_painting.png";
 import moody_painting from "./art_img/moody_painting.png";
 import moving_painting from "./art_img/moving_painting.png";
+import mysterious_painting from "./art_img/mysterious_painting.png";
 import nice_painting from "./art_img/nice_painting.png";
 import perfect_painting from "./art_img/perfect_painting.png";
 import proper_painting from "./art_img/proper_painting.png";
@@ -369,46 +409,6 @@ import to_the_edge from "./music_img/to_the_edge.png";
 import two_days_ago from "./music_img/two_days_ago.png";
 import wandering from "./music_img/wandering.png";
 import welcome_horizons from "./music_img/welcome_horizons.png";
-import seaweed from "./img/seaweed.png";
-import sea_grapes from "./img/sea_grapes.png";
-import sea_cucumber from "./img/sea_cucumber.png";
-import sea_pig from "./img/sea_pig.png";
-import sea_star from "./img/sea_star.png";
-import sea_urchin from "./img/sea_urchin.png";
-import slate_pencil_urchin from "./img/slate_pencil_urchin.png";
-import sea_anemone from "./img/sea_anemone.png";
-import moon_jellyfish from "./img/moon_jellyfish.png";
-import sea_slug from "./img/sea_slug.png";
-import pearl_oyster from "./img/pearl_oyster.png";
-import mussel from "./img/mussel.png";
-import oyster from "./img/oyster.png";
-import scallop from "./img/scallop.png";
-import whelk from "./img/whelk.png";
-import turban_shell from "./img/turban_shell.png";
-import abalone from "./img/abalone.png";
-import gigas_giant_clam from "./img/gigas_giant_clam.png";
-import chambered_nautilus from "./img/chambered_nautilus.png";
-import octopus from "./img/octopus.png";
-import umbrella_octopus from "./img/umbrella_octopus.png";
-import vampire_squid from "./img/vampire_squid.png";
-import firefly_squid from "./img/firefly_squid.png";
-import gazami_crab from "./img/gazami_crab.png";
-import dungeness_crab from "./img/dungeness_crab.png";
-import snow_crab from "./img/snow_crab.png";
-import red_king_crab from "./img/red_king_crab.png";
-import acorn_barnacle from "./img/acorn_barnacle.png";
-import spider_crab from "./img/spider_crab.png";
-import tiger_prawn from "./img/tiger_prawn.png";
-import sweet_shrimp from "./img/sweet_shrimp.png";
-import mantis_shrimp from "./img/mantis_shrimp.png";
-import spiny_lobster from "./img/spiny_lobster.png";
-import lobster from "./img/lobster.png";
-import giant_isopod from "./img/giant_isopod.png";
-import horseshoe_crab from "./img/horseshoe_crab.png";
-import sea_pineapple from "./img/sea_pineapple.png";
-import spotted_garden_eel from "./img/spotted_garden_eel.png";
-import flatworm from "./img/flatworm.png";
-import venus_flower_basket from "./img/venus_flower_basket.png";
 
 export default {
   common_butterfly,
@@ -571,6 +571,46 @@ export default {
   oarfish,
   barreleye,
   coelacanth,
+  seaweed,
+  sea_grapes,
+  sea_cucumber,
+  sea_pig,
+  sea_star,
+  sea_urchin,
+  slate_pencil_urchin,
+  sea_anemone,
+  moon_jellyfish,
+  sea_slug,
+  pearl_oyster,
+  mussel,
+  oyster,
+  scallop,
+  whelk,
+  turban_shell,
+  abalone,
+  gigas_giant_clam,
+  chambered_nautilus,
+  octopus,
+  umbrella_octopus,
+  vampire_squid,
+  firefly_squid,
+  gazami_crab,
+  dungeness_crab,
+  snow_crab,
+  red_king_crab,
+  acorn_barnacle,
+  spider_crab,
+  tiger_prawn,
+  sweet_shrimp,
+  mantis_shrimp,
+  spiny_lobster,
+  lobster,
+  giant_isopod,
+  horseshoe_crab,
+  sea_pineapple,
+  spotted_garden_eel,
+  flatworm,
+  venus_flower_basket,
   acanthostega,
   amber,
   ammonite,
@@ -616,14 +656,14 @@ export default {
   right_megalo_side,
   ophthalmo_skull,
   ophthalmo_torso,
-  pachysaurus_skull,
-  pachysaurus_tail,
+  pachy_skull,
+  pachy_tail,
   parasaur_skull,
   parasaur_torso,
   parasaur_tail,
   plesio_skull,
   plesio_tail,
-  plesio_body,
+  plesio_torso,
   right_ptera_wing,
   ptera_body,
   left_ptera_wing,
@@ -649,16 +689,16 @@ export default {
   basic_painting,
   calm_painting,
   common_painting,
-  dynamic_painting,
   detailed_painting,
+  dynamic_painting,
   famous_painting,
-  glowing_painting,
   flowery_painting,
+  glowing_painting,
   graceful_painting,
   jolly_painting,
-  mysterious_painting,
   moody_painting,
   moving_painting,
+  mysterious_painting,
   nice_painting,
   perfect_painting,
   proper_painting,
@@ -782,44 +822,4 @@ export default {
   two_days_ago,
   wandering,
   welcome_horizons,
-  seaweed,
-  sea_grapes,
-  sea_cucumber,
-  sea_pig,
-  sea_star,
-  sea_urchin,
-  slate_pencil_urchin,
-  sea_anemone,
-  moon_jellyfish,
-  sea_slug,
-  pearl_oyster,
-  mussel,
-  oyster,
-  scallop,
-  whelk,
-  turban_shell,
-  abalone,
-  gigas_giant_clam,
-  chambered_nautilus,
-  octopus,
-  umbrella_octopus,
-  vampire_squid,
-  firefly_squid,
-  gazami_crab,
-  dungeness_crab,
-  snow_crab,
-  red_king_crab,
-  acorn_barnacle,
-  spider_crab,
-  tiger_prawn,
-  sweet_shrimp,
-  mantis_shrimp,
-  spiny_lobster,
-  lobster,
-  giant_isopod,
-  horseshoe_crab,
-  sea_pineapple,
-  spotted_garden_eel,
-  flatworm,
-  venus_flower_basket,
 };

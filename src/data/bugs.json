@@ -1683,7 +1683,7 @@
     "name": "Blue weevil beetle",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/f/f5/NH-Icon-blueweevilbeetle.png/revision/latest?cb=20200401005428",
     "sellPrice": 800,
-    "location": "On Trees (Coconut?)",
+    "location": "On Trees (Coconut)",
     "time": "All day",
     "nhMonths": [
       false,
@@ -2103,7 +2103,7 @@
     "name": "Giraffe stag",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/7/7c/NH-Icon-giraffestag.png/revision/latest?cb=20200401005428",
     "sellPrice": 12000,
-    "location": "On Trees (Coconut?)",
+    "location": "On Trees (Coconut)",
     "time": "5 PM - 8 AM",
     "nhMonths": [
       false,
@@ -2313,7 +2313,7 @@
     "name": "Walking leaf",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/c/cb/NH-Icon-walkingleaf.png/revision/latest?cb=20200401005429",
     "sellPrice": 600,
-    "location": "Under Trees Disguised as Leafs",
+    "location": "Under Trees Disguised as Leaves",
     "time": "All day",
     "nhMonths": [
       false,

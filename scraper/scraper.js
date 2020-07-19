@@ -8,7 +8,6 @@ const csv = require("fast-csv");
 
 const FISH_URL = "https://animalcrossing.fandom.com/wiki/Fish_(New_Horizons)";
 const BUG_URL = "https://animalcrossing.fandom.com/wiki/Bugs_(New_Horizons)";
-const RARITY_BASE_URL = "https://animalcrossing.fandom.com/wiki/";
 const FOSSIL_URL =
   "https://animalcrossing.fandom.com/wiki/Fossils_(New_Horizons)";
 const ART_URL = "https://animalcrossing.fandom.com/wiki/Artwork_(New_Horizons)";
@@ -178,50 +177,10 @@ async function loadBugs() {
 
   const arr = JSON.parse(result);
 
-  await Promise.all([
-    loadBugsRarity(arr, 0, arr.length / 4, browser),
-    loadBugsRarity(arr, arr.length / 4, (2 * arr.length) / 4, browser),
-    loadBugsRarity(arr, (2 * arr.length) / 4, (3 * arr.length) / 4, browser),
-    loadBugsRarity(arr, (3 * arr.length) / 4, arr.length, browser),
-  ]);
-
   await browser.close();
   await loadImages(arr);
   fs.writeFileSync("bugs.json", JSON.stringify(arr));
   return arr;
-}
-
-async function loadBugsRarity(bugs, arrayStart, arrayEnd, browser) {
-  for (let i = arrayStart; i < arrayEnd; i++) {
-    const bug = bugs[i];
-    console.log(
-      `[${arrayStart},${arrayEnd}] [${i}] Scrap bug rarity ${bug.name}`
-    );
-    const bugPage = await browser.newPage();
-    await bugPage.goto(
-      `${RARITY_BASE_URL}${encodeURIComponent(bug.name.replace(" ", "_"))}`
-    );
-    bug.rarity = await bugPage.evaluate(() => {
-      const rarity = document.querySelector("[data-source=rarity] div")
-        .textContent;
-      if (rarity.includes("Common")) {
-        return "Common";
-      } else if (rarity.includes("Fairly")) {
-        return "Fairly";
-      } else if (rarity.includes("Uncommon")) {
-        return "Uncommon";
-      } else if (rarity.includes("Scarce")) {
-        return "Scarce";
-      } else if (rarity.includes("Rare")) {
-        return "Rare";
-      } else {
-        return "";
-      }
-    });
-    console.log(
-      `[${arrayStart},${arrayEnd}] [${i}] Scrap bug rarity ${bug.name} DONE`
-    );
-  }
 }
 
 async function loadFossils() {

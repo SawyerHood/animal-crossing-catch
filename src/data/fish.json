@@ -436,7 +436,7 @@
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/2/24/NH-Icon-snappingturtle.png/revision/latest?cb=20200401003129",
     "sellPrice": 5000,
     "location": "River",
-    "size": "5",
+    "size": "4",
     "time": "9 PM - 4 AM",
     "nhMonths": [
       false,
@@ -652,7 +652,7 @@
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/0/0c/NH-Icon-giantsnakehead.png/revision/latest?cb=20200401003129",
     "sellPrice": 5500,
     "location": "Pond",
-    "size": "5",
+    "size": "4",
     "time": "9 AM - 4 PM",
     "nhMonths": [
       false,
@@ -938,7 +938,7 @@
   {
     "name": "Cherry salmon",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/5/5f/NH-Icon-cherrysalmon.png/revision/latest?cb=20200401003129",
-    "sellPrice": 800,
+    "sellPrice": 1000,
     "location": "River (Clifftop)",
     "size": "3",
     "time": "4 PM - 9 AM",
@@ -1516,7 +1516,7 @@
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/9/9f/NH-Icon-gar.png/revision/latest?cb=20200401003129",
     "sellPrice": 6000,
     "location": "Pond",
-    "size": "6",
+    "size": "5",
     "time": "4 PM - 9 AM",
     "nhMonths": [
       false,
@@ -2704,7 +2704,7 @@
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/b/b9/NH-Icon-suckerfish.png/revision/latest?cb=20200401003131",
     "sellPrice": 1500,
     "location": "Sea",
-    "size": "4 (Fin)",
+    "size": "6 (Fin)",
     "time": "All day",
     "nhMonths": [
       false,
@@ -2847,7 +2847,7 @@
     "name": "Coelacanth",
     "imageURL": "https://vignette.wikia.nocookie.net/animalcrossing/images/3/31/NH-Icon-coelacanth.png/revision/latest?cb=20200401003129",
     "sellPrice": 15000,
-    "location": "Sea (Raining)",
+    "location": "Sea",
     "size": "6",
     "time": "All day",
     "nhMonths": [
