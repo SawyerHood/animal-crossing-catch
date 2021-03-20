@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { css, injectGlobal } from "emotion";
+import { css, injectGlobal } from "@emotion/css";
 import { useTranslation } from "react-i18next";
 import { ReactComponent as Location } from "./icon/location.svg";
 import { ReactComponent as Time } from "./icon/time.svg";

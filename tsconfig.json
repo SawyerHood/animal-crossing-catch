@@ -1,9 +1,15 @@
 {
-  "include": ["./src/*", "src/i18n/*"],
+  "include": [
+    "./src/*",
+    "src/i18n/*"
+  ],
   "compilerOptions": {
     "strict": true,
-    "lib": ["dom", "es2015"],
-    "jsx": "react",
+    "lib": [
+      "dom",
+      "es2015"
+    ],
+    "jsx": "react-jsx",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "target": "es5",
@@ -14,6 +20,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true
   }
 }

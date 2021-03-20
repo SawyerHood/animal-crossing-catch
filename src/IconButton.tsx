@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import * as Constants from "./Constants";
-import { cx } from "emotion";
+import { cx } from "@emotion/css";
 
 type Props = {
   icon: ReactNode;

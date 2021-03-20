@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { css, cx } from "emotion";
+import { css, cx } from "@emotion/css";
 import * as Constants from "./Constants";
 import { IconButton } from "./IconButton";
 import { ReactComponent as Cross } from "./icon/cross.svg";

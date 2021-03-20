@@ -410,7 +410,7 @@ import two_days_ago from "./music_img/two_days_ago.png";
 import wandering from "./music_img/wandering.png";
 import welcome_horizons from "./music_img/welcome_horizons.png";
 
-export default {
+const imgMap = {
   common_butterfly,
   yellow_butterfly,
   tiger_butterfly,
@@ -823,3 +823,5 @@ export default {
   wandering,
   welcome_horizons,
 };
+
+export default imgMap;
