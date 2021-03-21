@@ -1,5 +1,6 @@
 node_modules
 build
+dist
 .DS_Store
 scraper/*.json
 scraper/music_img
